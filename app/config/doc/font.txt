@@ -1,0 +1,5 @@
+Main_Font: "IRANSansMobile",
+Alternatives:{
+IRANSansMobile_Medium
+IRANSansMobile_Bold
+}
