@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import Language from "../../config/settings/Language";
+import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
 import style from "./style";
 
 const index = ({ navigation }) => {
@@ -39,16 +39,32 @@ const index = ({ navigation }) => {
           />
         </View>
       </View>
-      <TouchableOpacity
-        style={button}
-        onPress={() => {
-          navigation.navigate("Result");
-        }}
-      >
-        <Text style={serachText}>{Language.Search}</Text>
-      </TouchableOpacity>
+
+      {dummyData.map((store, i) => (
+        <TouchableOpacity
+          key={i}
+          style={button}
+          onPress={() => {
+            navigation.navigate("Result", {
+              store
+            });
+          }}
+        >
+          <Text style={serachText}>{Language.Search}</Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
 
 export default index;
+
+const dummyData = [
+  {
+    title: "مبل امین",
+    description: "بهترین کالا و خدمات در اطراف شما",
+    image: require("../../../assets/image/mobl.jpeg"),
+    address:
+      "تهران خیابان شیخ بهایی خیابان الوند کوچه مدبر پلاک ۴۱ واحدروم طبقه سوم زنگ چهارم"
+  }
+];

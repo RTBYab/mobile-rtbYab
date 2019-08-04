@@ -16,7 +16,7 @@ import color from "../config/settings/color";
 import TabBarIcon from "../components/TabbarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import WishListScreen from "../screens/WishListScreen";
-import DetailsScreen from "../screens/DetailsScreen";
+import StoreScreen from "../screens/StoreScreen";
 import SearchScreen from "../components/Search";
 import ResultScreen from "../screens/ResultScreen";
 import CouponScreen from "../screens/CouponScreen";
@@ -27,7 +27,8 @@ const HomeStack = createStackNavigator(
   {
     Home: { screen: HomeScreen },
     Search: { screen: SearchScreen },
-    Result: { screen: ResultScreen }
+    Result: { screen: ResultScreen },
+    Store: { screen: StoreScreen }
   },
   {
     navigationOptions: {

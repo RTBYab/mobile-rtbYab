@@ -35,6 +35,7 @@ export default class HomeScreen extends PureComponent {
           <Text style={mainText2}> یاب</Text>
           <Text style={mainText1}>رتبه </Text>
         </View>
+
         <Search
           // searchResult={result => navigate("Result", result)}
           navigation={this.props.navigation}
