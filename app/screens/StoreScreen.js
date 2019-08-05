@@ -13,4 +13,8 @@ const StoreScreen = ({ navigation }) => {
   );
 };
 
+StoreScreen.navigationOption = {
+  header: null
+};
+
 export default StoreScreen;

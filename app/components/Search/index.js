@@ -40,31 +40,16 @@ const index = ({ navigation }) => {
         </View>
       </View>
 
-      {dummyData.map((store, i) => (
-        <TouchableOpacity
-          key={i}
-          style={button}
-          onPress={() => {
-            navigation.navigate("Result", {
-              store
-            });
-          }}
-        >
-          <Text style={serachText}>{Language.Search}</Text>
-        </TouchableOpacity>
-      ))}
+      <TouchableOpacity
+        style={button}
+        onPress={() => {
+          navigation.navigate("Result");
+        }}
+      >
+        <Text style={serachText}>{Language.Search}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default index;
-
-const dummyData = [
-  {
-    title: "مبل امین",
-    description: "بهترین کالا و خدمات در اطراف شما",
-    image: require("../../../assets/image/mobl.jpeg"),
-    address:
-      "تهران خیابان شیخ بهایی خیابان الوند کوچه مدبر پلاک ۴۱ واحدروم طبقه سوم زنگ چهارم"
-  }
-];

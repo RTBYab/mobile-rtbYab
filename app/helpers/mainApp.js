@@ -1,4 +1,4 @@
-// import { Ionicons } from "@expo/vector-icons";
+import { EvilIcons } from "@expo/vector-icons";
 
 // import * as Location from "expo-location";
 // import * as Permissions from "expo-permissions";
@@ -13,6 +13,7 @@ export const loadResourcesAsync = async () => {
     ]),
     Font.loadAsync({
       // ...Ionicons.font,
+      ...EvilIcons.font,
       Main: require("../../assets/fonts/IRANSansMobile_Light.ttf"),
       Main2: require("../../assets/fonts/IRANSansMobile_Medium.ttf"),
       Main3: require("../../assets/fonts/IRANSansMobile_Bold.ttf")
