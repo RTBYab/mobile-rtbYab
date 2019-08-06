@@ -10,18 +10,21 @@ import {
 
 const { width } = Dimensions.get("window");
 
-import Images from "../config/settings/Images";
-import Config from "../config/settings/general-config";
-import color from "../config/settings/color";
-import TabBarIcon from "../components/TabbarIcon";
-import HomeScreen from "../screens/HomeScreen";
-import WishListScreen from "../screens/WishListScreen";
-import StoreScreen from "../screens/StoreScreen";
-import SearchScreen from "../components/Search";
-import ResultScreen from "../screens/ResultScreen";
-import CouponScreen from "../screens/CouponScreen";
-import LoginScreen from "../screens/LoginScreen";
 import RegisterationScreen from "../screens/RegisterationScreen";
+import Config from "../config/settings/general-config";
+import WishListScreen from "../screens/WishListScreen";
+import CommentScreen from "../screens/CommentsScreen";
+import AddressScreen from "../screens/AddressScreen";
+import CouponScreen from "../screens/CouponScreen";
+import ResultScreen from "../screens/ResultScreen";
+import TabBarIcon from "../components/TabBarIcon";
+import StoreScreen from "../screens/StoreScreen";
+import LoginScreen from "../screens/LoginScreen";
+import SearchScreen from "../components/Search";
+import Images from "../config/settings/Images";
+import HomeScreen from "../screens/HomeScreen";
+import color from "../config/settings/color";
+import TabBar from "../components/TabBar";
 
 const HomeStack = createStackNavigator(
   {
@@ -80,11 +83,15 @@ const AppNavigator = createBottomTabNavigator(
           />
         )
       }
-    }
+    },
+    Comment: {
+      screen: CommentScreen
+    },
+    Address: { screen: AddressScreen }
   },
   {
-    // initialRouteName: 'CategoriesScreen',
-    // tabBarComponent: TabBar,
+    // initialRouteName: "استور",
+    tabBarComponent: TabBar,
     tabBarPosition: "bottom",
     swipeEnabled: false,
     animationEnabled: false,
@@ -94,7 +101,7 @@ const AppNavigator = createBottomTabNavigator(
       activeTintColor: color.tabbarTint,
       inactiveTintColor: color.tabbarColor
     },
-    lazy: true,
+    lazy: false,
     navigationOptions: {
       gestureDirection: I18nManager.isRTL ? "inverted" : "default"
     }

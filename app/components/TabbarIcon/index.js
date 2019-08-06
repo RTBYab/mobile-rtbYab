@@ -1,10 +1,8 @@
-/** @format */
-
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { View, StyleSheet, Text, Image } from "react-native";
 // import { Styles } from "../../config/settings/styles";
-import { connect } from "react-redux";
+// import { connect } from "./node_modules/react-redux";
 
 class TabBarIcon extends PureComponent {
   static propTypes = {

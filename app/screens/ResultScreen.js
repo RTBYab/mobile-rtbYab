@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import StarRating from "react-native-star-rating";
-import { Ionicons, EvilIcons } from "@expo/vector-icons";
+import { EvilIcons } from "@expo/vector-icons";
 import AnimatdFlatList from "../components/AnimatedFlatList";
 
 const ResultScreen = ({ navigation }) => {
@@ -18,7 +18,14 @@ const ResultScreen = ({ navigation }) => {
         محل تبلیغات شما :){" "}
       </Text>
       {dummyData.map((store, index) => (
-        <TouchableOpacity key={index}>
+        <TouchableOpacity
+          key={index}
+          onPress={() => {
+            navigation.navigate("Store", {
+              store: store
+            });
+          }}
+        >
           <View
             style={{
               flex: 1,
@@ -117,10 +124,13 @@ const dummyData = [
     address:
       "تهران خیابان شیخ بهایی خیابان الوند کوچه مدبر پلاک ۴۱ واحدروم طبقه سوم زنگ چهارم",
     rate: 5,
-    distance: 1
+    distance: 1,
+    comments: "۷۶۸",
+    followers: "۱۲۹۸",
+    telephone: '۲۲۱۵۱۶۱۷'
   },
   {
-    title: "مبل امین",
+    title: "مبل متین",
     description: "بهترین کالا و خدمات در اطراف شما",
     image: require("../../assets/image/mobl.jpeg"),
     address:
@@ -129,7 +139,7 @@ const dummyData = [
     distance: 1
   },
   {
-    title: "مبل امین",
+    title: "مبل جواد",
     description: "بهترین کالا و خدمات در اطراف شما",
     image: require("../../assets/image/mobl.jpeg"),
     address:
@@ -138,7 +148,7 @@ const dummyData = [
     distance: 1
   },
   {
-    title: "مبل امین",
+    title: "مبل رضا",
     description: "بهترین کالا و خدمات در اطراف شما",
     image: require("../../assets/image/mobl.jpeg"),
     address:
@@ -147,7 +157,7 @@ const dummyData = [
     distance: 2
   },
   {
-    title: "مبل امین",
+    title: "مبل حسین",
     description: "بهترین کالا و خدمات در اطراف شما",
     image: require("../../assets/image/mobl.jpeg"),
     address:
@@ -156,7 +166,7 @@ const dummyData = [
     distance: 2
   },
   {
-    title: "مبل امین",
+    title: "مبل حسن",
     description: "بهترین کالا و خدمات در اطراف شما",
     image: require("../../assets/image/mobl.jpeg"),
     address:

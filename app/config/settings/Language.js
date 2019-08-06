@@ -275,7 +275,7 @@ export default {
 
   // review
   vendorTitle: "Vendor",
-  comment: "Leave a review",
+  LeaveComment: "ثبت نظر",
   yourcomment: "Your comment",
   placeComment:
     "Tell something about your experience or leave a tip for others",
