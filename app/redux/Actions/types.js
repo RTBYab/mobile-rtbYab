@@ -29,5 +29,5 @@ export const REMOVE_COMMENT = "REMOVE_COMMENT";
 
 // Store
 export const GET_STORE = "GET_STORE";
-export const UPDATE_STORE= "UPDATE_STORE";
-export const DELETE_STORE = 'DELETE_STORE',
+export const UPDATE_STORE = "UPDATE_STORE";
+// export const DELETE_STORE = "DELETE_STORE",

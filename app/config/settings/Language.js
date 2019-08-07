@@ -7,6 +7,14 @@ export default {
   CANCEL: "CANCEL",
   Confirm: "Confirm",
 
+  // Logo
+  TextLogo: "رتبه یاب",
+
+  // Login
+  LoginText: "لطفا وارد شوید",
+  Login: "ورود",
+  LoginIntro: " بهترین کالا و خدمات در اطراف شما ",
+
   // Scene's Titles
   Home: "Home",
   Intro: "Intro",
@@ -91,7 +99,6 @@ export default {
   NoEmailError: "Your account don't have valid email address",
   EmailIsNotVerifiedError:
     "Your email address is not verified, we can' trust you",
-  Login: "Login",
   Logout: "Logout",
   Shop: "Shop",
   Category: "Category",

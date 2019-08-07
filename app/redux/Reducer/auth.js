@@ -7,7 +7,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   ACCOUNT_DELETED
-} from "../actions/types";
+} from "../Actions/types";
 
 import * as SecureStore from "expo-secure-store";
 
@@ -18,7 +18,7 @@ const initialState = {
   user: null
 };
 
-export default function(sate = initialState, action) {
+export default function(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case USER_LOADED:
@@ -43,7 +43,7 @@ export default function(sate = initialState, action) {
     case LOGIN_FAIL:
     case LOGOUT:
     case ACCOUNT_DELETED:
-      SecureStore.setItemAsync(null);
+      // SecureStore.setItemAsync(null);
       return {
         ...state,
         token: null,

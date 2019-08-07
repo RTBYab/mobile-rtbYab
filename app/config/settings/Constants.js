@@ -16,5 +16,12 @@ export default {
     zoomIn: "zoomIn",
     fadeIn: "fadeIn",
     bounceIn: "bounceIn"
+  },
+
+  borderRadius: {
+    min: 2,
+    max: 10,
+    main: 4,
+    alternative: 7
   }
 };

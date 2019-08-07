@@ -8,14 +8,24 @@ import {
   // getLocation
 } from "./app/helpers/mainApp";
 
+import { Provider } from "react-redux";
+import store from "./app/redux/store";
+import setAuthToken from "./app/helpers/auth-token";
 import AppNavigator from "./app/navigation";
+import * as SecureStore from "expo-secure-store";
+import { loadUser } from "./app/redux/Actions/auth";
 
 App = props => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
-  // useEffect(() => {
-  //   getLocation();
-  // }, []);
+  if (SecureStore.getItemAsync("token")) {
+    setAuthToken(loadUser());
+  }
+
+  useEffect(() => {
+    // getLocation();
+    store.dispatch(loadUser());
+  }, []);
 
   const mainApp =
     !isLoadingComplete && !props.skipLoadingScreen ? (
@@ -25,14 +35,16 @@ App = props => {
         onFinish={() => handleFinishLoading(setLoadingComplete)}
       />
     ) : (
-      <View style={{ flex: 1 }}>
-        {Platform.OS === "ios" ? (
-          <StatusBar barStyle="default" translucent={true} />
-        ) : (
-          <StatusBar hidden={true} />
-        )}
-        <AppNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          {Platform.OS === "ios" ? (
+            <StatusBar barStyle="default" translucent={true} />
+          ) : (
+            <StatusBar hidden={true} />
+          )}
+          <AppNavigator />
+        </View>
+      </Provider>
     );
 
   return mainApp;

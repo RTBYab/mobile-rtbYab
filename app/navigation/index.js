@@ -90,7 +90,7 @@ const AppNavigator = createBottomTabNavigator(
     Address: { screen: AddressScreen }
   },
   {
-    // initialRouteName: "استور",
+    initialRouteName: "جایزهـها",
     tabBarComponent: TabBar,
     tabBarPosition: "bottom",
     swipeEnabled: false,

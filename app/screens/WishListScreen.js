@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text } from "react-native";
+import Register from "../container/Register";
 
 const WishListScreen = () => {
   return (
-    <View>
-      <Text>WishListScreen</Text>
+    <View style={{ flex: 1 }}>
+      <Register />
     </View>
   );
 };

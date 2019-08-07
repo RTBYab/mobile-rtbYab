@@ -12,5 +12,7 @@ export default {
   noticeBackground: tintColor,
   noticeText: "#fff",
   buttonOrange: "#ed8a19",
-  mainBackground: "#fff"
+  mainBackground: "#fff",
+  mainWhiteColorWithOpacity: "rgba(256,256,256,0.8)",
+  mainAppColor: "rgba(125, 87, 252,0.85 )"
 };

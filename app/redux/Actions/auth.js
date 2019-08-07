@@ -9,9 +9,7 @@ import {
   LOGOUT,
   CLEAR_PROFILE
 } from "./types";
-
 import * as SecureStore from "expo-secure-store";
-import setAuthToken from "../../helpers/auth-token";
 
 // Load User
 export const loadUser = () => async dispatch => {
@@ -32,7 +30,12 @@ export const loadUser = () => async dispatch => {
 };
 
 // Registre User
-export const register = ({ name, email, password }) => async dispatch => {
+export const register = ({
+  name,
+  email,
+  password,
+  password2
+}) => async dispatch => {
   const config = {
     headers: {
       Accept: "application/json",
@@ -40,7 +43,7 @@ export const register = ({ name, email, password }) => async dispatch => {
     }
   };
 
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password, password2 });
 
   try {
     const res = await axios.post("/signup", body, config);
@@ -52,7 +55,7 @@ export const register = ({ name, email, password }) => async dispatch => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
-      errors.forEach(error => console.log(error));
+      console.log(error);
     }
     dispatch({
       type: REGISTER_FAIL
@@ -81,7 +84,7 @@ export const login = (email, password) => async dispatch => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
-      errors.forEach(error => dispatch(console.log(error)));
+      console.log(error);
     }
     dispatch({
       type: LOGIN_FAIL
