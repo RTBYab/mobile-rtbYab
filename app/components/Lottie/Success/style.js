@@ -1,14 +1,22 @@
 import styled from "styled-components";
-import { Animated } from "react-native";
+import { Animated, Platform } from "react-native";
 import Color from "../../../config/settings/color";
 
 export const Container = styled.View`
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  ${Platform.select({
+    ios: {
+      flex: 0.38
+    },
+    android: {
+      flex: 1,
+      width: "40%",
+      justifyContent: "center",
+      marginBottom: 128
+    }
+  })}
   align-items: center;
-  position: absolute;
+  justify-content: center;
+  margin-top: -200px;
   background-color: ${Color.mainWhiteColorWithOpacity};
 `;
 

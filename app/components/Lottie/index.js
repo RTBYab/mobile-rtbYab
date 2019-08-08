@@ -6,7 +6,7 @@ import { Animated, Dimensions } from "react-native";
 const HEIGTH = Dimensions.get("window").height;
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
-class Success extends Component {
+class Lottie extends Component {
   state = {
     top: new Animated.Value(0),
     opacity: new Animated.Value(0)
@@ -29,22 +29,19 @@ class Success extends Component {
 
   render() {
     const { top, opacity } = this.state;
+    const { source, loop } = this.props;
     return (
       <AnimatedContainer style={{ top, opacity }}>
         <LottieView
-          loop={false}
+          loop={loop}
           autoPlay={false}
           ref={animation => {
             this.animation = animation;
           }}
-          style={{
-            marginTop: 53,
-            backgroundColor: "white"
-          }}
-          source={require("../../../../assets/lottie/Login.json")}
+          source={source}
         />
       </AnimatedContainer>
     );
   }
 }
-export default Success;
+export default Lottie;

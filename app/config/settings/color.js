@@ -1,5 +1,5 @@
 const tintColor = "#000";
-
+// const mainAppColor = #7d57fc
 export default {
   tintColor,
   tabIconDefault: "#ccc",
@@ -14,5 +14,6 @@ export default {
   buttonOrange: "#ed8a19",
   mainBackground: "#fff",
   mainWhiteColorWithOpacity: "rgba(256,256,256,0.8)",
-  mainAppColor: "rgba(125, 87, 252,0.85 )"
+  mainWhite: "rgba(256,256,256,0.8)",
+  mainAppColor: "rgba(125, 87, 252,0.8 )"
 };

@@ -19,6 +19,7 @@ import Success from "../../components/Lottie/Success";
 import { register } from "../../redux/Actions/auth";
 import Color from "../../config/settings/color";
 import React, { PureComponent } from "react";
+import Lottie from "../../components/Lottie";
 import { connect } from "react-redux";
 import { BlurView } from "expo-blur";
 import PropTypes from "prop-types";
@@ -27,6 +28,8 @@ class Register extends PureComponent {
   state = {
     email: "",
     Password: "",
+    isLoading: false,
+    isSuccessful: false,
     emailIcon: require("../../../assets/image/Email.png"),
     passwordIcon: require("../../../assets/image/Password.png")
   };
@@ -37,7 +40,10 @@ class Register extends PureComponent {
 
   handleLogin = () => {
     const { email, password } = this.state;
+
     console.log(email, password);
+
+    this.setState({ isSuccessful: true });
   };
 
   focusEmail = () => {
@@ -54,7 +60,7 @@ class Register extends PureComponent {
     });
   };
   render() {
-    const { emailIcon, passwordIcon } = this.state;
+    const { emailIcon, passwordIcon, isSuccessful, isLoading } = this.state;
     return (
       <Container>
         <TouchableWithoutFeedback onPress={this.dismissKeyaboard}>
@@ -94,7 +100,12 @@ class Register extends PureComponent {
             </Button>
           </TouchableOpacity>
         </Modal>
-        <Success isActive={false} />
+        {/* <Lottie
+          isActive={isLoading}
+          loop={true}
+          source={require("../../../assets/lottie/Loading.json")}
+        /> */}
+        <Success isActive={isSuccessful} />
       </Container>
     );
   }

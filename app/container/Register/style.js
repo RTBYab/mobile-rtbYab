@@ -15,6 +15,7 @@ export const Container = styled.View`
 export const Modal = styled.View`
   width: 335px;
   height: 379px;
+  margin-top: 135px;
   align-items: center;
   background-color: white;
   border-radius: ${Const.borderRadius.main};

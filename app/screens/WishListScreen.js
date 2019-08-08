@@ -4,7 +4,12 @@ import Register from "../container/Register";
 
 const WishListScreen = () => {
   return (
-    <View style={{ flex: 1 }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "white"
+      }}
+    >
       <Register />
     </View>
   );
