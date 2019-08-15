@@ -2,8 +2,8 @@ import {
   Modal,
   Logo,
   Form,
-  Text,
-  Button,
+  // Text,
+  // Button,
   EmailIcon,
   Container,
   ButtonText,
@@ -11,111 +11,93 @@ import {
 } from "./style";
 import {
   TouchableWithoutFeedback,
+  SafeAreaView,
   TouchableOpacity,
-  Keyboard
+  Keyboard,
+  Text,
+  View,
+  TextInput
 } from "react-native";
 import Language from "../../config/settings/Language";
 import Success from "../../components/Lottie/Success";
 import { register } from "../../redux/Actions/auth";
+import { Card, Input, Button } from "galio-framework";
 import Color from "../../config/settings/color";
+// import Lottie from "../../components/Lottie";
 import React, { PureComponent } from "react";
-import Lottie from "../../components/Lottie";
 import { connect } from "react-redux";
 import { BlurView } from "expo-blur";
-import PropTypes from "prop-types";
+import axios from "axios";
 
-class Register extends PureComponent {
+class Register extends PureComponent<Props> {
   state = {
+    name: "",
     email: "",
-    Password: "",
-    isLoading: false,
-    isSuccessful: false,
-    emailIcon: require("../../../assets/image/Email.png"),
-    passwordIcon: require("../../../assets/image/Password.png")
+    password: "",
+    password2: ""
   };
 
-  dismissKeyaboard = () => {
-    Keyboard.dismiss();
+  hanndleRegister = () => {
+    const { email, password, password2, name } = this.state;
+    const { register } = this.props;
+    const newUser = {
+      name,
+      email,
+      password,
+      password2
+    };
+    console.log(newUser);
+    register(newUser);
   };
 
-  handleLogin = () => {
-    const { email, password } = this.state;
-
-    console.log(email, password);
-
-    this.setState({ isSuccessful: true });
-  };
-
-  focusEmail = () => {
-    this.setState({
-      emailIcon: require("../../../assets/gif/Email.gif"),
-      passwordIcon: require("../../../assets/image/Password.png")
-    });
-  };
-
-  focusPassword = () => {
-    this.setState({
-      passwordIcon: require("../../../assets/gif/Password.gif"),
-      emailIcon: require("../../../assets/image/Email.png")
-    });
-  };
   render() {
-    const { emailIcon, passwordIcon, isSuccessful, isLoading } = this.state;
+    // const { navigate } = this.props.navigation;
     return (
-      <Container>
-        <TouchableWithoutFeedback onPress={this.dismissKeyaboard}>
-          <BlurView
-            tint="light"
-            intensity={50}
-            style={{ position: "absolute", width: "100%", height: "100%" }}
-          />
-        </TouchableWithoutFeedback>
-        <Modal>
-          <Logo source={require("../../../assets/image/logo.png")} />
-          <Text>{Language.LoginIntro}</Text>
-          <Form
-            onChangeText={email => this.setState({ email })}
-            selectionColor={Color.mainAppColor}
-            keyboardType="email-address"
-            selectTextOnFocus={true}
-            selectTextOnFocus={true}
-            onFocus={this.focusEmail}
-            placeholder=" ایمیل"
-          />
-          <Form
-            onChangeText={password => this.setState({ password })}
-            selectionColor={Color.mainAppColor}
-            onFocus={this.focusPassword}
-            selectTextOnFocus={true}
-            selectTextOnFocus={true}
-            placeholder=" رمز عبور "
-            secureTextEntry={true}
-            returnKeyType="go"
-          />
-          <EmailIcon source={emailIcon} />
-          <PasswordIcon source={passwordIcon} />
-          <TouchableOpacity onPress={this.handleLogin}>
-            <Button>
-              <ButtonText>{Language.Login}</ButtonText>
-            </Button>
-          </TouchableOpacity>
-        </Modal>
-        {/* <Lottie
-          isActive={isLoading}
-          loop={true}
-          source={require("../../../assets/lottie/Loading.json")}
-        /> */}
-        <Success isActive={isSuccessful} />
-      </Container>
+      <SafeAreaView
+        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      >
+        <Input
+          style={{
+            width: 330
+          }}
+        />
+        <Input
+          style={{
+            width: 330
+          }}
+        />
+        <Input
+          style={{
+            width: 330
+          }}
+        />
+
+        <Button
+          opacity={0.6}
+          onPress={() => {
+            this.hanndleRegister();
+          }}
+        >
+          <Text style={{ fontFamily: "Main2", color: "#fff", fontSize: 20 }}>
+            ثبت نام
+          </Text>
+        </Button>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate("Search");
+          }}
+        >
+          <Text>وارد شوید</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
     );
   }
 }
 
-Register.propTypes = {
-  // setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
-};
+// Register.propTypes = {
+//   login: PropTypes.func.isRequired,
+//   isAuthenticated: PropTypes.bool
+// };
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });

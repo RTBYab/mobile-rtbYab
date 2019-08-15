@@ -10,9 +10,10 @@ import {
 } from "react-native";
 import { StackActions } from "react-navigation";
 import * as Animatable from "react-native-animatable";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
 import Device from "../../config/settings/Device";
+// import console = require("console");
 
 const styles = StyleSheet.create({
   tabbar: {
@@ -81,6 +82,21 @@ class TabBar extends PureComponent {
       "Address"
     ];
 
+    // const storeIgnoreScreen = [
+    //   "DetailScreen",
+    //   "SearchScreen",
+    //   "Detail",
+    //   "NewsScreen",
+    //   "LoginScreen",
+    //   "SignUpScreen",
+    //   "CustomPage",
+    //   "CategoryDetail",
+    //   "SettingScreen",
+    //   "WishListScreen",
+    //   "LoginStack",
+    //   // "Comment",
+    //   "Address"
+    // ];
     return (
       <View
         style={[
@@ -94,10 +110,6 @@ class TabBar extends PureComponent {
             const tintColor = focused ? activeTintColor : inactiveTintColor;
 
             if (ignoreScreen.indexOf(route.key) > -1) {
-              return <View key={route.key} />;
-            }
-
-            if (this.props.user === null && route.key === "MyOrders") {
               return <View key={route.key} />;
             }
 
@@ -131,5 +143,12 @@ TabBar.propTypes = {
   inactiveTintColor: PropTypes.string,
   jumpTo: PropTypes.func
 };
-// const mapStateToProps = ({ user }) => ({ user: user.user });
-export default TabBar;
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(TabBar);

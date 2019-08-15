@@ -1,4 +1,8 @@
 export default {
+  URL: {
+    Main: "http://localhost:8080/api/"
+  },
+
   // TabBar Animation
   Animate: {
     bounce: "bounce",

@@ -1,37 +1,3 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { connect } from "redux";
-import React from "react";
-
-const Login = () => {
-  return <div />;
-  /*
-
-  import {
-  Modal,
-  Logo,
-  Form,
-  Text,
-  Button,
-  EmailIcon,
-  Container,
-  ButtonText,
-  PasswordIcon
-} from "./style";
-import {
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Keyboard
-} from "react-native";
-import Language from "../../config/settings/Language";
-import Success from "../../components/Lottie/Success";
-import { login } from "../../redux/Actions/auth";
-import Color from "../../config/settings/color";
-// import Lottie from "../../components/Lottie";
-import React, { PureComponent } from "react";
-import { connect } from "react-redux";
-import { BlurView } from "expo-blur";
-import PropTypes from "prop-types";
-
 class Register extends PureComponent {
   state = {
     email: "",
@@ -111,34 +77,10 @@ class Register extends PureComponent {
             </Button>
           </TouchableOpacity>
         </Modal>
-        {
-          
-        }
+        {/* <Lottie
+          isActive={isLoading}
+          loop={true}
+          source={require("../../../assets/lottie/Loading.json")}
+        /> */}
         <Success isActive={isSuccessful} />
       </Container>
-    );
-  }
-}
-
-Register.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
-};
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(
-  mapStateToProps,
-  { login }
-)(Register);
-
-
-
-
-*/
-};
-
-const mapStateToProps = state => {};
-
-export default connect(mapStateToProps)(Login);

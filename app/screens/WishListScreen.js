@@ -1,16 +1,29 @@
-import React from "react";
-import { View, Text } from "react-native";
-import Register from "../container/Register";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getProfileById } from "../redux/Actions/profile";
+import { View, Text, TouchableOpacity, AsyncStorage } from "react-native";
+import decoded from "jwt-decode";
 
-const WishListScreen = () => {
+const WishListScreen = ({ auth, profile, getProfileById, navigation }) => {
+  useEffect(() => {
+    const token = auth.token._55;
+    const id = auth.user._id;
+    getProfileById(id, token);
+  }, []);
+
+  console.log(profile);
+
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
-      <Register />
+      <Text>{auth.user.name}</Text>
+      <Text>{profile.referalcode}</Text>
     </View>
   );
 };
@@ -18,4 +31,13 @@ const WishListScreen = () => {
 WishListScreen.navigationOptions = {
   header: null
 };
-export default WishListScreen;
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getProfileById }
+)(WishListScreen);

@@ -1,7 +1,7 @@
 import Constants from "./Constants";
 export default {
   Login: {
-    RequiredLogin: false, // required before using the app
+    RequiredLogin: true, // required before using the app
     AnonymousCheckout: false // required before checkout or checkout anonymous
   },
 

@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import { View, Text, StyleSheet, Dimensions, Platform } from "react-native";
 import Search from "../components/Search";
-
 const { width } = Dimensions.get("window");
 
 export default class HomeScreen extends PureComponent {

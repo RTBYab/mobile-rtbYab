@@ -7,24 +7,27 @@ import {
   handleFinishLoading
   // getLocation
 } from "./app/helpers/mainApp";
-
 import { Provider } from "react-redux";
 import store from "./app/redux/store";
-import setAuthToken from "./app/helpers/auth-token";
 import AppNavigator from "./app/navigation";
-import * as SecureStore from "expo-secure-store";
+import { AsyncStorage } from "react-native";
+import setAuthToken from "./app/helpers/auth-token";
 import { loadUser } from "./app/redux/Actions/auth";
+import { PersistGate } from "redux-persist/integration/react";
+
+// import * as SecureStore from "expo-secure-store";
 
 App = props => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
-  if (SecureStore.getItemAsync("token")) {
-    setAuthToken(loadUser());
-  }
+  // if (AsyncStorage.getItem("token")) {
+  //   setAuthToken(loadUser());
+  //   // console.log("loadddd", loadUser());
+  // }
 
   useEffect(() => {
     // getLocation();
-    store.dispatch(loadUser());
+    // store.dispatch(loadUser());
   }, []);
 
   const mainApp =

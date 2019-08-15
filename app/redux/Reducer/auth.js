@@ -8,15 +8,17 @@ import {
   LOGOUT,
   ACCOUNT_DELETED
 } from "../Actions/types";
-
-import * as SecureStore from "expo-secure-store";
+// import * as SecureStore from "expo-secure-store";
+import { AsyncStorage } from "react-native";
+// import console = require("console");
 
 const initialState = {
-  token: SecureStore.getItemAsync("token"),
+  token: AsyncStorage.getItem("token"),
   isAuthenticated: null,
   loading: true,
   user: null
 };
+// console.log(AsyncStorage.getItem("token"));
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
@@ -30,7 +32,7 @@ export default function(state = initialState, action) {
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      SecureStore.setItemAsync("token", payload.token);
+      AsyncStorage.setItem("token", payload.token);
       return {
         ...state,
         ...payload,
@@ -43,7 +45,7 @@ export default function(state = initialState, action) {
     case LOGIN_FAIL:
     case LOGOUT:
     case ACCOUNT_DELETED:
-      // SecureStore.setItemAsync(null);
+      AsyncStorage.removeItem("token");
       return {
         ...state,
         token: null,

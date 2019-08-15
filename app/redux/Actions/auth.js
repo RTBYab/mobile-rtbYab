@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -9,15 +8,20 @@ import {
   LOGOUT,
   CLEAR_PROFILE
 } from "./types";
-import * as SecureStore from "expo-secure-store";
+import axios from "axios";
+// import * as SecureStore from "expo-secure-store";
+import setAuthToken from "../../helpers/auth-token";
+import Const from "../.././config/settings/Constants";
 
 // Load User
-export const loadUser = () => async dispatch => {
-  if (SecureStore.token) {
-    setAuthToken(SecureStore.token);
+export const loadUser = (id, token) => async dispatch => {
+  if (token) {
+    setAuthToken(token);
   }
+
   try {
-    const res = await axios.get("/user/:userId");
+    const res = await axios.get(Const.URL.Main + `cuser/${id}`);
+
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -30,12 +34,7 @@ export const loadUser = () => async dispatch => {
 };
 
 // Registre User
-export const register = ({
-  name,
-  email,
-  password,
-  password2
-}) => async dispatch => {
+export const register = newUser => async dispatch => {
   const config = {
     headers: {
       Accept: "application/json",
@@ -43,20 +42,18 @@ export const register = ({
     }
   };
 
-  const body = JSON.stringify({ name, email, password, password2 });
+  const body = JSON.stringify(newUser);
+  // console.log(body);
 
   try {
-    const res = await axios.post("/signup", body, config);
+    const res = await axios.post(Const.URL.Main + "/signup", body, config);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
     });
     dispatch(loadUser());
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      console.log(error);
-    }
+    console.log(err.message);
     dispatch({
       type: REGISTER_FAIL
     });
@@ -64,7 +61,7 @@ export const register = ({
 };
 
 // Login User
-export const login = (email, password) => async dispatch => {
+export const login = (userData, navigation) => async dispatch => {
   const config = {
     headers: {
       Accept: "application/json",
@@ -72,20 +69,20 @@ export const login = (email, password) => async dispatch => {
     }
   };
 
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify(userData);
   try {
-    const res = await axios.post("/signin", body, config);
+    const res = await axios.post(Const.URL.Main + "/signin", body, config);
+
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
     });
+    navigation.navigate("Home");
 
-    dispatch(loadUser());
+    dispatch(loadUser(res.data.user._id));
   } catch (err) {
-    const errors = err.response.data.errors;
-    if (errors) {
-      console.log(error);
-    }
+    console.log(err.message);
+    alert(err.message);
     dispatch({
       type: LOGIN_FAIL
     });

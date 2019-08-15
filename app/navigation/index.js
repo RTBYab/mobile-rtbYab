@@ -10,7 +10,7 @@ import {
 
 const { width } = Dimensions.get("window");
 
-import RegisterationScreen from "../screens/RegisterationScreen";
+import RegistrationScreen from "../screens/RegistrationScreen";
 import Config from "../config/settings/general-config";
 import WishListScreen from "../screens/WishListScreen";
 import CommentScreen from "../screens/CommentsScreen";
@@ -44,8 +44,8 @@ const HomeStack = createStackNavigator(
 
 const AuthStack = createStackNavigator(
   {
-    LoginScreen: { screen: LoginScreen },
-    RegisterationScreen: { screen: RegisterationScreen }
+    Login: { screen: LoginScreen },
+    Registration: { screen: RegistrationScreen }
   },
   {
     mode: "card",
@@ -101,7 +101,7 @@ const AppNavigator = createBottomTabNavigator(
       activeTintColor: color.tabbarTint,
       inactiveTintColor: color.tabbarColor
     },
-    lazy: false,
+    lazy: true,
     navigationOptions: {
       gestureDirection: I18nManager.isRTL ? "inverted" : "default"
     }
@@ -112,7 +112,7 @@ export default createAppContainer(
   Config.Login.RequiredLogin
     ? createSwitchNavigator(
         {
-          AuthLoading: AuthLoadingScreen,
+          AuthLoading: LoginScreen,
           App: AppNavigator,
           Auth: AuthStack
         },
