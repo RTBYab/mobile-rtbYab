@@ -9,17 +9,17 @@ import {
 } from "./app/helpers/mainApp";
 import { Provider } from "react-redux";
 import store from "./app/redux/store";
+import Loading from "./app/components/Loading";
 import AppNavigator from "./app/navigation";
-import { AsyncStorage } from "react-native";
-import setAuthToken from "./app/helpers/auth-token";
-import { loadUser } from "./app/redux/Actions/auth";
-import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import SubNavigation from "./app/navigation/SubNavigation";
+import { PersistGate } from "redux-persist/es/integration/react";
 
 // import * as SecureStore from "expo-secure-store";
 
 App = props => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-
+  const persistor = persistStore(store);
   // if (AsyncStorage.getItem("token")) {
   //   setAuthToken(loadUser());
   //   // console.log("loadddd", loadUser());
@@ -39,14 +39,11 @@ App = props => {
       />
     ) : (
       <Provider store={store}>
-        <View style={{ flex: 1 }}>
-          {Platform.OS === "ios" ? (
-            <StatusBar barStyle="default" translucent={true} />
-          ) : (
-            <StatusBar hidden={true} />
-          )}
-          <AppNavigator />
-        </View>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <SubNavigation>
+            <AppNavigator />
+          </SubNavigation>
+        </PersistGate>
       </Provider>
     );
 

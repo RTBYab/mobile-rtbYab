@@ -4,7 +4,7 @@ import Const from "../.././config/settings/Constants";
 // import console = require("console");
 
 export const getProfileById = (id, token) => async dispatch => {
-  // console.log(token, id);
+  // console.log("rrrrtttttt", token, id);
   const config = {
     headers: {
       Accept: "application/json",

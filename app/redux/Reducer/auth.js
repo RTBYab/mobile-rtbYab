@@ -10,7 +10,6 @@ import {
 } from "../Actions/types";
 // import * as SecureStore from "expo-secure-store";
 import { AsyncStorage } from "react-native";
-// import console = require("console");
 
 const initialState = {
   token: AsyncStorage.getItem("token"),
@@ -18,7 +17,6 @@ const initialState = {
   loading: true,
   user: null
 };
-// console.log(AsyncStorage.getItem("token"));
 
 export default function(state = initialState, action) {
   const { type, payload } = action;

@@ -1,17 +1,25 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getProfileById } from "../redux/Actions/profile";
+import { logout } from "../redux/Actions/auth";
 import { View, Text, TouchableOpacity, AsyncStorage } from "react-native";
-import decoded from "jwt-decode";
 
-const WishListScreen = ({ auth, profile, getProfileById, navigation }) => {
+const WishListScreen = ({
+  auth,
+  profile,
+  getProfileById,
+  navigation,
+  logout
+}) => {
   useEffect(() => {
-    const token = auth.token._55;
+    const token = auth.token;
     const id = auth.user._id;
+    // console.log("bibibibi2", id, token);
+
     getProfileById(id, token);
   }, []);
 
-  console.log(profile);
+  // console.log(profile);
 
   return (
     <View
@@ -24,6 +32,10 @@ const WishListScreen = ({ auth, profile, getProfileById, navigation }) => {
     >
       <Text>{auth.user.name}</Text>
       <Text>{profile.referalcode}</Text>
+      {console.log(profile.referalcode)}
+      <TouchableOpacity onPress={logout}>
+        <Text>Logout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -39,5 +51,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProfileById }
+  { getProfileById, logout }
 )(WishListScreen);

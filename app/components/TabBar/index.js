@@ -6,6 +6,7 @@ import {
   View,
   Platform,
   StyleSheet,
+  AsyncStorage,
   TouchableWithoutFeedback
 } from "react-native";
 import { StackActions } from "react-navigation";
@@ -13,6 +14,8 @@ import * as Animatable from "react-native-animatable";
 import { connect } from "react-redux";
 
 import Device from "../../config/settings/Device";
+import decode from "jwt-decode";
+
 // import console = require("console");
 
 const styles = StyleSheet.create({
@@ -56,8 +59,34 @@ class TabBar extends PureComponent {
     }
   };
 
+  getUserRole = async () => {
+    const token = await AsyncStorage.getItem("token");
+    const userRole = decode(token);
+    console.log(userRole.role);
+
+    switch (userRole) {
+      case "storeOwner":
+        console.log("alaki");
+
+        break;
+
+      case "user":
+        console.log("malaki");
+        break;
+
+      default:
+        console.log("palaki");
+        break;
+    }
+  };
+
+  componentDidMount = async () => {
+    this.getUserRole();
+  };
+
   render() {
     const {
+      auth,
       navigation,
       renderIcon,
       activeTintColor,
@@ -82,21 +111,22 @@ class TabBar extends PureComponent {
       "Address"
     ];
 
-    // const storeIgnoreScreen = [
-    //   "DetailScreen",
-    //   "SearchScreen",
-    //   "Detail",
-    //   "NewsScreen",
-    //   "LoginScreen",
-    //   "SignUpScreen",
-    //   "CustomPage",
-    //   "CategoryDetail",
-    //   "SettingScreen",
-    //   "WishListScreen",
-    //   "LoginStack",
-    //   // "Comment",
-    //   "Address"
-    // ];
+    const storeIgnoreScreen = [
+      "DetailScreen",
+      "SearchScreen",
+      "Detail",
+      "NewsScreen",
+      "LoginScreen",
+      "SignUpScreen",
+      "CustomPage",
+      "CategoryDetail",
+      "SettingScreen",
+      "WishListScreen",
+      "LoginStack",
+      // "Comment",
+      "Address"
+    ];
+
     return (
       <View
         style={[
@@ -109,9 +139,17 @@ class TabBar extends PureComponent {
             const focused = index === navigation.state.index;
             const tintColor = focused ? activeTintColor : inactiveTintColor;
 
-            if (ignoreScreen.indexOf(route.key) > -1) {
-              return <View key={route.key} />;
-            }
+            // if (this.userRole === "storeOwner") {
+            //   storeIgnoreScreen.indexOf(route.key) > -1;
+            //   <View key={route.key} />;
+            // } else {
+            //   ignoreScreen.indexOf(route.key) > -1;
+            //   <View key={route.key} />;
+            // }
+
+            // if (ignoreScreen.indexOf(route.key) > -1) {
+            //   return <View key={route.key} />;
+            // }
 
             return (
               <TouchableWithoutFeedback

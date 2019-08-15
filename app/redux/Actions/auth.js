@@ -78,8 +78,9 @@ export const login = (userData, navigation) => async dispatch => {
       payload: res.data
     });
     navigation.navigate("Home");
+    const { token, user } = res.data;
 
-    dispatch(loadUser(res.data.user._id));
+    dispatch(loadUser(user._id, token));
   } catch (err) {
     console.log(err.message);
     alert(err.message);
