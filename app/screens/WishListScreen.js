@@ -1,26 +1,9 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getProfileById } from "../redux/Actions/profile";
+import React from "react";
+import { View } from "react-native";
+import Store from "../components/Store";
 import { logout } from "../redux/Actions/auth";
-import { View, Text, TouchableOpacity, AsyncStorage } from "react-native";
-
-const WishListScreen = ({
-  auth,
-  profile,
-  getProfileById,
-  navigation,
-  logout
-}) => {
-  useEffect(() => {
-    const token = auth.token;
-    const id = auth.user._id;
-    // console.log("bibibibi2", id, token);
-
-    getProfileById(id, token);
-  }, []);
-
-  // console.log(profile);
-
+import { getProfileById } from "../redux/Actions/profile";
+const WishListScreen = ({ navigation }) => {
   return (
     <View
       style={{
@@ -30,12 +13,7 @@ const WishListScreen = ({
         alignItems: "center"
       }}
     >
-      <Text>{auth.user.name}</Text>
-      <Text>{profile.referalcode}</Text>
-      {console.log(profile.referalcode)}
-      <TouchableOpacity onPress={logout}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
+      <Store navigation={navigation} />
     </View>
   );
 };
@@ -44,12 +22,4 @@ WishListScreen.navigationOptions = {
   header: null
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps,
-  { getProfileById, logout }
-)(WishListScreen);
+export default WishListScreen;

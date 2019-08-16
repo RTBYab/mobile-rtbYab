@@ -25,6 +25,9 @@ export default {
   // Home
   products: "products",
 
+  // Store
+  StoreWelcomeText: "اگر صاحب کسب و کار هستی، همین الان کسب و کارت ثبت کن",
+
   // TopBarz
   ShowFilter: "Sub Categories",
   HideFilter: "Hide",

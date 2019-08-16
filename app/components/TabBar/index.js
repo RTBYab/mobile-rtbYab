@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { StackActions } from "react-navigation";
 import * as Animatable from "react-native-animatable";
+import Color from "../../config/settings/color";
 import { connect } from "react-redux";
 
 import Device from "../../config/settings/Device";
@@ -59,30 +60,30 @@ class TabBar extends PureComponent {
     }
   };
 
-  getUserRole = async () => {
-    const token = await AsyncStorage.getItem("token");
-    const userRole = decode(token);
-    console.log(userRole.role);
+  // getUserRole = async () => {
+  //   const token = await AsyncStorage.getItem("token");
+  //   const userRole = decode(token);
+  //   console.log(userRole.role);
 
-    switch (userRole) {
-      case "storeOwner":
-        console.log("alaki");
+  //   switch (userRole) {
+  //     case "storeOwner":
+  //       console.log("alaki");
 
-        break;
+  //       break;
 
-      case "user":
-        console.log("malaki");
-        break;
+  //     case "user":
+  //       console.log("malaki");
+  //       break;
 
-      default:
-        console.log("palaki");
-        break;
-    }
-  };
+  //     default:
+  //       console.log("palaki");
+  //       break;
+  //   }
+  // };
 
-  componentDidMount = async () => {
-    this.getUserRole();
-  };
+  // componentDidMount = async () => {
+  //   this.getUserRole();
+  // };
 
   render() {
     const {
@@ -137,7 +138,7 @@ class TabBar extends PureComponent {
         {routes &&
           routes.map((route, index) => {
             const focused = index === navigation.state.index;
-            const tintColor = focused ? activeTintColor : inactiveTintColor;
+            const tintColor = focused ? Color.mainAppColor : inactiveTintColor;
 
             // if (this.userRole === "storeOwner") {
             //   storeIgnoreScreen.indexOf(route.key) > -1;
@@ -147,9 +148,9 @@ class TabBar extends PureComponent {
             //   <View key={route.key} />;
             // }
 
-            // if (ignoreScreen.indexOf(route.key) > -1) {
-            //   return <View key={route.key} />;
-            // }
+            if (ignoreScreen.indexOf(route.key) > -1) {
+              return <View key={route.key} />;
+            }
 
             return (
               <TouchableWithoutFeedback

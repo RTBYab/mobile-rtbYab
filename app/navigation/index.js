@@ -10,6 +10,7 @@ import {
 
 const { width } = Dimensions.get("window");
 
+import StoreRegistrationScreen from "../screens/StoreRegistrationScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import Config from "../config/settings/general-config";
 import WishListScreen from "../screens/WishListScreen";
@@ -53,8 +54,9 @@ const AuthStack = createStackNavigator(
   }
 );
 
-const CouponStack = createStackNavigator({
+const StoreStack = createStackNavigator({
   Wish: { screen: WishListScreen },
+  StoreRegistration: { screen: StoreRegistrationScreen },
   Copon: { screen: CouponScreen }
 });
 
@@ -65,20 +67,20 @@ const AppNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <TabBarIcon
-            css={{ width: 18, height: 18 }}
-            icon={Images.IconHome}
+            css={{ width: 25, height: 25 }}
+            icon={Images.IconSearch}
             tintColor={tintColor}
           />
         )
       }
     },
     جایزهـها: {
-      screen: CouponStack,
+      screen: StoreStack,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <TabBarIcon
-            css={{ width: 18, height: 18 }}
-            icon={Images.IconCategory}
+            css={{ width: 27, height: 27 }}
+            icon={Images.IconStore}
             tintColor={tintColor}
           />
         )
@@ -94,7 +96,7 @@ const AppNavigator = createBottomTabNavigator(
     tabBarComponent: TabBar,
     tabBarPosition: "bottom",
     swipeEnabled: false,
-    animationEnabled: false,
+    animationEnabled: true,
     tabBarOptions: {
       showIcon: true,
       showLabel: true,

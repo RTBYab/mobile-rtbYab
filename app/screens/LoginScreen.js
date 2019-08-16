@@ -93,6 +93,7 @@ export default connect(
   mapStateToProps,
   { login, logout, loadUser }
 )(LoginScreen);
+
 LoginScreen.navigationOptions = {
   header: null
 };

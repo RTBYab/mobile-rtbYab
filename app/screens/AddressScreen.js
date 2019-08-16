@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text, SafeAreaView } from "react-native";
 // import Language from "../../config/settings/Language";
 // import { style } from "./style";
 import { Ionicons } from "@expo/vector-icons";
@@ -6,7 +6,7 @@ import React from "react";
 
 const AddressScreen = ({ navigation, address }) => {
   return (
-    <View>
+    <SafeAreaView>
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
@@ -19,7 +19,7 @@ const AddressScreen = ({ navigation, address }) => {
         />
       </TouchableOpacity>
       <Text>AddressScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

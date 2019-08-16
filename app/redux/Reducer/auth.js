@@ -6,7 +6,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  ACCOUNT_DELETED
+  ACCOUNT_DELETED,
+  CLEAR_PROFILE
 } from "../Actions/types";
 // import * as SecureStore from "expo-secure-store";
 import { AsyncStorage } from "react-native";
@@ -42,13 +43,14 @@ export default function(state = initialState, action) {
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:
+    case CLEAR_PROFILE:
     case ACCOUNT_DELETED:
       AsyncStorage.removeItem("token");
       return {
         ...state,
         token: null,
-        isAuthenticated: false,
-        loading: false
+        loading: false,
+        isAuthenticated: false
       };
     default:
       return state;

@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 
 const CommentsScreen = ({ navigation }) => {
   return (
-    <View>
+    <SafeAreaView>
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
@@ -17,7 +17,7 @@ const CommentsScreen = ({ navigation }) => {
         />
       </TouchableOpacity>
       <Text>CommentsScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 CommentsScreen.navigationOptions = {

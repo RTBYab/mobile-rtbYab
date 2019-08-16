@@ -15,5 +15,6 @@ export default {
   mainBackground: "#fff",
   mainWhiteColorWithOpacity: "rgba(256,256,256,0.8)",
   mainWhite: "rgba(256,256,256,0.8)",
-  mainAppColor: "rgba(125, 87, 252,0.8 )"
+  mainAppColor: "rgba(125, 87, 252, 1)",
+  textColor: "#fff"
 };
