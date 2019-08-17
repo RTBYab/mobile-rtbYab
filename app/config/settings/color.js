@@ -14,7 +14,7 @@ export default {
   buttonOrange: "#ed8a19",
   mainBackground: "#fff",
   mainWhiteColorWithOpacity: "rgba(256,256,256,0.8)",
-  mainWhite: "rgba(256,256,256,0.8)",
+  mainWhite: "rgba(256,256,256,1)",
   mainAppColor: "rgba(125, 87, 252, 1)",
   textColor: "#fff"
 };

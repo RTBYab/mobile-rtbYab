@@ -1,12 +1,17 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { SafeAreaView, Text } from "react-native";
+import FirstRegistration from "../components/FirstRegistration";
 
 const StoreRegistrationScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text>StoreRegistrationScreen</Text>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <FirstRegistration navigation={navigation} />
+    </SafeAreaView>
   );
 };
 
 export default StoreRegistrationScreen;
+
+StoreRegistrationScreen.navigationOptions = {
+  header: null
+};

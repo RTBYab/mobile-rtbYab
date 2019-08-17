@@ -1,9 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import Store from "../components/Store";
 import { logout } from "../redux/Actions/auth";
+import { connect } from "react-redux";
 import { getProfileById } from "../redux/Actions/profile";
-const WishListScreen = ({ navigation }) => {
+
+const WishListScreen = ({ navigation, logout }) => {
   return (
     <View
       style={{
@@ -14,6 +16,9 @@ const WishListScreen = ({ navigation }) => {
       }}
     >
       <Store navigation={navigation} />
+      <TouchableOpacity onPress={logout}>
+        <Text>LogOut</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -22,4 +27,7 @@ WishListScreen.navigationOptions = {
   header: null
 };
 
-export default WishListScreen;
+export default connect(
+  null,
+  { logout }
+)(WishListScreen);

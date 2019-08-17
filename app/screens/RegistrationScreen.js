@@ -12,7 +12,7 @@ const RegistrationScreen = () => {
 export default RegistrationScreen;
 
 RegistrationScreen.navigationOptions = {
-  // header: null
+  header: null
 };
 
 const styles = StyleSheet.create({

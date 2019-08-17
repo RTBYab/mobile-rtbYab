@@ -61,12 +61,12 @@ export default StyleSheet.create({
   textInput: {
     ...Platform.select({
       ios: {
-        fontFamily: "Main",
-        color: "black",
-        fontSize: 16,
         padding: 3,
+        fontSize: 16,
+        color: "black",
         alignSelf: "auto",
-        textAlign: "right"
+        textAlign: "right",
+        fontFamily: "Main"
       },
       android: {
         fontFamily: "Main",

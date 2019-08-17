@@ -3,10 +3,11 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import {
+  Text,
   View,
+  SafeAreaView,
   Platform,
   StyleSheet,
-  AsyncStorage,
   TouchableWithoutFeedback
 } from "react-native";
 import { StackActions } from "react-navigation";
@@ -15,9 +16,6 @@ import Color from "../../config/settings/color";
 import { connect } from "react-redux";
 
 import Device from "../../config/settings/Device";
-import decode from "jwt-decode";
-
-// import console = require("console");
 
 const styles = StyleSheet.create({
   tabbar: {
@@ -48,7 +46,6 @@ const styles = StyleSheet.create({
 class TabBar extends PureComponent {
   onPress = (index, route) => {
     this.refs[`tabItem${index}`].flipInY(900);
-
     // back to main screen when is staying child route
 
     if (route.routes && route.routes.length > 1 && index !== 1) {
@@ -60,34 +57,9 @@ class TabBar extends PureComponent {
     }
   };
 
-  // getUserRole = async () => {
-  //   const token = await AsyncStorage.getItem("token");
-  //   const userRole = decode(token);
-  //   console.log(userRole.role);
-
-  //   switch (userRole) {
-  //     case "storeOwner":
-  //       console.log("alaki");
-
-  //       break;
-
-  //     case "user":
-  //       console.log("malaki");
-  //       break;
-
-  //     default:
-  //       console.log("palaki");
-  //       break;
-  //   }
-  // };
-
-  // componentDidMount = async () => {
-  //   this.getUserRole();
-  // };
-
   render() {
     const {
-      auth,
+      textLabel,
       navigation,
       renderIcon,
       activeTintColor,
@@ -112,41 +84,19 @@ class TabBar extends PureComponent {
       "Address"
     ];
 
-    const storeIgnoreScreen = [
-      "DetailScreen",
-      "SearchScreen",
-      "Detail",
-      "NewsScreen",
-      "LoginScreen",
-      "SignUpScreen",
-      "CustomPage",
-      "CategoryDetail",
-      "SettingScreen",
-      "WishListScreen",
-      "LoginStack",
-      // "Comment",
-      "Address"
-    ];
+    const lala = ["home", "mome"];
 
     return (
-      <View
+      <SafeAreaView
         style={[
           styles.tabbar,
-          { backgroundColor: "#fff", borderTopColor: "#fff" }
+          { backgroundColor: "#fff", borderTopColor: "#fff", marginBottom: 5 }
         ]}
       >
         {routes &&
           routes.map((route, index) => {
             const focused = index === navigation.state.index;
             const tintColor = focused ? Color.mainAppColor : inactiveTintColor;
-
-            // if (this.userRole === "storeOwner") {
-            //   storeIgnoreScreen.indexOf(route.key) > -1;
-            //   <View key={route.key} />;
-            // } else {
-            //   ignoreScreen.indexOf(route.key) > -1;
-            //   <View key={route.key} />;
-            // }
 
             if (ignoreScreen.indexOf(route.key) > -1) {
               return <View key={route.key} />;
@@ -164,12 +114,14 @@ class TabBar extends PureComponent {
                     index,
                     focused,
                     tintColor
+                    // showLabel
                   })}
+                  <Text style={{ color: "#000" }}>{textLabel}</Text>
                 </Animatable.View>
               </TouchableWithoutFeedback>
             );
           })}
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -180,7 +132,8 @@ TabBar.propTypes = {
   renderIcon: PropTypes.any,
   activeTintColor: PropTypes.string,
   inactiveTintColor: PropTypes.string,
-  jumpTo: PropTypes.func
+  jumpTo: PropTypes.func,
+  name: PropTypes.string
 };
 
 const mapStateToProps = state => ({

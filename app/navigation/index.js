@@ -65,23 +65,29 @@ const AppNavigator = createBottomTabNavigator(
     خانه: {
       screen: HomeStack,
       navigationOptions: {
+        tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
           <TabBarIcon
             css={{ width: 25, height: 25 }}
             icon={Images.IconSearch}
             tintColor={tintColor}
+            name="جابزه ها"
+            textLabel="asd"
           />
         )
       }
     },
     جایزهـها: {
       screen: StoreStack,
+
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <TabBarIcon
             css={{ width: 27, height: 27 }}
             icon={Images.IconStore}
             tintColor={tintColor}
+            name="[sdsdsds]"
+            textLabel="asd"
           />
         )
       }

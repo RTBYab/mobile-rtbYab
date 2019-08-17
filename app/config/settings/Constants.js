@@ -26,6 +26,7 @@ export default {
     min: 2,
     max: 10,
     main: 4,
-    alternative: 7
+    alternative: 7,
+    map: 21
   }
 };
