@@ -1,8 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 import MapView from "react-native-maps";
 import Colors from "../../config/settings/color";
 import { MaterialIcons } from "@expo/vector-icons";
+import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
@@ -56,6 +56,14 @@ class Map extends React.PureComponent {
         locationChoosen: true
       };
     });
+    // Send Props to FIRTSREGISTRATION container
+    this.props.locationPicker(
+      {
+        latitude: coords.latitude,
+        longitude: coords.longitude
+      }
+      // console.log(coords.latitude, coords.longitude)
+    );
   };
 
   render() {
@@ -66,44 +74,47 @@ class Map extends React.PureComponent {
         <MapView.Marker
           pinColor={Colors.mainAppColor}
           coordinate={focusedLocation}
-          title="کسب و کار من"
+          title={Language.OnMapTitle}
         />
       );
     }
     return (
-      <View style={styles.view}>
-        <MapView
-          style={styles.map}
-          initialRegion={focusedLocation}
-          onPress={this.pickLocationHandler}
-          ref={ref => (this.animation = ref)}
-        >
-          {marker}
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <View style={styles.view}>
+          <MapView
+            style={styles.map}
+            initialRegion={focusedLocation}
+            onPress={this.pickLocationHandler}
+            ref={ref => (this.animation = ref)}
+          >
+            {marker}
 
-          <TouchableOpacity onPress={this.getLocationHandler}>
-            <MaterialIcons
-              size={45}
-              name="my-location"
-              style={styles.icon}
-              color={Colors.mainAppColor}
-            />
-          </TouchableOpacity>
-        </MapView>
+            <TouchableOpacity onPress={this.getLocationHandler}>
+              <MaterialIcons
+                size={45}
+                name="my-location"
+                style={styles.icon}
+                color={Colors.mainAppColor}
+              />
+            </TouchableOpacity>
+          </MapView>
+        </View>
       </View>
     );
   }
 }
-const mapStateToProps = state => ({});
 
-export default connect(
-  mapStateToProps,
-  {}
-)(Map);
+export default Map;
 
 const styles = StyleSheet.create({
+  icon: {
+    marginTop: 10,
+    marginLeft: 10
+  },
   view: {
     flex: 1,
-    elevation: 0.5,
+    width: "100%",
+    elevation: 1,
     shadowRadius: 2,
     shadowOpacity: 0.8,
     alignItems: "center",
@@ -116,21 +127,5 @@ const styles = StyleSheet.create({
     width: "90%",
     marginTop: 25,
     borderRadius: Constants.borderRadius.map
-  },
-  button: {
-    elevation: 2,
-    marginTop: 10,
-    shadowRadius: 2,
-    borderRadius: 50,
-    shadowOpacity: 0.4,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "rgba(0,0,0,0.3)",
-    shadowOffset: { width: 0, height: 0.5 }
-  },
-  icon: {
-    marginTop: 10,
-    marginLeft: 10
   }
 });

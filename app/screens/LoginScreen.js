@@ -10,7 +10,6 @@ import {
 import decode from "jwt-decode";
 import { connect } from "react-redux";
 import { login, logout, loadUser } from "../redux/Actions/auth";
-import setAuthToken from "../helpers/auth-token";
 
 class LoginScreen extends PureComponent {
   state = {
@@ -47,7 +46,7 @@ class LoginScreen extends PureComponent {
     }
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.getDataBack();
   }
 

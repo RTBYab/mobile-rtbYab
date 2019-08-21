@@ -1,6 +1,6 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-import FirstRegistration from "../components/FirstRegistration";
+import { SafeAreaView } from "react-native";
+import FirstRegistration from "../container/FirstRegistration";
 
 const StoreRegistrationScreen = ({ navigation }) => {
   return (

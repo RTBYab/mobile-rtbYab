@@ -27,12 +27,18 @@ export default {
 
   // Store
   StoreWelcomeText: "اگر صاحب کسب و کار هستی، همین الان کسب و کارت ثبت کن",
-
+  CreateStore: "ثبت کسب و کار من",
+  BusinessName: "نام کسب و کار:",
+  BusinessDescription: "معرفی کسب و کار:",
   // TopBarz
   ShowFilter: "Sub Categories",
   HideFilter: "Hide",
   Sort: "Sort",
   textFilter: "Recent",
+
+  // Map
+  OnMapTitle: "کسب و کار من",
+  MapNotice: " توجه: با استفاده از نقشه ادرس دقیق فروشگاه خود را مشخص کنید",
 
   // Category
   ThereIsNoMore: "There is no more product to show",
