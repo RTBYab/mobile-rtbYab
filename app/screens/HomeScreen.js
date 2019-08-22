@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react";
-import { View, Text, StyleSheet, Dimensions, Platform } from "react-native";
 import Search from "../components/Search";
+import Colors from "../config/settings/color";
+import { View, Text, StyleSheet, Dimensions, Platform } from "react-native";
+
 const { width } = Dimensions.get("window");
 
 export default class HomeScreen extends PureComponent {
@@ -17,7 +19,7 @@ export default class HomeScreen extends PureComponent {
           style={{
             flex: 0.5,
             width: width / 2,
-            backgroundColor: "rgb(125, 87, 252)",
+            backgroundColor: Colors.Alternative,
             marginBottom: 2
           }}
         />
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     margin: 10,
     marginTop: -220,
     alignSelf: "center",
-    color: "rgb(125, 87, 252)"
+    color: Colors.Alternative
   },
   mainText2: {
     fontFamily: "Main2",

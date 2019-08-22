@@ -96,7 +96,7 @@ class TabBar extends PureComponent {
         {routes &&
           routes.map((route, index) => {
             const focused = index === navigation.state.index;
-            const tintColor = focused ? Color.mainAppColor : inactiveTintColor;
+            const tintColor = focused ? Color.Alternative : inactiveTintColor;
 
             if (ignoreScreen.indexOf(route.key) > -1) {
               return <View key={route.key} />;

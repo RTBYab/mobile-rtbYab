@@ -2,7 +2,7 @@ import { Container, MainImage } from "./style";
 import React, { useEffect } from "react";
 import { Text } from "react-native";
 import { connect } from "react-redux";
-import { getStoreByStoreOwner } from "../../../redux//Actions/storeAction";
+import { getStoreByStoreOwner } from "../../../redux/Actions/storeAction";
 
 const StoreMainScreenComponent = ({ store, auth, getStoreByStoreOwner }) => {
   const { token, user } = auth;

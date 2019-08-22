@@ -2,10 +2,9 @@ import styled from "styled-components";
 import Color from "../../../config/settings/color";
 import Constants from "../../../config/settings/Constants";
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   flex: 1;
-  /* justify-content: center;
-  align-items: center; */
+  width: 100%;
 `;
 
 export const MainContainer = styled.View`
@@ -34,7 +33,7 @@ export const Button = styled.View`
   margin-top: 45px;
   align-items: center;
   justify-content: center;
-  background-color: ${Color.mainAppColor};
+  background-color: ${Color.Alternative};
   border-radius: ${Constants.borderRadius.main};
 `;
 export const ButtonText = styled.Text`

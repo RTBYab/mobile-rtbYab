@@ -6,9 +6,9 @@ const SubNavigation = ({ children }) => {
     <View style={{ flex: 1 }}>
       {children}
       {Platform.OS === "ios" ? (
-        <StatusBar barStyle="default" translucent={true} />
-      ) : (
         <StatusBar hidden={true} />
+      ) : (
+        <StatusBar translucent={true} />
       )}
     </View>
   );

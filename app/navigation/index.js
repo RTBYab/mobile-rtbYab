@@ -14,6 +14,7 @@ import StoreRegistrationScreen from "../screens/StoreRegistrationScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import Config from "../config/settings/general-config";
 import WishListScreen from "../screens/WishListScreen";
+import SettingScreen from "../screens/SettingsScreen";
 import CommentScreen from "../screens/CommentsScreen";
 import AddressScreen from "../screens/AddressScreen";
 import CouponScreen from "../screens/CouponScreen";
@@ -56,8 +57,9 @@ const AuthStack = createStackNavigator(
 
 const StoreStack = createStackNavigator({
   Wish: { screen: WishListScreen },
+  Copon: { screen: CouponScreen },
   StoreRegistration: { screen: StoreRegistrationScreen },
-  Copon: { screen: CouponScreen }
+  Setting: { screen: SettingScreen }
 });
 
 const AppNavigator = createBottomTabNavigator(
