@@ -34,3 +34,4 @@ export const GET_STORE = "GET_STORE";
 export const CREATE_STORE = "CREATE_STORE";
 export const DELETE_STORE = "DELETE_STORE";
 export const UPDATE_STORE = "UPDATE_STORE";
+export const GET_STORE_BY_OWNER_ID = "GET_STORE_BY_OWNER_ID ";

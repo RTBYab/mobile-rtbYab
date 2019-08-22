@@ -1,9 +1,9 @@
 import React from "react";
-import { View, TouchableOpacity, Text } from "react-native";
-import Store from "../components/Store";
-import { logout } from "../redux/Actions/auth";
 import { connect } from "react-redux";
+import { logout } from "../redux/Actions/auth";
+import Store from "../components/Store/Registration";
 import { getProfileById } from "../redux/Actions/profile";
+import { View, TouchableOpacity, Text } from "react-native";
 
 const WishListScreen = ({ navigation, logout }) => {
   return (

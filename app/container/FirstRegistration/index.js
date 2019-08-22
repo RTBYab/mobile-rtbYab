@@ -3,8 +3,8 @@ import Map from "../../components/Map";
 import React, { Component } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-import { createStore } from "../../redux/Actions/storeAction";
 import Language from "../../config/settings/Language";
+import { createStore } from "../../redux/Actions/storeAction";
 import {
   DetailForm,
   TitleBar,
@@ -24,7 +24,6 @@ class FirstRegistration extends Component {
       type: "Point",
       valid: false
     }
-    // location: []
   };
 
   handleCreateStore = () => {
@@ -32,18 +31,6 @@ class FirstRegistration extends Component {
     const { createStore, navigation, auth } = this.props;
     const { token, user } = auth;
     const id = user._id;
-
-    // console.log(
-    //   location.value.longitude,
-    //   "longitude",
-    //   location.value.latitude,
-    //   "latitude"
-    // );
-    // const locationData = [
-    //   location.coordinates.longitude,
-    //   location.coordinates.longitude,
-    //   location.type
-    // ];
 
     const storeData = {
       name,

@@ -27,6 +27,7 @@ export default {
     max: 10,
     main: 4,
     alternative: 7,
-    map: 21
+    map: 21,
+    storeImage: 60
   }
 };

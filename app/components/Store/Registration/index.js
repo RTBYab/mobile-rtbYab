@@ -1,8 +1,3 @@
-import { View } from "react-native";
-import { connect } from "react-redux";
-import React, { useEffect } from "react";
-import { logout } from "../../redux/Actions/auth";
-import Language from "../../config/settings/Language";
 import {
   Container,
   StoreText,
@@ -11,8 +6,13 @@ import {
   ButtonText,
   Button
 } from "./style";
+import { connect } from "react-redux";
+import React, { useEffect } from "react";
 import { TouchableOpacity } from "react-native";
-import { getProfileById } from "../../redux/Actions/profile";
+import { logout } from "../../../redux/Actions/auth";
+import StoreMainScreenComponent from "../MainScreen";
+import Language from "../../../config/settings/Language";
+import { getProfileById } from "../../../redux/Actions/profile";
 
 const Store = ({
   auth,
@@ -32,7 +32,7 @@ const Store = ({
     user.role !== "storeOwner" ? (
       <MainContainer>
         <Image
-          source={require("../../../assets/image/store-compressed-final-farsi.png")}
+          source={require("../../../../assets/image/store-compressed-final-farsi.png")}
         />
         <StoreText>{Language.StoreWelcomeText}</StoreText>
 
@@ -43,7 +43,7 @@ const Store = ({
         </TouchableOpacity>
       </MainContainer>
     ) : (
-      <StoreText>خوش امدین</StoreText>
+      <StoreMainScreenComponent />
     );
 
   return <Container>{userDetector}</Container>;

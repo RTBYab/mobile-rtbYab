@@ -32,7 +32,7 @@ const StoreScreen = ({ navigation }) => {
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
           <Image
-            source={store.image}
+            // source={store.image}
             style={{
               width: 100,
               height: 100,
@@ -149,7 +149,7 @@ const StoreScreen = ({ navigation }) => {
                 alignSelf: "flex-end"
               }}
             >
-              {store.address}
+              {/* {store.address} */}
             </Text>
           </View>
         </TouchableOpacity>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Color from "../../config/settings/color";
-import Constants from "../../config/settings/Constants";
+import Color from "../../../config/settings/color";
+import Constants from "../../../config/settings/Constants";
 
 export const Container = styled.SafeAreaView`
   flex: 1;
