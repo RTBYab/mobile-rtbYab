@@ -1,6 +1,6 @@
 const tintColor = "#000";
 // const mainAppColor = ##984AD7
-// Alternative rgb(125, 87, 252)
+// Alternative rgb(125, 87, 252) or #7d57fc
 
 export default {
   tintColor,

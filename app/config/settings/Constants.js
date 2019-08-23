@@ -29,5 +29,9 @@ export default {
     alternative: 7,
     map: 21,
     storeImage: 60
+  },
+
+  icon: {
+    backIconSize: 48
   }
 };
