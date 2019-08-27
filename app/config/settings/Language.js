@@ -30,6 +30,13 @@ export default {
   CreateStore: "ثبت کسب و کار من",
   BusinessName: "نام کسب و کار:",
   BusinessDescription: "معرفی کسب و کار:",
+  BusinessAddress: "آدرس کسب و کار:",
+  EditBusinessAddress: "تنظیم آدرس بر روی نقشه",
+  EditAddress: " آدرس :",
+  Telephone: " شماره تلفن ثابت :",
+  Mobile: " شماره تلفن همراه :",
+  EditBusinessImage: "ویرایش عکس پروفایل",
+  UpdateStore: "ذخیره تغیرات",
   // TopBarz
   ShowFilter: "Sub Categories",
   HideFilter: "Hide",

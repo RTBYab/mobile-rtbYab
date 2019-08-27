@@ -1,14 +1,14 @@
 import Modal from "../../Menu/Modal";
-import { Text, TouchableOpacity, Animated, Easing, View } from "react-native";
 import { connect } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { Container, MainImage, AnimatedContainer, RootView } from "./style";
+import { MainImage, AnimatedContainer, IconContainer } from "./style";
+import { Text, TouchableOpacity, Animated, Easing, View } from "react-native";
 import { getStoreByStoreOwner } from "../../../redux/Actions/storeAction";
 import { openMenu } from "../../../redux/Actions/modalMenu";
 
 const StoreMainScreenComponent = ({
-  store,
+  store: { store, loading },
   auth,
   openMenu,
   modalMenu,
@@ -51,22 +51,41 @@ const StoreMainScreenComponent = ({
 
   return (
     <AnimatedContainer style={{ transform: [{ scale }], opacity }}>
-      <Modal navigation={navigation} />
-      <TouchableOpacity onPress={openMenu}>
-        <Ionicons
-          name="ios-menu"
-          size={32}
-          style={{ textAlign: "right", margin: 5, marginRight: 15 }}
-        />
-      </TouchableOpacity>
+      {store === null || loading ? (
+        <View>
+          <Text>Loading...</Text>
+        </View>
+      ) : (
+        <View style={{ flex: 1 }}>
+          <Modal navigation={navigation} />
+          <IconContainer>
+            <TouchableOpacity onPress={openMenu}>
+              <Ionicons
+                name="ios-menu"
+                size={30}
+                style={{
+                  marginTop: 7,
+                  marginRight: 18,
+                  textAlign: "right",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              />
+            </TouchableOpacity>
+          </IconContainer>
 
-      <MainImage
-        source={
-          store.store.picture || require("../../../../assets/image/mobl.jpeg")
-        }
-      />
-      <Text>{store.store.name}</Text>
-      <Text>{store.store.description}</Text>
+          <MainImage
+            source={
+              require("../../../../assets/image/mobl.jpeg") ||
+              store.store.picture
+            }
+          />
+
+          {/* {store.store.name && <Text>{store.store.name}</Text>}
+
+          {store.store.description && <Text>{store.store.description}</Text>} */}
+        </View>
+      )}
     </AnimatedContainer>
   );
 };

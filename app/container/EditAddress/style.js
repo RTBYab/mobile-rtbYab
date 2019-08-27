@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import styled from "styled-components";
 import Colors from "../../config/settings/color";
 import Constants from "../../config/settings/Constants";
@@ -7,7 +8,7 @@ export const Container = styled.View`
   width: 100%;
   height: 100%;
   /* margin-right: 8px; */
-  align-items: flex-end;
+  /* align-items: center; */
 `;
 
 export const MiniContainer = styled.View`
@@ -17,10 +18,11 @@ export const MiniContainer = styled.View`
   margin-bottom: 12px;
   align-items: center;
   justify-content: center;
-  box-shadow: 12px 9px 8px #8888;
+  background: ${Colors.whiteSmoke};
 `;
 
 export const BoxContainer = styled.View`
+  margin-top: 12px;
   flex-direction: row-reverse;
   box-shadow: 0.1px 0.1px 0.5px #8888;
 `;
@@ -42,26 +44,25 @@ export const Image = styled.Image`
 export const NormalInput = styled.TextInput`
   width: 72%;
   margin: 25px;
-  margin-top: 40px;
-  height: 32px;
+  height: 45px;
+  margin-top: 50px;
   font-size: 16px;
   text-align: right;
   font-family: Main;
   margin-right: -75px;
-  border-radius: 14px;
-  border-color: #000;
 `;
 
-export const Description = styled.TextInput`
-  width: 75%;
+export const MiniInput = styled.TextInput`
+  width: 72%;
   margin: 25px;
-  height: 58px;
-  margin-top: 40px;
+  height: 25px;
+  margin-top: 50px;
   font-size: 16px;
   text-align: right;
   font-family: Main;
-  margin-right: -85px;
+  margin-right: -156px;
 `;
+
 export const HLine = styled.View`
   width: 75%;
   margin-top: -21px;
@@ -72,19 +73,10 @@ export const HLine = styled.View`
 `;
 
 export const Text = styled.Text`
+  margin: 5px;
   font-size: 16px;
   font-family: Main2;
   text-align: right;
-  margin: 5px;
-`;
-export const SubText = styled.Text`
-  font-size: 10px;
-  font-family: Main;
-  text-align: right;
-`;
-
-export const MainContainer = styled.ScrollView`
-  flex: 1;
 `;
 
 export const Button = styled.View`

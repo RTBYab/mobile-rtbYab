@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Animated } from "react-native";
+import Colors from "../../../config/settings/color";
 import Constants from "../../../config/settings/Constants";
 
 export const Container = styled.SafeAreaView`
@@ -25,4 +26,18 @@ export const Text = styled.Text`
 export const RootView = styled.View`
   flex: 1;
   background: #000;
+`;
+
+export const IconContainer = styled.View`
+  right: 0px;
+  top: 40px;
+  width: 60px;
+  height: 40px;
+  position: absolute;
+  border-radius: 20px;
+  flex-direction: row-reverse;
+  border-top-right-radius: 5px;
+  box-shadow: 1px 1px 5px #8888;
+  background: ${Colors.mainWhite};
+  border-bottom-right-radius: 5px;
 `;

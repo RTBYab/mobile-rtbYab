@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Map from "../../components/Map";
+import Map from "../Map";
 import React, { Component } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
@@ -48,7 +48,6 @@ class FirstRegistration extends Component {
     this.setState({
       location: {
         coordinates: location,
-        // type: "Point",
         valid: true
       }
     });

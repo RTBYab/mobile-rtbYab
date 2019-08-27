@@ -1,12 +1,12 @@
 import React from "react";
-import Settings from "../container/Setting_";
+import SettingsSection from "../container/Setting_";
 import { Ionicons } from "@expo/vector-icons";
 import Constants from "../config/settings/Constants";
 import { SafeAreaView, TouchableOpacity } from "react-native";
 
 const SettingScreen = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
@@ -18,13 +18,14 @@ const SettingScreen = ({ navigation }) => {
           size={Constants.icon.backIconSize}
         />
       </TouchableOpacity>
-      <Settings />
+      <SettingsSection navigation={navigation} />
     </SafeAreaView>
   );
 };
 
-export default SettingScreen;
-
 SettingScreen.navigationOptions = {
-  header: null
+  header: null,
+  tabBarVisible: false
 };
+
+export default SettingScreen;

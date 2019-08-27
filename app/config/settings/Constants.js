@@ -26,12 +26,19 @@ export default {
     min: 2,
     max: 10,
     main: 4,
-    alternative: 7,
     map: 21,
-    storeImage: 60
+    storeImage: 60,
+    alternative: 7
   },
 
   icon: {
     backIconSize: 48
+  },
+  textInput: {
+    name: 20,
+    address: 100,
+    description: 150,
+    telephone: 11,
+    mobile: 11
   }
 };

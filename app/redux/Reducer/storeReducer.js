@@ -1,7 +1,14 @@
-import { CREATE_STORE, GET_STORE_BY_OWNER_ID } from "../Actions/types";
+import {
+  LOGOUT,
+  CREATE_STORE,
+  UPDATE_STORE,
+  UPDATE_STORE_DETAILS,
+  GET_STORE_BY_OWNER_ID
+} from "../Actions/types";
 
 const initialState = {
-  store: null
+  store: null,
+  loading: true
 };
 
 export default function(state = initialState, action) {
@@ -10,12 +17,22 @@ export default function(state = initialState, action) {
     case CREATE_STORE:
       return {
         ...state,
+        loading: false,
         store: payload
       };
+    case UPDATE_STORE:
+    case UPDATE_STORE_DETAILS:
     case GET_STORE_BY_OWNER_ID:
       return {
         ...state,
+        loading: false,
         store: payload
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        loading: false,
+        store: null
       };
     default:
       return state;

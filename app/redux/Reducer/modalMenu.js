@@ -1,4 +1,4 @@
-import { OPEN_MENU, CLOSE_MENU } from "../Actions/types";
+import { OPEN_MENU, CLOSE_MENU, LOGOUT } from "../Actions/types";
 
 const initialState = {
   isMenuOpen: false
@@ -13,6 +13,7 @@ export default function(state = initialState, action) {
         isMenuOpen: true
       };
     case CLOSE_MENU:
+    case LOGOUT:
       return {
         ...state,
         isMenuOpen: false

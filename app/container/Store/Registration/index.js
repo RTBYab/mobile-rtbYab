@@ -8,8 +8,7 @@ import {
 } from "./style";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
-import { TouchableOpacity, View, Text } from "react-native";
-import { logout } from "../../../redux/Actions/auth";
+import { TouchableOpacity } from "react-native";
 import StoreMainScreenComponent from "../MainScreen";
 import Language from "../../../config/settings/Language";
 import { getProfileById } from "../../../redux/Actions/profile";
@@ -18,8 +17,7 @@ const Store = ({
   auth,
   profile: { profile, loading },
   getProfileById,
-  navigation,
-  logout
+  navigation
 }) => {
   const { token, user } = auth;
   const { navigate } = navigation;
@@ -56,5 +54,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProfileById, logout }
+  { getProfileById }
 )(Store);

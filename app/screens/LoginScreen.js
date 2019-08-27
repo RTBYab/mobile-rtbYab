@@ -1,4 +1,3 @@
-import React, { PureComponent } from "react";
 import {
   View,
   Text,
@@ -9,6 +8,7 @@ import {
 } from "react-native";
 import decode from "jwt-decode";
 import { connect } from "react-redux";
+import React, { PureComponent } from "react";
 import { login, logout, loadUser } from "../redux/Actions/auth";
 
 class LoginScreen extends PureComponent {

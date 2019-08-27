@@ -34,8 +34,12 @@ export const GET_STORE = "GET_STORE";
 export const CREATE_STORE = "CREATE_STORE";
 export const DELETE_STORE = "DELETE_STORE";
 export const UPDATE_STORE = "UPDATE_STORE";
+export const UPDATE_STORE_DETAILS = "UPDATE_STORE_DETAILS";
 export const GET_STORE_BY_OWNER_ID = "GET_STORE_BY_OWNER_ID ";
 
 // ModalMenue
 export const OPEN_MENU = "OPEN_MENU";
 export const CLOSE_MENU = "CLOSE_MENU";
+
+//
+export const PURGE = "PURGE";

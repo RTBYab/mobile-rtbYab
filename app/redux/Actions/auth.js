@@ -1,12 +1,13 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
+  PURGE,
   LOGOUT,
-  CLEAR_PROFILE
+  LOGIN_FAIL,
+  AUTH_ERROR,
+  USER_LOADED,
+  CLEAR_PROFILE,
+  REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  REGISTER_SUCCESS
 } from "./types";
 import axios from "axios";
 // import * as SecureStore from "expo-secure-store";
@@ -94,4 +95,5 @@ export const login = (userData, navigation) => async dispatch => {
 export const logout = () => dispatch => {
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
+  dispatch({ type: PURGE, key: "root" });
 };

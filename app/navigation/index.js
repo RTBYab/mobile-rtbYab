@@ -12,6 +12,7 @@ const { width } = Dimensions.get("window");
 
 import StoreRegistrationScreen from "../screens/StoreRegistrationScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
+import EditAddressScreen from "../screens/EditAddressScreen";
 import Config from "../config/settings/general-config";
 import WishListScreen from "../screens/WishListScreen";
 import SettingScreen from "../screens/SettingsScreen";
@@ -59,7 +60,13 @@ const StoreStack = createStackNavigator({
   Wish: { screen: WishListScreen },
   Copon: { screen: CouponScreen },
   StoreRegistration: { screen: StoreRegistrationScreen },
-  Setting: { screen: SettingScreen }
+  Setting: { screen: SettingScreen },
+  EditAddress: {
+    screen: EditAddressScreen,
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  }
 });
 
 const AppNavigator = createBottomTabNavigator(

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import MapView from "react-native-maps";
 import Colors from "../../config/settings/color";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -6,11 +7,13 @@ import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
-class Map extends React.PureComponent {
+class Map extends React.Component {
   state = {
     focusedLocation: {
-      latitude: 35.6892,
-      longitude: 51.389,
+      // latitude: 35.6892,
+      // longitude: 51.389,
+      latitude: this.props.store.store.location.coordinates[1] || 35.6892,
+      longitude: this.props.store.store.location.coordinates[0] || 51.389,
       latitudeDelta: 0.022,
       longitudeDelta:
         (Dimensions.get("window").width / Dimensions.get("window").height) *
@@ -57,22 +60,21 @@ class Map extends React.PureComponent {
       };
     });
     // Send Props to FIRTSREGISTRATION container
-    this.props.locationPicker(
-      {
-        latitude: coords.latitude,
-        longitude: coords.longitude
-      }
-      // console.log(coords.latitude, coords.longitude)
-    );
+    this.props.locationPicker({
+      latitude: coords.latitude,
+      longitude: coords.longitude
+    });
   };
 
   render() {
     const { focusedLocation, locationChoosen } = this.state;
-    let marker = null;
-    if (locationChoosen) {
+    const { show } = this.props;
+    let marker;
+
+    if (locationChoosen || show) {
       marker = (
-        <MapView.Marker
-          pinColor={Colors.mainAppColor}
+        <MapView.Marker.Animated
+          pinColor={Colors.Alternative}
           coordinate={focusedLocation}
           title={Language.OnMapTitle}
         />
@@ -94,7 +96,7 @@ class Map extends React.PureComponent {
                 size={45}
                 name="my-location"
                 style={styles.icon}
-                color={Colors.mainAppColor}
+                color={Colors.Alternative}
               />
             </TouchableOpacity>
           </MapView>
@@ -104,7 +106,10 @@ class Map extends React.PureComponent {
   }
 }
 
-export default Map;
+const mapStateToProps = state => ({
+  store: state.store
+});
+export default connect(mapStateToProps)(Map);
 
 const styles = StyleSheet.create({
   icon: {
