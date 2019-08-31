@@ -2,6 +2,7 @@ import {
   LOGOUT,
   CREATE_STORE,
   UPDATE_STORE,
+  UPLOAD_STORE_IMAGE,
   UPDATE_STORE_DETAILS,
   GET_STORE_BY_OWNER_ID
 } from "../Actions/types";
@@ -21,6 +22,7 @@ export default function(state = initialState, action) {
         store: payload
       };
     case UPDATE_STORE:
+    case UPLOAD_STORE_IMAGE:
     case UPDATE_STORE_DETAILS:
     case GET_STORE_BY_OWNER_ID:
       return {

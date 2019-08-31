@@ -3,6 +3,7 @@ import {
   CREATE_STORE,
   UPDATE_STORE,
   DELETE_STORE,
+  UPLOAD_STORE_IMAGE,
   UPDATE_STORE_DETAILS,
   GET_STORE_BY_OWNER_ID
 } from "./types";
@@ -127,6 +128,35 @@ export const updateStoreDetails = ({
       payload: res.data
     });
     navigation.goBack();
+  } catch (e) {
+    console.log(e.message);
+    alert(e.message);
+  }
+};
+
+export const uploadStoreImage = ({ id, token, uri }) => async dispatch => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+      Authorization: `bearer ${token}`,
+      "Content-Type": "multipart/form-data"
+    }
+  };
+
+  let body = new FormData();
+  formData.append("photo", {
+    uri
+  });
+  try {
+    const res = await axios.post(
+      Const.URL.Main + `store/updatephoto/${id}`,
+      body,
+      config
+    );
+    dispatch({
+      type: UPDATE_STORE_DETAILS,
+      payload: res.data
+    });
   } catch (e) {
     console.log(e.message);
     alert(e.message);

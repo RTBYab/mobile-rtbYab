@@ -1,25 +1,25 @@
-import React, { Component } from "react";
 import {
   ActivityIndicator,
-  Button,
-  Clipboard,
   Image,
-  Share,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
 } from "react-native";
+import { connect } from "react-redux";
+import React, { Component } from "react";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
+import { uploadStoreImage } from "../../redux/Actions/storeAction";
 
-export default class ImageUploader extends Component {
+class ImageUploader extends Component {
   state = {
     image: null,
     uploading: false
   };
 
   render() {
+    const { uploadStoreImage } = this.props;
     let { image } = this.state;
 
     return (
@@ -27,8 +27,6 @@ export default class ImageUploader extends Component {
         <TouchableOpacity onPress={this._pickImage} title="انتخاب تصویر">
           {this.props.children}
         </TouchableOpacity>
-
-        {/* <Button onPress={this._takePhoto} title="Take a photo" /> */}
 
         {this._maybeRenderImage()}
         {this._maybeRenderUploadingOverlay()}
@@ -70,45 +68,11 @@ export default class ImageUploader extends Component {
     );
   };
 
-  // _share = () => {
-  //   Share.share({
-  //     message: this.state.image,
-  //     title: "اشتراک گذاری این تصویر",
-  //     url: this.state.image
-  //   });
-  // };
-
-  // _copyToClipboard = () => {
-  //   Clipboard.setString(this.state.image);
-  //   alert("تصویر با موفقیت کپی شد");
-  // };
-
-  // _takePhoto = async () => {
-  //   const { status: cameraPerm } = await Permissions.askAsync(
-  //     Permissions.CAMERA
-  //   );
-
-  //   const { status: cameraRollPerm } = await Permissions.askAsync(
-  //     Permissions.CAMERA_ROLL
-  //   );
-
-  //   // only if user allows permission to camera AND camera roll
-  //   if (cameraPerm === "granted" && cameraRollPerm === "granted") {
-  //     let pickerResult = await ImagePicker.launchCameraAsync({
-  //       allowsEditing: true,
-  //       aspect: [4, 3]
-  //     });
-
-  //     this._handleImagePicked(pickerResult);
-  //   }
-  // };
-
   _pickImage = async () => {
     const { status: cameraRollPerm } = await Permissions.askAsync(
       Permissions.CAMERA_ROLL
     );
 
-    // only if user allows permission to camera roll
     if (cameraRollPerm === "granted") {
       let pickerResult = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true
@@ -128,9 +92,8 @@ export default class ImageUploader extends Component {
       });
 
       if (!pickerResult.cancelled) {
-        uploadResponse = await uploadImageAsync(pickerResult.uri);
+        uploadResponse = await uploadStoreImage(pickerResult.uri);
         uploadResult = await uploadResponse.json();
-
         this.setState({
           image: uploadResult.location
         });
@@ -150,15 +113,6 @@ export default class ImageUploader extends Component {
 
 // async function uploadImageAsync(uri, id) {
 //   let apiUrl = `http://localhost:8080/api/store/updatephoto/${id}`;
-
-//   // Note:
-//   // Uncomment this if you want to experiment with local server
-//   //
-//   // if (Constants.isDevice) {
-//   //   apiUrl = `https://your-ngrok-subdomain.ngrok.io/upload`;
-//   // } else {
-//   //   apiUrl = `http://localhost:3000/upload`
-//   // }
 
 //   let uriParts = uri.split(".");
 //   let fileType = uriParts[uriParts.length - 1];
@@ -181,6 +135,16 @@ export default class ImageUploader extends Component {
 
 //   return fetch(apiUrl, options);
 // }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  store: state.store
+});
+
+export default connect(
+  mapStateToProps,
+  { uploadStoreImage }
+)(ImageUploader);
 
 const styles = StyleSheet.create({
   container: {

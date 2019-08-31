@@ -22,15 +22,12 @@ import {
 import React from "react";
 import { connect } from "react-redux";
 import { TouchableOpacity } from "react-native";
-import * as Permissions from "expo-permissions";
-import * as ImagePicker from "expo-image-picker";
 import Colors from "../../config/settings/color";
-
 import ToggleSwitch from "toggle-switch-react-native";
 import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
-import { updateStoreDetails } from "../../redux/Actions/storeAction";
 import ImageUploader from "../../components/ImageUploader";
+import { updateStoreDetails } from "../../redux/Actions/storeAction";
 
 class SettingsSection extends React.PureComponent {
   state = {
@@ -53,17 +50,6 @@ class SettingsSection extends React.PureComponent {
     await updateStoreDetails({ storeData, navigation, id, token });
   };
 
-  takeAndUploadPhotoAsync = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
-      aspect: [4, 3]
-    });
-
-    if (result.cancelled) {
-      return;
-    }
-  };
-
   render() {
     const { store, navigation } = this.props;
     const { photo } = this.state;
@@ -79,8 +65,8 @@ class SettingsSection extends React.PureComponent {
               )}
               <EditView
                 style={{
-                  bottom: 10,
                   left: 9,
+                  bottom: 10,
                   position: "absolute",
                   alignItems: "center",
                   justifyContent: "center"

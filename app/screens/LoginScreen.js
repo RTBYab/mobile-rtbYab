@@ -17,14 +17,18 @@ class LoginScreen extends PureComponent {
     password: ""
   };
 
-  handleLogin = () => {
+  handleLogin = async () => {
     const { email, password } = this.state;
     const { login, navigation } = this.props;
     const userData = {
       email,
       password
     };
-    login(userData, navigation);
+    try {
+      await login(userData, navigation);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   getDataBack = async () => {
