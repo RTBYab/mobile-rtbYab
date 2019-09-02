@@ -26,8 +26,11 @@ import Colors from "../../config/settings/color";
 import ToggleSwitch from "toggle-switch-react-native";
 import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
-import ImageUploader from "../../components/ImageUploader";
-import { updateStoreDetails } from "../../redux/Actions/storeAction";
+import ImagePicker from "../../components/ImagePicker";
+import {
+  updateStoreDetails,
+  uploadStoreImage
+} from "../../redux/Actions/storeAction";
 
 class SettingsSection extends React.PureComponent {
   state = {
@@ -36,6 +39,15 @@ class SettingsSection extends React.PureComponent {
     photo: { uri: this.props.store.store.photo }
   };
 
+  submitImage = async imagePath => {
+    this.setState({ photo: imagePath });
+    const { auth, store, uploadStoreImage } = this.props;
+    const { photo } = this.state;
+    const { token } = auth;
+    const id = store.store._id;
+
+    await uploadStoreImage({ id, token, photo });
+  };
   handleStoreUpdateDetails = async () => {
     const { name, description } = this.state;
     const { auth, store, navigation, updateStoreDetails } = this.props;
@@ -57,12 +69,19 @@ class SettingsSection extends React.PureComponent {
       <MainContainer>
         <Container>
           <MiniContainer style={{ alignItems: "center", marginTop: 2 }}>
-            <ImageUploader>
+            <ImagePicker submitImage={this.submitImage}>
               {store.store.photo ? (
-                <Image source={photo} />
+                <Image
+                  style={{ width: 100, height: 100 }}
+                  source={{ uri: photo }}
+                />
               ) : (
-                <Image source={require("../../../assets/image/mobl.jpeg")} />
+                <Image
+                  style={{ width: 100, height: 100 }}
+                  source={require("../../../assets/image/mobl.jpeg")}
+                />
               )}
+
               <EditView
                 style={{
                   left: 9,
@@ -74,7 +93,7 @@ class SettingsSection extends React.PureComponent {
               >
                 <AntDesign size={20} name="edit" color={Colors.Alternative} />
               </EditView>
-            </ImageUploader>
+            </ImagePicker>
           </MiniContainer>
           <BoxContainer>
             <MaterialIcons
@@ -170,5 +189,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { updateStoreDetails }
+  { updateStoreDetails, uploadStoreImage }
 )(SettingsSection);

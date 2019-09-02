@@ -32,11 +32,11 @@ class LoginScreen extends PureComponent {
   };
 
   getDataBack = async () => {
-    const { logout, navigation, loadUser } = this.props;
+    const { logout, navigation, loadUser, auth } = this.props;
     try {
       const token = await AsyncStorage.getItem("token");
-      const decodedData = decode(token);
-      // console.log(token);
+      const decodedData = await decode(token);
+
       const currentTime = Date.now() / 1000;
       if (decodedData.exp < currentTime) {
         logout();
@@ -50,13 +50,12 @@ class LoginScreen extends PureComponent {
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getDataBack();
   }
 
   render() {
-    const { navigation } = this.props;
-
+    const { navigation, auth } = this.props;
     return (
       <View style={styles.mainStyle}>
         <TextInput
@@ -89,6 +88,7 @@ class LoginScreen extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   isAuthenticated: state.auth.isAuthenticated
 });
 
@@ -104,7 +104,7 @@ LoginScreen.navigationOptions = {
 const styles = StyleSheet.create({
   mainStyle: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center"
   }
 });

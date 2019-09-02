@@ -8,6 +8,7 @@ import {
   GET_STORE_BY_OWNER_ID
 } from "./types";
 import axios from "axios";
+import * as FileSystem from "expo-file-system";
 import Const from "../../config/settings/Constants";
 
 export const createStore = ({
@@ -72,6 +73,7 @@ export const getStoreByStoreOwner = (id, token) => async dispatch => {
 export const updateStore = ({
   id,
   token,
+  photo,
   storeData,
   navigation
 }) => async dispatch => {
@@ -134,7 +136,7 @@ export const updateStoreDetails = ({
   }
 };
 
-export const uploadStoreImage = ({ id, token, uri }) => async dispatch => {
+export const uploadStoreImage = ({ id, token, photo }) => async dispatch => {
   const config = {
     headers: {
       Accept: "application/json",
@@ -142,17 +144,31 @@ export const uploadStoreImage = ({ id, token, uri }) => async dispatch => {
       "Content-Type": "multipart/form-data"
     }
   };
+  const fileName = photo.split("/").pop();
+  const newPath = FileSystem.documentDirectory + fileName;
 
-  let body = new FormData();
-  formData.append("photo", {
-    uri
+  let bodyFormData = new FormData();
+  // bodyFormData.set(newPath, fileName);
+  bodyFormData.append("photo", {
+    uri: photo,
+    name: fileName
   });
   try {
+    // await FileSystem.moveAsync({
+    //   from: photo,
+    //   to: newPath
+    // });
     const res = await axios.post(
       Const.URL.Main + `store/updatephoto/${id}`,
-      body,
+      bodyFormData,
       config
     );
+    // const res = await fetch(Const.URL.Main + `store/updatephoto/${id}`, {
+    //   method: "post",
+    //   body: bodyFormData,
+    //   headers: config
+    // });
+
     dispatch({
       type: UPDATE_STORE_DETAILS,
       payload: res.data

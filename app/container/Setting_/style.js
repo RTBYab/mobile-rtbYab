@@ -11,13 +11,13 @@ export const Container = styled.View`
 `;
 
 export const MiniContainer = styled.View`
-  /* flex: 1; */
+  flex: 1;
   width: 100%;
   height: 120px;
   margin-bottom: 12px;
   align-items: center;
   justify-content: center;
-  box-shadow: 12px 9px 8px #8888;
+  box-shadow: 15px 12px 13px #8888;
 `;
 
 export const BoxContainer = styled.View`
