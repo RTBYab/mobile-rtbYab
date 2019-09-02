@@ -72,6 +72,12 @@ export const HLine = styled.View`
   border-bottom-color: #8888;
 `;
 
+export const SubText = styled.Text`
+  font-size: 10px;
+  font-family: Main;
+  text-align: right;
+`;
+
 export const Text = styled.Text`
   margin: 5px;
   font-size: 16px;

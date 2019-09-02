@@ -1,15 +1,8 @@
-import { Container, Title, Image } from "./style";
+import { Container } from "./style";
 import React, { useState } from "react";
 import * as Permissions from "expo-permissions";
-import {
-  TouchableOpacity,
-  Alert,
-  ActivityIndicator,
-  View,
-  Text,
-  StyleSheet
-} from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { TouchableOpacity, Alert } from "react-native";
 
 const imgPicker = ({ title, submitImage, children }) => {
   const [image, setImage] = useState();
@@ -29,30 +22,25 @@ const imgPicker = ({ title, submitImage, children }) => {
     if (!hasPermission) {
       return;
     }
+    setUploading(true);
     const res = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [1, 2],
-      quality: 0.4
-      // base64: true
+      aspect: [3, 4],
+      quality: 0.4,
+      base64: true
     });
+    setUploading(false);
+
+    if (res.uri == undefined) {
+      return;
+    }
     setImage(res.uri);
     submitImage(res.uri);
   };
 
   return (
     <Container>
-      <TouchableOpacity onPress={takeImageHandler}>
-        {/* {!image ? (
-          <View style={{ flex: 1 }}>
-            <Image source={require("../../../assets/image/mobl.jpeg")} />
-          </View>
-        ) : (
-          <View style={{ flex: 1 }}>
-            <Image source={{ uri: image }} />
-          </View>
-        )} */}
-        {children}
-      </TouchableOpacity>
+      <TouchableOpacity onPress={takeImageHandler}>{children}</TouchableOpacity>
     </Container>
   );
 };

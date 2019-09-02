@@ -19,24 +19,26 @@ import {
   Foundation,
   MaterialIcons
 } from "@expo/vector-icons";
-import React from "react";
-import { connect } from "react-redux";
-import { TouchableOpacity } from "react-native";
-import Colors from "../../config/settings/color";
-import ToggleSwitch from "toggle-switch-react-native";
-import Language from "../../config/settings/Language";
-import Constants from "../../config/settings/Constants";
-import ImagePicker from "../../components/ImagePicker";
 import {
   updateStoreDetails,
   uploadStoreImage
 } from "../../redux/Actions/storeAction";
+import React from "react";
+import { connect } from "react-redux";
+import { TouchableOpacity } from "react-native";
+import Colors from "../../config/settings/color";
+import Const from "../../config/settings/Constants";
+import ToggleSwitch from "toggle-switch-react-native";
+import Language from "../../config/settings/Language";
+import Constants from "../../config/settings/Constants";
+import ImagePicker from "../../components/ImagePicker";
 
 class SettingsSection extends React.PureComponent {
   state = {
     name: this.props.store.store.name,
     description: this.props.store.store.description,
-    photo: { uri: this.props.store.store.photo }
+    photo: Const.URL
+      .Image`.${this.props.auth.user._id}/${this.props.store.store.photo}`
   };
 
   submitImage = async imagePath => {

@@ -1,12 +1,13 @@
 import {
-  NormalInput,
-  Container,
-  BoxContainer,
   Text,
-  MiniInput,
+  HLine,
   Button,
+  SubText,
+  Container,
+  MiniInput,
   ButtonText,
-  HLine
+  NormalInput,
+  BoxContainer
 } from "./style";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -156,6 +157,10 @@ class EditAddress extends PureComponent {
           />
         </BoxContainer>
         <HLine />
+        <SubText style={{ paddingRight: 30, marginTop: 15 }}>
+          {Language.MapNotice}
+        </SubText>
+
         <Map
           show={true}
           navigation={navigation}

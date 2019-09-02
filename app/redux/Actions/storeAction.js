@@ -5,7 +5,8 @@ import {
   DELETE_STORE,
   UPLOAD_STORE_IMAGE,
   UPDATE_STORE_DETAILS,
-  GET_STORE_BY_OWNER_ID
+  GET_STORE_BY_OWNER_ID,
+  GET_STORE_PROFILE_PHOTO
 } from "./types";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
@@ -163,12 +164,6 @@ export const uploadStoreImage = ({ id, token, photo }) => async dispatch => {
       bodyFormData,
       config
     );
-    // const res = await fetch(Const.URL.Main + `store/updatephoto/${id}`, {
-    //   method: "post",
-    //   body: bodyFormData,
-    //   headers: config
-    // });
-
     dispatch({
       type: UPDATE_STORE_DETAILS,
       payload: res.data
@@ -176,5 +171,26 @@ export const uploadStoreImage = ({ id, token, photo }) => async dispatch => {
   } catch (e) {
     console.log(e.message);
     alert(e.message);
+  }
+};
+
+export const getStoreProfilePhoto = ({ id, photoId }) => async dispatch => {
+  config = {
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  };
+
+  try {
+    const res = await axios.get(
+      Const.URL.Main + `store/storeprofilePhoto/${id}/${photoId}`
+    );
+    dispatch({
+      type: GET_STORE_PROFILE_PHOTO,
+      payload: res.data
+    });
+  } catch (e) {
+    console.log(e);
   }
 };
