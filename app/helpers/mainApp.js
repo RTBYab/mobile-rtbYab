@@ -14,9 +14,9 @@ export const loadResourcesAsync = async () => {
     Font.loadAsync({
       // ...Ionicons.font,
       ...EvilIcons.font,
-      Main: require("../../assets/fonts/IRANSansMobile_Light.ttf"),
-      Main2: require("../../assets/fonts/IRANSansMobile_Medium.ttf"),
-      Main3: require("../../assets/fonts/IRANSansMobile_Bold.ttf")
+      Main: require("../../assets/fonts/IRANSansMobile(FaNum)_Light.ttf"),
+      Main2: require("../../assets/fonts/IRANSansMobile(FaNum)_Medium.ttf"),
+      Main3: require("../../assets/fonts/IRANSansMobile(FaNum)_Bold.ttf")
     })
   ]);
 };

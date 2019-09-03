@@ -84,8 +84,6 @@ class TabBar extends PureComponent {
       "Address"
     ];
 
-    const lala = ["home", "mome"];
-
     return (
       <SafeAreaView
         style={[

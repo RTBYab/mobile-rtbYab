@@ -25,9 +25,8 @@ const imgPicker = ({ title, submitImage, children }) => {
     setUploading(true);
     const res = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [3, 4],
-      quality: 0.4,
-      base64: true
+      aspect: [1, 1],
+      quality: 0.4
     });
     setUploading(false);
 

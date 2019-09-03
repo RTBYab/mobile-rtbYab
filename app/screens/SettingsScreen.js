@@ -1,8 +1,8 @@
 import React from "react";
-import SettingsSection from "../container/Setting_";
 import { Ionicons } from "@expo/vector-icons";
+import SettingsSection from "../container/Setting_";
 import Constants from "../config/settings/Constants";
-import { SafeAreaView, TouchableOpacity } from "react-native";
+import { SafeAreaView, TouchableOpacity, View } from "react-native";
 
 const SettingScreen = ({ navigation }) => {
   return (
@@ -13,11 +13,12 @@ const SettingScreen = ({ navigation }) => {
         }}
       >
         <Ionicons
-          style={{ marginLeft: 15 }}
           name="ios-arrow-round-back"
+          style={{ marginLeft: 15 }}
           size={Constants.icon.backIconSize}
         />
       </TouchableOpacity>
+
       <SettingsSection navigation={navigation} />
     </SafeAreaView>
   );

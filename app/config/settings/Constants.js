@@ -28,12 +28,13 @@ export default {
     max: 10,
     main: 4,
     map: 21,
-    storeImage: 60,
+    storeImage: 55,
     alternative: 7
   },
 
   icon: {
-    backIconSize: 48
+    backIconSize: 48,
+    saveIconSize: 28
   },
   textInput: {
     name: 20,

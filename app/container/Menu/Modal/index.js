@@ -59,9 +59,6 @@ class Modal extends Component {
   };
 
   render() {
-    {
-      console.log("ModalMenue isissi", this.props.modalMenu);
-    }
     const { top } = this.state;
     const { store } = this.props;
     return (

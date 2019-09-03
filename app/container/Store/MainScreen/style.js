@@ -12,8 +12,9 @@ export const Container = styled.SafeAreaView`
 export const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
 export const MainImage = styled.Image`
-  height: 120px;
-  width: 120px;
+  height: 110px;
+  width: 110px;
+  margin-top: 15px;
   border-radius: ${Constants.borderRadius.storeImage};
 `;
 

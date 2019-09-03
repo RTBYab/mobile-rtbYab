@@ -1,11 +1,20 @@
+import {
+  TouchableOpacity,
+  Animated,
+  Easing,
+  View,
+  ActivityIndicator
+} from "react-native";
 import Modal from "../../Menu/Modal";
 import { connect } from "react-redux";
-import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { MainImage, AnimatedContainer, IconContainer } from "./style";
-import { Text, TouchableOpacity, Animated, Easing, View } from "react-native";
-import { getStoreByStoreOwner } from "../../../redux/Actions/storeAction";
+import React, { useEffect, useState } from "react";
+import Colors from "../../../config/settings/color";
+import StoreText from "../../../components/StoreText";
+import Const from "../../../config/settings/Constants";
 import { openMenu } from "../../../redux/Actions/modalMenu";
+import { MainImage, IconContainer, AnimatedContainer } from "./style";
+import { getStoreByStoreOwner } from "../../../redux/Actions/storeAction";
 
 const StoreMainScreenComponent = ({
   store: { store, loading },
@@ -15,9 +24,9 @@ const StoreMainScreenComponent = ({
   navigation,
   getStoreByStoreOwner
 }) => {
+  const { token, user } = auth;
   const [scale] = useState(new Animated.Value(1));
   const [opacity] = useState(new Animated.Value(1));
-  const { token, user } = auth;
 
   toggleMenu = () => {
     if (modalMenu === true) {
@@ -26,67 +35,69 @@ const StoreMainScreenComponent = ({
         duration: 100,
         easing: Easing.in()
       }).start();
-      // Animated.spring(opacity, {
-      //   toValue: 0.5
-      // }).start();
     } else {
       Animated.timing(scale, {
         toValue: 1,
         duration: 100,
         easing: Easing.in()
       }).start();
-      // Animated.spring(opacity, {
-      //   toValue: 1
-      // }).start();
     }
   };
 
   useEffect(() => {
     getStoreByStoreOwner(user._id, token);
-  }, [getStoreByStoreOwner]);
+  }, [getStoreByStoreOwner, user._id, token]);
 
   useEffect(() => {
     toggleMenu();
   }, [toggleMenu]);
 
   return (
-    <AnimatedContainer style={{ transform: [{ scale }], opacity }}>
-      {store === null || loading ? (
+    <View style={{ flex: 1 }}>
+      {store === null ? (
         <View>
-          <Text>Loading...</Text>
+          <ActivityIndicator size="large" color={Colors.Alternative} />
         </View>
       ) : (
-        <View style={{ flex: 1 }}>
+        <AnimatedContainer style={{ transform: [{ scale }], opacity }}>
           <Modal navigation={navigation} />
-          <IconContainer>
-            <TouchableOpacity onPress={openMenu}>
-              <Ionicons
-                name="ios-menu"
-                size={30}
-                style={{
-                  marginTop: 7,
-                  marginRight: 18,
-                  textAlign: "right",
-                  alignItems: "center",
-                  justifyContent: "center"
+          <View style={{ flex: 1, alignItems: "center", marginBottom: 5 }}>
+            <IconContainer>
+              <TouchableOpacity onPress={openMenu}>
+                <Ionicons
+                  name="ios-menu"
+                  size={30}
+                  style={{
+                    marginTop: 7,
+                    marginRight: 18,
+                    textAlign: "right",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                />
+              </TouchableOpacity>
+            </IconContainer>
+            {store.photo ? (
+              <MainImage
+                source={{
+                  uri: Const.URL.Image + `${auth.user._id}/${store.photo}`
                 }}
               />
-            </TouchableOpacity>
-          </IconContainer>
+            ) : (
+              <MainImage
+                source={require("../../../../assets/image/mobl.jpeg")}
+              />
+            )}
+          </View>
 
-          <MainImage
-            source={
-              require("../../../../assets/image/mobl.jpeg") ||
-              store.store.picture
-            }
+          <StoreText
+            rate={store.rate}
+            comments={store.comments}
+            followers={store.followers}
           />
-
-          {/* {store.store.name && <Text>{store.store.name}</Text>}
-
-          {store.store.description && <Text>{store.store.description}</Text>} */}
-        </View>
+        </AnimatedContainer>
       )}
-    </AnimatedContainer>
+    </View>
   );
 };
 

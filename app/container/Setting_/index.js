@@ -37,8 +37,9 @@ class SettingsSection extends React.PureComponent {
   state = {
     name: this.props.store.store.name,
     description: this.props.store.store.description,
-    photo: Const.URL
-      .Image`.${this.props.auth.user._id}/${this.props.store.store.photo}`
+    photo:
+      Const.URL.Image +
+      `${this.props.auth.user._id}/${this.props.store.store.photo}`
   };
 
   submitImage = async imagePath => {

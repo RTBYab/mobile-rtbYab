@@ -43,5 +43,5 @@ export const GET_STORE_PROFILE_PHOTO = "GET_STORE_PROFILE_PHOTO";
 export const OPEN_MENU = "OPEN_MENU";
 export const CLOSE_MENU = "CLOSE_MENU";
 
-//
+// Redux Persist
 export const PURGE = "PURGE";
