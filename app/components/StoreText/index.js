@@ -1,16 +1,17 @@
 import {
+  MiniWraper,
   DetailText,
   TextWrapper,
-  MiniWraper,
   MainWrapper,
   TextWrapper1,
   DetailsWraper,
+  ButtonWrapper,
   AddressWrapper
 } from "./style";
 import React from "react";
 import Colors from "../../config/settings/color";
 import { Entypo } from "@expo/vector-icons";
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity, Text } from "react-native";
 
 const StoreText = ({
   comments,
@@ -100,18 +101,15 @@ const StoreText = ({
           ))}
         </View>
       </MainWrapper>
-      {/* <DetailsWraper>
-        <Entypo name="location-pin" color={Colors.StoreIconColor} size={30} />
-        <AddressWrapper numberOfLines={1} ellipsizeMode="tail">
-          {description}
-        </AddressWrapper>
-      </DetailsWraper> */}
       <DetailsWraper>
         <Entypo name="location-pin" color={Colors.StoreIconColor} size={28} />
-        <AddressWrapper numberOfLines={1} ellipsizeMode="tail">
-          {address}
-        </AddressWrapper>
+        <TouchableOpacity style={{ width: "80%" }} onPress={() => {}}>
+          <AddressWrapper numberOfLines={1} ellipsizeMode="tail">
+            {address}
+          </AddressWrapper>
+        </TouchableOpacity>
       </DetailsWraper>
+
       <DetailsWraper style={{ marginTop: -4 }}>
         <Entypo
           size={26}
@@ -119,7 +117,21 @@ const StoreText = ({
           style={{ marginRight: 6 }}
           color={Colors.StoreIconColor}
         />
-        <AddressWrapper> {tel} </AddressWrapper>
+        <AddressWrapper style={{ width: "40%" }}> {tel} </AddressWrapper>
+        <TouchableOpacity style={{ position: "absolute", right: 5 }}>
+          <ButtonWrapper>
+            <Text
+              style={{
+                color: "#ffff",
+                fontSize: 17,
+                textAlign: "center",
+                fontFamily: "Main2"
+              }}
+            >
+              ثبت نظر
+            </Text>
+          </ButtonWrapper>
+        </TouchableOpacity>
       </DetailsWraper>
     </View>
   );

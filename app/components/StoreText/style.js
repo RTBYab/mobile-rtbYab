@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Colors from "../../config/settings/color";
+import Constants from "../../config/settings/Constants";
 
 export const DetailText = styled.Text`
   font-family: Main2;
@@ -8,7 +9,6 @@ export const DetailText = styled.Text`
 `;
 
 export const AddressWrapper = styled.Text`
-  width: 85%;
   font-size: 16px;
   margin-left: 10px;
   font-family: Main;
@@ -17,22 +17,32 @@ export const AddressWrapper = styled.Text`
   color: ${Colors.mainWhite};
 `;
 
+export const ButtonWrapper = styled.View`
+  width: 90px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: solid 2.4px ${Colors.buttonOrange};
+  border-radius: ${Constants.borderRadius.min};
+  box-shadow: 0.3px 0.3px 0.4px rgba(256, 256, 266, 0.2);
+`;
+
 export const TextWrapper = styled.View`
   flex: 4;
   align-content: center;
-  justify-content: space-evenly;
   flex-direction: row-reverse;
+  justify-content: space-evenly;
 `;
 
 export const TextWrapper1 = styled.View`
   flex: 4;
   align-content: center;
-  justify-content: space-around;
   flex-direction: row-reverse;
+  justify-content: space-around;
 `;
 export const Text = styled.View`
-  justify-content: space-around;
   flex-direction: row-reverse;
+  justify-content: space-around;
 `;
 
 export const MiniWraper = styled.View`
@@ -46,6 +56,6 @@ export const MainWrapper = styled.ScrollView`
 export const DetailsWraper = styled.View`
   flex: 0.4;
   align-items: center;
-  background-color: ${Colors.AddressBackground};
   flex-direction: row-reverse;
+  background-color: ${Colors.AddressBackground};
 `;

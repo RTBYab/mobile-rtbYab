@@ -1,4 +1,5 @@
 const Images = {
+  IconAddPen: require("../../../assets/icons/edit.png"),
   IconHome: require("../../../assets/image/icon-home.png"),
   IconCategory: require("../../../assets/image/icon-heart.png"),
   IconStore: require("../../../assets/image/store.png"),

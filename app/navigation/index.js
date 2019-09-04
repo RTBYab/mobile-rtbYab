@@ -13,6 +13,7 @@ const { width } = Dimensions.get("window");
 import StoreRegistrationScreen from "../screens/StoreRegistrationScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import EditAddressScreen from "../screens/EditAddressScreen";
+import AddNewPostScreen from "../screens/AddNewPostScreen";
 import Config from "../config/settings/general-config";
 import WishListScreen from "../screens/WishListScreen";
 import SettingScreen from "../screens/SettingsScreen";
@@ -61,6 +62,7 @@ const StoreStack = createStackNavigator({
   Copon: { screen: CouponScreen },
   StoreRegistration: { screen: StoreRegistrationScreen },
   Setting: { screen: SettingScreen },
+  AddNewPost: { screen: AddNewPostScreen },
   EditAddress: {
     screen: EditAddressScreen,
     navigationOptions: {
