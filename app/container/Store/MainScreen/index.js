@@ -54,7 +54,7 @@ const StoreMainScreenComponent = ({
 
   return (
     <View style={{ flex: 1 }}>
-      {store === null ? (
+      {store === null || loading ? (
         <View>
           <ActivityIndicator size="large" color={Colors.Alternative} />
         </View>
@@ -91,9 +91,12 @@ const StoreMainScreenComponent = ({
           </View>
 
           <StoreText
+            tel={store.tel}
             rate={store.rate}
+            address={store.address}
             comments={store.comments}
             followers={store.followers}
+            description={store.description}
           />
         </AnimatedContainer>
       )}

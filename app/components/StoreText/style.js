@@ -1,9 +1,20 @@
 import styled from "styled-components";
+import Colors from "../../config/settings/color";
 
 export const DetailText = styled.Text`
   font-family: Main2;
   font-size: 16px;
   text-align: center;
+`;
+
+export const AddressWrapper = styled.Text`
+  width: 85%;
+  font-size: 16px;
+  margin-left: 10px;
+  font-family: Main;
+  text-align: right;
+  margin-right: 5px;
+  color: ${Colors.mainWhite};
 `;
 
 export const TextWrapper = styled.View`
@@ -33,6 +44,8 @@ export const MainWrapper = styled.ScrollView`
   flex: 3;
 `;
 export const DetailsWraper = styled.View`
-  flex: 1;
-  background-color: #747474;
+  flex: 0.4;
+  align-items: center;
+  background-color: ${Colors.AddressBackground};
+  flex-direction: row-reverse;
 `;

@@ -4,13 +4,22 @@ import {
   MiniWraper,
   MainWrapper,
   TextWrapper1,
-  DetailsWraper
+  DetailsWraper,
+  AddressWrapper
 } from "./style";
 import React from "react";
 import Colors from "../../config/settings/color";
+import { Entypo } from "@expo/vector-icons";
 import { View, Image, TouchableOpacity } from "react-native";
 
-const StoreText = ({ comments, followers, rate }) => {
+const StoreText = ({
+  comments,
+  followers,
+  rate,
+  address,
+  tel,
+  description
+}) => {
   return (
     <View
       style={{
@@ -80,8 +89,8 @@ const StoreText = ({ comments, followers, rate }) => {
             <Image
               key={index}
               style={{
-                margin: 5,
-                width: 100,
+                margin: 2,
+                width: "28%",
                 height: 100,
                 borderRadius: 4,
                 marginRight: 16
@@ -91,10 +100,26 @@ const StoreText = ({ comments, followers, rate }) => {
           ))}
         </View>
       </MainWrapper>
+      {/* <DetailsWraper>
+        <Entypo name="location-pin" color={Colors.StoreIconColor} size={30} />
+        <AddressWrapper numberOfLines={1} ellipsizeMode="tail">
+          {description}
+        </AddressWrapper>
+      </DetailsWraper> */}
       <DetailsWraper>
-        <DetailText>نظرات</DetailText>
-        <DetailText>باشگاه مشتریان</DetailText>
-        <DetailText>امتیاز </DetailText>
+        <Entypo name="location-pin" color={Colors.StoreIconColor} size={28} />
+        <AddressWrapper numberOfLines={1} ellipsizeMode="tail">
+          {address}
+        </AddressWrapper>
+      </DetailsWraper>
+      <DetailsWraper style={{ marginTop: -4 }}>
+        <Entypo
+          size={26}
+          name="phone"
+          style={{ marginRight: 6 }}
+          color={Colors.StoreIconColor}
+        />
+        <AddressWrapper> {tel} </AddressWrapper>
       </DetailsWraper>
     </View>
   );

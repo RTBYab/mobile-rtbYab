@@ -8,7 +8,7 @@ import {
 } from "./style";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View, ActivityIndicator } from "react-native";
 import StoreMainScreenComponent from "../MainScreen";
 import Language from "../../../config/settings/Language";
 import { getProfileById } from "../../../redux/Actions/profile";
