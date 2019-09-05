@@ -28,6 +28,7 @@ import SearchScreen from "../components/Search";
 import Images from "../config/settings/Images";
 import HomeScreen from "../screens/HomeScreen";
 import color from "../config/settings/color";
+import MapScreen from "../screens/MapScreen";
 import TabBar from "../components/TabBar";
 
 const HomeStack = createStackNavigator(
@@ -107,6 +108,9 @@ const AppNavigator = createBottomTabNavigator(
     },
     EditAddress: {
       screen: EditAddressScreen
+    },
+    MapScreen: {
+      screen: MapScreen
     }
   },
   {

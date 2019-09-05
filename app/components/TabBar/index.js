@@ -83,7 +83,8 @@ class TabBar extends PureComponent {
       "Comment",
       "Address",
       "AddNewPost",
-      "EditAddress"
+      "EditAddress",
+      "MapScreen"
     ];
 
     return (

@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import Colors from "../../config/settings/color";
-import { View, Image, TouchableOpacity, Text } from "react-native";
+import { View, Image, TouchableOpacity, Text, Linking } from "react-native";
 
 const StoreText = ({
   tel,
@@ -104,7 +104,12 @@ const StoreText = ({
       </MainWrapper>
       <DetailsWraper>
         <Entypo name="location-pin" color={Colors.StoreIconColor} size={28} />
-        <TouchableOpacity style={{ width: "80%" }} onPress={() => {}}>
+        <TouchableOpacity
+          style={{ width: "80%" }}
+          onPress={() => {
+            navigation.navigate("MapScreen");
+          }}
+        >
           <AddressWrapper numberOfLines={1} ellipsizeMode="tail">
             {address}
           </AddressWrapper>
@@ -118,7 +123,16 @@ const StoreText = ({
           style={{ marginRight: 6 }}
           color={Colors.StoreIconColor}
         />
-        <AddressWrapper style={{ width: "40%" }}> {tel} </AddressWrapper>
+
+        <AddressWrapper
+          onPress={() => {
+            Linking.openURL(`tel:${tel}`);
+          }}
+          style={{ width: "40%" }}
+        >
+          {tel}
+        </AddressWrapper>
+
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Comment");
