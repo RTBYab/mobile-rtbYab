@@ -1,11 +1,12 @@
-import { SafeAreaView, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import Constants from "../config/settings/Constants";
 import React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import AddNewPost from "../container/AddNewPost";
+import Constants from "../config/settings/Constants";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 
 const AddNewPostScreen = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
@@ -17,7 +18,7 @@ const AddNewPostScreen = ({ navigation }) => {
           size={Constants.icon.backIconSize}
         />
       </TouchableOpacity>
-      <Text>AddNewPostScreen</Text>
+      <AddNewPost />
     </SafeAreaView>
   );
 };

@@ -39,11 +39,11 @@ App = props => {
       />
     ) : (
       <Provider store={store}>
-        <PersistGate loading={<Loading />} persistor={persistor}>
-          <SubNavigation>
-            <AppNavigator />
-          </SubNavigation>
-        </PersistGate>
+        {/* <PersistGate loading={<Loading />} persistor={persistor}> */}
+        <SubNavigation>
+          <AppNavigator />
+        </SubNavigation>
+        {/* </PersistGate> */}
       </Provider>
     );
 

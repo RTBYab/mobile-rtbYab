@@ -41,6 +41,8 @@ export default {
     address: 100,
     description: 150,
     telephone: 11,
-    mobile: 11
+    mobile: 11,
+    postTitle: 20,
+    postCaption: 250
   }
 };

@@ -61,14 +61,7 @@ const StoreStack = createStackNavigator({
   Wish: { screen: WishListScreen },
   Copon: { screen: CouponScreen },
   StoreRegistration: { screen: StoreRegistrationScreen },
-  Setting: { screen: SettingScreen },
-  AddNewPost: { screen: AddNewPostScreen },
-  EditAddress: {
-    screen: EditAddressScreen,
-    navigationOptions: {
-      tabBarVisible: false
-    }
-  }
+  Setting: { screen: SettingScreen }
 });
 
 const AppNavigator = createBottomTabNavigator(
@@ -106,7 +99,15 @@ const AppNavigator = createBottomTabNavigator(
     Comment: {
       screen: CommentScreen
     },
-    Address: { screen: AddressScreen }
+    AddNewPost: {
+      screen: AddNewPostScreen
+    },
+    Address: {
+      screen: AddressScreen
+    },
+    EditAddress: {
+      screen: EditAddressScreen
+    }
   },
   {
     initialRouteName: "جایزهـها",

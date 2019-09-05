@@ -97,6 +97,7 @@ const StoreMainScreenComponent = ({
           <StoreText
             tel={store.tel}
             rate={store.rate}
+            navigation={navigation}
             address={store.address}
             comments={store.comments}
             followers={store.followers}

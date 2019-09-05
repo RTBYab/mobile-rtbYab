@@ -9,16 +9,17 @@ import {
   AddressWrapper
 } from "./style";
 import React from "react";
-import Colors from "../../config/settings/color";
 import { Entypo } from "@expo/vector-icons";
+import Colors from "../../config/settings/color";
 import { View, Image, TouchableOpacity, Text } from "react-native";
 
 const StoreText = ({
-  comments,
-  followers,
+  tel,
   rate,
   address,
-  tel,
+  comments,
+  followers,
+  navigation,
   description
 }) => {
   return (
@@ -118,7 +119,12 @@ const StoreText = ({
           color={Colors.StoreIconColor}
         />
         <AddressWrapper style={{ width: "40%" }}> {tel} </AddressWrapper>
-        <TouchableOpacity style={{ position: "absolute", right: 5 }}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Comment");
+          }}
+          style={{ position: "absolute", right: 5 }}
+        >
           <ButtonWrapper>
             <Text
               style={{

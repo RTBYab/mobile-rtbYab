@@ -81,7 +81,9 @@ class TabBar extends PureComponent {
       "WishListScreen",
       "LoginStack",
       "Comment",
-      "Address"
+      "Address",
+      "AddNewPost",
+      "EditAddress"
     ];
 
     return (
