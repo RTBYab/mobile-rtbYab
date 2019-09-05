@@ -19,7 +19,6 @@ import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import { Entypo, Foundation, Ionicons } from "@expo/vector-icons";
 import { updateStore } from "../../redux/Actions/storeAction";
-import Ripple from "react-native-material-ripple";
 
 class EditAddress extends PureComponent {
   state = {
@@ -169,11 +168,11 @@ class EditAddress extends PureComponent {
         />
 
         <View style={{ alignItems: "center", marginTop: 15, marginBottom: 35 }}>
-          <Ripple onPress={this.onPressHandler}>
+          <TouchableOpacity onPress={this.onPressHandler}>
             <Button>
               <ButtonText>{Language.UpdateStore}</ButtonText>
             </Button>
-          </Ripple>
+          </TouchableOpacity>
         </View>
       </Container>
     );

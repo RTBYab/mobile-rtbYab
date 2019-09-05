@@ -1,20 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import MapView from "react-native-maps";
-import Colors from "../../config/settings/color";
-import { MaterialIcons } from "@expo/vector-icons";
-import Language from "../../config/settings/Language";
-import Constants from "../../config/settings/Constants";
-import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import Colors from "../../../config/settings/color";
+import Language from "../../../config/settings/Language";
+import Constants from "../../../config/settings/Constants";
+import { View, StyleSheet, Dimensions } from "react-native";
 
-class Map extends React.Component {
+class StoreLocation extends React.Component {
   state = {
     focusedLocation: {
-      // latitude: 35.6892,
-      // longitude: 51.389,
       latitude: this.props.store.store.location.coordinates[1] || 35.6892,
       longitude: this.props.store.store.location.coordinates[0] || 51.389,
-      latitudeDelta: 0.022,
+      latitudeDelta: 0.0026,
       longitudeDelta:
         (Dimensions.get("window").width / Dimensions.get("window").height) *
         0.0122
@@ -81,27 +78,21 @@ class Map extends React.Component {
       );
     }
     return (
-      <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={{ flex: 1 }}>
         <View style={styles.view}>
           <MapView
             style={styles.map}
+            zoomEnabled={false}
+            showsTraffic={false}
+            showsIndoors={false}
             loadingEnabled={true}
+            rotateEnabled={false}
+            showsBuildings={false}
             scrollEnabled={scrollEnabled}
             initialRegion={focusedLocation}
-            onPress={this.pickLocationHandler}
-            ref={ref => (this.animation = ref)}
             loadingIndicatorColor={Colors.Alternative}
           >
             {marker}
-
-            <TouchableOpacity onPress={this.getLocationHandler}>
-              <MaterialIcons
-                size={45}
-                name="my-location"
-                style={styles.icon}
-                color={Colors.Alternative}
-              />
-            </TouchableOpacity>
           </MapView>
         </View>
       </View>
@@ -112,16 +103,11 @@ class Map extends React.Component {
 const mapStateToProps = state => ({
   store: state.store
 });
-export default connect(mapStateToProps)(Map);
+export default connect(mapStateToProps)(StoreLocation);
 
 const styles = StyleSheet.create({
-  icon: {
-    marginTop: 10,
-    marginLeft: 10
-  },
   view: {
     flex: 1,
-    width: "100%",
     elevation: 1,
     shadowRadius: 2,
     shadowOpacity: 0.8,
@@ -131,9 +117,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 3 }
   },
   map: {
-    height: 320,
-    width: "90%",
-    marginTop: 25,
+    top: 5,
+    width: "86%",
+    height: "40%",
+    position: "absolute",
     borderRadius: Constants.borderRadius.map
   }
 });
