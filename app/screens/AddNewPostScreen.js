@@ -18,7 +18,7 @@ const AddNewPostScreen = ({ navigation }) => {
           size={Constants.icon.backIconSize}
         />
       </TouchableOpacity>
-      <AddNewPost />
+      <AddNewPost navigation={navigation} />
     </SafeAreaView>
   );
 };

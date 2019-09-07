@@ -1,4 +1,5 @@
 import auth from "./auth";
+import post from "./post";
 import profile from "./profile";
 import store from "./storeReducer";
 import modalMenu from "./modalMenu";
@@ -12,6 +13,7 @@ const pConfig = {
 
 export default persistCombineReducers(pConfig, {
   auth,
+  post,
   store,
   profile,
   modalMenu

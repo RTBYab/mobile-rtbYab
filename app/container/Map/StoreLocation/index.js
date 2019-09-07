@@ -9,8 +9,8 @@ import { View, StyleSheet, Dimensions } from "react-native";
 class StoreLocation extends React.Component {
   state = {
     focusedLocation: {
-      latitude: this.props.store.store.location.coordinates[1] || 35.6892,
-      longitude: this.props.store.store.location.coordinates[0] || 51.389,
+      latitude: this.props.store.store.location.coordinates[1],
+      longitude: this.props.store.store.location.coordinates[0],
       latitudeDelta: 0.0026,
       longitudeDelta:
         (Dimensions.get("window").width / Dimensions.get("window").height) *
@@ -18,7 +18,6 @@ class StoreLocation extends React.Component {
     },
     locationChoosen: false
   };
-
   getLocationHandler = () => {
     navigator.geolocation.getCurrentPosition(
       pos => {

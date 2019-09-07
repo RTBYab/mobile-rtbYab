@@ -28,8 +28,6 @@ export const createStore = ({
 
   const body = JSON.stringify(storeData);
 
-  console.log("booodyy", body);
-
   try {
     const res = await axios.post(
       Const.URL.Main + `store/createstore/${id}`,
@@ -74,7 +72,6 @@ export const getStoreByStoreOwner = (id, token) => async dispatch => {
 export const updateStore = ({
   id,
   token,
-  photo,
   storeData,
   navigation
 }) => async dispatch => {

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { GET_PROFILE } from "./types";
 import Const from "../.././config/settings/Constants";
-// import console = require("console");
 
 export const getProfileById = (id, token) => async dispatch => {
   // console.log("rrrrtttttt", token, id);

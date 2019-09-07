@@ -28,7 +28,6 @@ import { connect } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import Colors from "../../config/settings/color";
 import Const from "../../config/settings/Constants";
-import ToggleSwitch from "toggle-switch-react-native";
 import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import ImagePicker from "../../components/ImagePicker";
