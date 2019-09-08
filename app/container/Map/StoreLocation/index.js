@@ -1,20 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import MapView from "react-native-maps";
+import { Entypo } from "@expo/vector-icons";
 import Colors from "../../../config/settings/color";
 import Language from "../../../config/settings/Language";
 import Constants from "../../../config/settings/Constants";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, Text } from "react-native";
 
 class StoreLocation extends React.Component {
   state = {
     focusedLocation: {
       latitude: this.props.store.store.location.coordinates[1],
       longitude: this.props.store.store.location.coordinates[0],
-      latitudeDelta: 0.0026,
+      latitudeDelta: 0.028,
       longitudeDelta:
         (Dimensions.get("window").width / Dimensions.get("window").height) *
-        0.0122
+        0.012
     },
     locationChoosen: false
   };
@@ -64,7 +65,7 @@ class StoreLocation extends React.Component {
 
   render() {
     const { focusedLocation, locationChoosen } = this.state;
-    const { show, scrollEnabled } = this.props;
+    const { store, show, scrollEnabled } = this.props;
     let marker;
 
     if (locationChoosen || show) {
@@ -77,7 +78,7 @@ class StoreLocation extends React.Component {
       );
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, zIndex: 1 }}>
         <View style={styles.view}>
           <MapView
             style={styles.map}
@@ -94,6 +95,13 @@ class StoreLocation extends React.Component {
             {marker}
           </MapView>
         </View>
+        <View style={styles.iconWrapper}>
+          <Entypo name="location-pin" color={Colors.Alternative} size={28} />
+          <Text style={styles.addressFont}>آدرس :</Text>
+        </View>
+        <View style={styles.addressWrapper}>
+          <Text style={styles.address}>{store.store.address}</Text>
+        </View>
       </View>
     );
   }
@@ -106,20 +114,40 @@ export default connect(mapStateToProps)(StoreLocation);
 
 const styles = StyleSheet.create({
   view: {
-    flex: 1,
-    elevation: 1,
-    shadowRadius: 2,
-    shadowOpacity: 0.8,
+    flex: 0.9,
+    elevation: 3,
+    shadowRadius: 3,
+    shadowOpacity: 0.9,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "rgba(0,0,0,0.7)",
-    shadowOffset: { width: 1, height: 3 }
+    shadowOffset: { width: 2, height: 4 }
   },
   map: {
-    top: 5,
-    width: "86%",
-    height: "40%",
-    position: "absolute",
-    borderRadius: Constants.borderRadius.map
+    top: "-15%",
+    width: "100%",
+    height: "150%",
+    position: "absolute"
+  },
+  address: {
+    fontSize: 16,
+    marginLeft: 9,
+    marginRight: 66,
+    marginBottom: 20,
+    fontFamily: "Main",
+    textAlign: "right"
+  },
+  iconWrapper: {
+    // marginTop: -10,
+    alignItems: "center",
+    backgroundColor: "#cccc",
+    flexDirection: "row-reverse"
+  },
+  addressFont: {
+    fontFamily: "Main2",
+    textAlign: "right"
+  },
+  addressWrapper: {
+    backgroundColor: "#cccc"
   }
 });

@@ -1,12 +1,4 @@
 import {
-  Text,
-  View,
-  Image,
-  Linking,
-  FlatList,
-  TouchableOpacity
-} from "react-native";
-import {
   MiniWraper,
   DetailText,
   TextWrapper,
@@ -20,16 +12,9 @@ import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import Colors from "../../config/settings/color";
 import FlatListView from "../../container/FlatListView/indes";
+import { Text, View, Linking, FlatList, TouchableOpacity } from "react-native";
 
-const StoreText = ({
-  tel,
-  rate,
-  address,
-  comments,
-  followers,
-  navigation,
-  description
-}) => {
+const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
   return (
     <View
       style={{
