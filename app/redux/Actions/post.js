@@ -1,7 +1,8 @@
 import axios from "axios";
-import { ADD_POST } from "./types";
+import { ADD_POST, GET_STORE } from "./types";
 import * as FileSystem from "expo-file-system";
 import Const from "../.././config/settings/Constants";
+import Constants from "../.././config/settings/Constants";
 
 export const addNewPost = ({
   id,
@@ -47,3 +48,18 @@ export const addNewPost = ({
     console.log(e);
   }
 };
+
+// export const getPosts = ({
+//   id
+// }) => dispatch => {
+//   onfig = {
+//     headers: {
+//       accept: "application/json",
+//       "Content-Type": "application/json"
+//     }
+//   };
+//   try{
+//     const res = await axios.get(Const.URL.Main + `posts`)
+//   }
+
+// }

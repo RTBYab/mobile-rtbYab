@@ -36,6 +36,10 @@ const AddNewPost = ({ auth, addNewPost, navigation }) => {
     const id = auth.user._id;
     setLoading(true);
     await addNewPost({ id, token, photo, title, caption, navigation });
+    setLoading(false);
+    setPhoto(null);
+    setTitle("");
+    setCaption("");
   };
 
   return (

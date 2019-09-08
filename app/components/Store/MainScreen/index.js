@@ -20,7 +20,6 @@ const StoreMainScreenComponent = ({ store, auth, getStoreByStoreOwner }) => {
       />
       <Text>{store.store.name}</Text>
       <Text>{store.store.description}</Text>
-      {/* {console.log("sssssss", auth)} */}
     </Container>
   );
 };

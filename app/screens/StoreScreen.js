@@ -1,9 +1,9 @@
 import {
-  ScrollView,
+  Image,
   Text,
   View,
   Dimensions,
-  Image,
+  ScrollView,
   TouchableOpacity
 } from "react-native";
 import Comment from "../components/Comment";
@@ -15,7 +15,6 @@ HEIGHT = Dimensions.get("window");
 const StoreScreen = ({ navigation }) => {
   const store = navigation.getParam("store");
 
-  // console.log(store);
   return (
     <ScrollView
       style={{

@@ -1,4 +1,12 @@
 import {
+  Text,
+  View,
+  Image,
+  Linking,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
+import {
   MiniWraper,
   DetailText,
   TextWrapper,
@@ -11,7 +19,7 @@ import {
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import Colors from "../../config/settings/color";
-import { View, Image, TouchableOpacity, Text, Linking } from "react-native";
+import FlatListView from "../../container/FlatListView/indes";
 
 const StoreText = ({
   tel,
@@ -82,24 +90,18 @@ const StoreText = ({
           style={{
             flex: 1,
             marginTop: 5,
+            marginBottom: 12,
             flexWrap: "wrap",
-            alignItems: "flex-end",
+            alignItems: "center",
             flexDirection: "row-reverse"
           }}
         >
-          {dummyData.map((image, index) => (
-            <Image
-              key={index}
-              style={{
-                margin: 2,
-                width: "28%",
-                height: 100,
-                borderRadius: 4,
-                marginRight: 16
-              }}
-              source={image.image}
-            />
-          ))}
+          <FlatList
+            data={dummyData}
+            numColumns={3}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => <FlatListView item={item} />}
+          />
         </View>
       </MainWrapper>
       <DetailsWraper>
@@ -159,19 +161,24 @@ const StoreText = ({
 
 const dummyData = [
   {
-    image: require("../../../assets/image/mobl.jpeg")
+    image: require("../../../assets/image/mobl.jpeg"),
+    text: "Hi"
   },
   {
-    image: require("../../../assets/image/mobl.jpeg")
+    image: require("../../../assets/image/mobl.jpeg"),
+    text: "Hi"
   },
   {
-    image: require("../../../assets/image/mobl.jpeg")
+    image: require("../../../assets/image/mobl.jpeg"),
+    text: "Hi"
   },
   {
-    image: require("../../../assets/image/mobl.jpeg")
+    image: require("../../../assets/image/mobl.jpeg"),
+    text: "Hi"
   },
   {
-    image: require("../../../assets/image/mobl.jpeg")
+    image: require("../../../assets/image/mobl.jpeg"),
+    text: "Hi"
   },
   {
     image: require("../../../assets/image/mobl.jpeg")
