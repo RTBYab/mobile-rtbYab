@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import Comment from "../components/Comment";
+import Comment from "../container/Comment";
 import { EvilIcons } from "@expo/vector-icons";
 import React from "react";
 
@@ -141,30 +141,15 @@ const StoreScreen = ({ navigation }) => {
             <Text
               numberOfLines={1}
               style={{
-                fontFamily: "Main",
-                color: "#ffff",
                 fontSize: 16,
+                color: "#ffff",
                 marginLeft: 50,
+                fontFamily: "Main",
                 alignSelf: "flex-end"
               }}
-            >
-              {/* {store.address} */}
-            </Text>
+            ></Text>
           </View>
         </TouchableOpacity>
-
-        <TouchableOpacity>
-          {/* <View style={{ flexDirection: "row-reverse", alignItems: 'center' }}>
-            <Image source={require('../../assets/image/telephone.png')}
-            style={{width:20, height:20}} />
-            <Text numberOfLines={1}
-              style={{ fontFamily: "Main", color: "#ffff", fontSize: 16, marginLeft: 50, alignSelf: "flex-end" }}>
-
-              {store.telephone}</Text>
-
-          </View> */}
-        </TouchableOpacity>
-
         <Comment navigation={navigation} />
       </View>
     </ScrollView>

@@ -1,6 +1,8 @@
-import { SafeAreaView, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import Comment from "../container/Comment";
+import Constants from "../config/settings/Constants";
+import { SafeAreaView, Text, TouchableOpacity } from "react-native";
 
 const CommentsScreen = ({ navigation }) => {
   return (
@@ -11,12 +13,12 @@ const CommentsScreen = ({ navigation }) => {
         }}
       >
         <Ionicons
-          name="ios-arrow-round-back"
-          size={65}
           style={{ marginLeft: 10 }}
+          name="ios-arrow-round-back"
+          size={Constants.icon.backIconSize}
         />
       </TouchableOpacity>
-      <Text>CommentsScreen</Text>
+      <Comment />
     </SafeAreaView>
   );
 };

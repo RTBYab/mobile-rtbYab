@@ -1,24 +1,43 @@
 import React from "react";
 import { connect } from "react-redux";
 import MapView from "react-native-maps";
-import { Entypo } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import Colors from "../../../config/settings/color";
-import Language from "../../../config/settings/Language";
-import { View, StyleSheet, Dimensions, Text } from "react-native";
+import Constants from "../../../config/settings/Constants";
+import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
-class StoreLocation extends React.Component {
+class Map extends React.Component {
   state = {
     focusedLocation: {
-      latitude: this.props.store.store.location.coordinates[1],
-      longitude: this.props.store.store.location.coordinates[0],
-      latitudeDelta: 0.028,
+      latitude: 35.6892,
+      longitude: 51.389,
+      latitudeDelta: 0.022,
       longitudeDelta:
         (Dimensions.get("window").width / Dimensions.get("window").height) *
-        0.012
+        0.0122
     },
     locationChoosen: false
   };
 
+  getLocationHandler = () => {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        const coordsEvent = {
+          nativeEvent: {
+            coordinate: {
+              latitude: pos.coords.latitude,
+              longitude: pos.coords.longitude
+            }
+          }
+        };
+        this.pickLocationHandler(coordsEvent);
+      },
+      err => {
+        console.log(err);
+        alert("متاسفانه با اشکالی همراه شدیم لطفا دوباره تلاش کنید");
+      }
+    );
+  };
   pickLocationHandler = e => {
     const coords = e.nativeEvent.coordinate;
     this.animation.animateToRegion({
@@ -46,43 +65,41 @@ class StoreLocation extends React.Component {
 
   render() {
     const { focusedLocation, locationChoosen } = this.state;
-    const { store, show, scrollEnabled } = this.props;
+    const { show, scrollEnabled } = this.props;
     let marker;
 
     if (locationChoosen || show) {
       marker = (
         <MapView.Marker.Animated
-          title={store.store.name}
           pinColor={Colors.Alternative}
           coordinate={focusedLocation}
-          style={{ width: 480, height: 480 }}
+          // title={store.store.name}
         />
       );
     }
     return (
-      <View style={{ flex: 1, zIndex: 1 }}>
+      <View style={{ flex: 1, alignItems: "center" }}>
         <View style={styles.view}>
           <MapView
             style={styles.map}
-            zoomEnabled={false}
-            showsTraffic={false}
-            showsIndoors={false}
             loadingEnabled={true}
-            rotateEnabled={false}
-            showsBuildings={false}
             scrollEnabled={scrollEnabled}
             initialRegion={focusedLocation}
+            onPress={this.pickLocationHandler}
+            ref={ref => (this.animation = ref)}
             loadingIndicatorColor={Colors.Alternative}
           >
             {marker}
+
+            <TouchableOpacity onPress={this.getLocationHandler}>
+              <MaterialIcons
+                size={45}
+                name="my-location"
+                style={styles.icon}
+                color={Colors.Alternative}
+              />
+            </TouchableOpacity>
           </MapView>
-        </View>
-        <View style={styles.iconWrapper}>
-          <Entypo name="location-pin" color={Colors.Alternative} size={28} />
-          <Text style={styles.addressFont}>آدرس :</Text>
-        </View>
-        <View style={styles.addressWrapper}>
-          <Text style={styles.address}>{store.store.address}</Text>
         </View>
       </View>
     );
@@ -92,44 +109,28 @@ class StoreLocation extends React.Component {
 const mapStateToProps = state => ({
   store: state.store
 });
-export default connect(mapStateToProps)(StoreLocation);
+export default connect(mapStateToProps)(Map);
 
 const styles = StyleSheet.create({
+  icon: {
+    marginTop: 10,
+    marginLeft: 10
+  },
   view: {
-    flex: 0.9,
-    elevation: 3,
-    shadowRadius: 3,
-    shadowOpacity: 0.9,
+    flex: 1,
+    width: "100%",
+    elevation: 1,
+    shadowRadius: 2,
+    shadowOpacity: 0.8,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "rgba(0,0,0,0.7)",
-    shadowOffset: { width: 2, height: 4 }
+    shadowOffset: { width: 1, height: 3 }
   },
   map: {
-    top: "-15%",
-    width: "100%",
-    height: "150%",
-    position: "absolute"
-  },
-  address: {
-    fontSize: 16,
-    marginLeft: 9,
-    marginRight: 66,
-    marginBottom: 20,
-    fontFamily: "Main",
-    textAlign: "right"
-  },
-  iconWrapper: {
-    // marginTop: -10,
-    alignItems: "center",
-    backgroundColor: "#cccc",
-    flexDirection: "row-reverse"
-  },
-  addressFont: {
-    fontFamily: "Main2",
-    textAlign: "right"
-  },
-  addressWrapper: {
-    backgroundColor: "#cccc"
+    height: 320,
+    width: "90%",
+    marginTop: 25,
+    borderRadius: Constants.borderRadius.map
   }
 });

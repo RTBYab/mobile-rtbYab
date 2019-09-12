@@ -11,7 +11,13 @@ const MapScreen = ({ navigation }) => {
         onPress={() => {
           navigation.goBack();
         }}
-        style={{ zIndex: 10, marginTop: 35 }}
+        style={{
+          width: 50,
+          height: 50,
+          zIndex: 10,
+          marginTop: 35,
+          backgroundColor: "#ccc"
+        }}
       >
         <Ionicons
           style={{ marginLeft: 10 }}

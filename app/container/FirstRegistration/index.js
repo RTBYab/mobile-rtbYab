@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import Map from "../Map";
 import React, { Component } from "react";
+import Map from "../Map/FirstRegistration";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import Language from "../../config/settings/Language";

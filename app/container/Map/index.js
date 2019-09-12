@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import MapView from "react-native-maps";
 import Colors from "../../config/settings/color";
 import { MaterialIcons } from "@expo/vector-icons";
-import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
@@ -76,7 +75,7 @@ class Map extends React.Component {
         <MapView.Marker.Animated
           pinColor={Colors.Alternative}
           coordinate={focusedLocation}
-          title={Language.OnMapTitle}
+          // title={store.store.name}
         />
       );
     }
