@@ -43,6 +43,7 @@ export default {
     telephone: 11,
     mobile: 11,
     postTitle: 20,
-    postCaption: 250
+    postCaption: 250,
+    comment: 1200
   }
 };

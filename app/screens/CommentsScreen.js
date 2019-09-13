@@ -18,7 +18,7 @@ const CommentsScreen = ({ navigation }) => {
           size={Constants.icon.backIconSize}
         />
       </TouchableOpacity>
-      <Comment />
+      <Comment navigation={navigation} />
     </SafeAreaView>
   );
 };

@@ -4,6 +4,7 @@ import {
   UPDATE_STORE,
   UPLOAD_STORE_IMAGE,
   UPDATE_STORE_DETAILS,
+  ADD_NEW_COMMENT,
   GET_STORE_BY_OWNER_ID
 } from "../Actions/types";
 
@@ -22,6 +23,7 @@ export default function(state = initialState, action) {
         store: payload
       };
     case UPDATE_STORE:
+    case ADD_NEW_COMMENT:
     case UPLOAD_STORE_IMAGE:
     case UPDATE_STORE_DETAILS:
     case GET_STORE_BY_OWNER_ID:

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Colors from "../../config/settings/color";
+import Constants from "../../config/settings/Constants";
 
 export const CommentText = styled.TextInput`
   margin: 10px;
@@ -22,4 +24,20 @@ export const HLine = styled.View`
   margin-bottom: 8px;
   border-bottom-width: 0.3px;
   border-bottom-color: #8888;
+`;
+export const Button = styled.View`
+  width: 160px;
+  height: 40px;
+  margin-top: 15px;
+  align-items: center;
+  justify-content: center;
+  background-color: ${Colors.Alternative};
+  border-radius: ${Constants.borderRadius.main};
+`;
+
+export const ButtonText = styled.Text`
+  font-size: 17px;
+  text-align: center;
+  font-family: Main2;
+  color: ${Colors.mainWhite};
 `;

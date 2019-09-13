@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import Colors from "../../config/settings/color";
-import FlatListView from "../../container/FlatListView/indes";
+import FlatListView from "../../container/FlatListView";
 import { Text, View, Linking, FlatList, TouchableOpacity } from "react-native";
 
 const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
@@ -28,16 +28,15 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
             height: 50
           }}
         >
-          {comments == 0 ? (
+          {comments.length === 0 ? (
             <DetailText>۰</DetailText>
           ) : (
             <TouchableOpacity>
-              {" "}
-              <DetailText>{comments}</DetailText>{" "}
+              <DetailText>{comments.length}</DetailText>
             </TouchableOpacity>
           )}
 
-          {followers == 0 ? (
+          {followers.length === 0 ? (
             <DetailText>۰</DetailText>
           ) : (
             <TouchableOpacity>
@@ -146,24 +145,19 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
 
 const dummyData = [
   {
-    image: require("../../../assets/image/mobl.jpeg"),
-    text: "Hi"
+    image: require("../../../assets/image/mobl.jpeg")
   },
   {
-    image: require("../../../assets/image/mobl.jpeg"),
-    text: "Hi"
+    image: require("../../../assets/image/mobl.jpeg")
   },
   {
-    image: require("../../../assets/image/mobl.jpeg"),
-    text: "Hi"
+    image: require("../../../assets/image/mobl.jpeg")
   },
   {
-    image: require("../../../assets/image/mobl.jpeg"),
-    text: "Hi"
+    image: require("../../../assets/image/mobl.jpeg")
   },
   {
-    image: require("../../../assets/image/mobl.jpeg"),
-    text: "Hi"
+    image: require("../../../assets/image/mobl.jpeg")
   },
   {
     image: require("../../../assets/image/mobl.jpeg")

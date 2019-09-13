@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import Modal from "../../Menu/Modal";
 import { connect } from "react-redux";
-import Images from "../../../config/settings/Images";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import Colors from "../../../config/settings/color";
+import Images from "../../../config/settings/Images";
 import StoreText from "../../../components/StoreText";
 import Const from "../../../config/settings/Constants";
 import { openMenu } from "../../../redux/Actions/modalMenu";

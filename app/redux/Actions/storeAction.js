@@ -3,6 +3,7 @@ import {
   CREATE_STORE,
   UPDATE_STORE,
   DELETE_STORE,
+  ADD_NEW_COMMENT,
   UPLOAD_STORE_IMAGE,
   UPDATE_STORE_DETAILS,
   GET_STORE_BY_OWNER_ID,
@@ -115,7 +116,6 @@ export const updateStoreDetails = ({
     }
   };
   const body = JSON.stringify(storeData);
-  console.log("bodyyy", body);
 
   try {
     const res = await axios.put(
@@ -187,6 +187,39 @@ export const getStoreProfilePhoto = ({ id, photoId }) => async dispatch => {
       type: GET_STORE_PROFILE_PHOTO,
       payload: res.data
     });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const addNewComment = ({
+  rate,
+  token,
+  comment,
+  storeId,
+  navigation
+}) => async dispatch => {
+  console.log("mmm", navigation);
+  const config = {
+    headers: {
+      Accept: "application/json",
+      Authorization: `bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  };
+  const body = JSON.stringify({ comment, rate });
+
+  try {
+    const res = await axios.post(
+      Const.URL.Main + `store/createcomment/${storeId}`,
+      body,
+      config
+    );
+    dispatch({
+      type: ADD_NEW_COMMENT,
+      payload: res.data
+    });
+    navigation.goBack();
   } catch (e) {
     console.log(e);
   }

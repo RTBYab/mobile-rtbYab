@@ -47,6 +47,8 @@ export default {
   OnMapTitle: "کسب و کار من",
   MapNotice: " توجه: با استفاده از نقشه ادرس دقیق فروشگاه خود را مشخص کنید",
 
+  //
+
   // Category
   ThereIsNoMore: "There is no more product to show",
 
