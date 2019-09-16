@@ -69,22 +69,23 @@ class TabBar extends PureComponent {
     const { routes } = navigation.state;
 
     const ignoreScreen = [
+      "Detail",
+      "Comment",
+      "Address",
+      "MapScreen",
+      "AddNewPost",
+      "EditAddress",
+      "LoginStack",
+      "CustomPage",
+      "NewsScreen",
       "DetailScreen",
       "SearchScreen",
-      "Detail",
-      "NewsScreen",
       "LoginScreen",
       "SignUpScreen",
-      "CustomPage",
       "CategoryDetail",
       "SettingScreen",
       "WishListScreen",
-      "LoginStack",
-      "Comment",
-      "Address",
-      "AddNewPost",
-      "EditAddress",
-      "MapScreen"
+      "StoreCommentDetails"
     ];
 
     return (

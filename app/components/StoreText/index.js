@@ -58,7 +58,11 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
             backgroundColor: "rgba(0,0,0,0.03)"
           }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("StoreCommentDetails");
+            }}
+          >
             <DetailText>نظرات</DetailText>
           </TouchableOpacity>
 

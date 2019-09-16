@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Colors from "../../config/settings/color";
 import Constants from "../../config/settings/Constants";
+import { Dimensions } from "react-native";
+const { height, width } = Dimensions.get("window");
 
 export const Container = styled.View`
   flex: 1;
@@ -13,7 +15,7 @@ export const Container = styled.View`
 export const MiniContainer = styled.View`
   flex: 1;
   width: 100%;
-  height: 120px;
+  height: ${height / 5};
   margin-bottom: 12px;
   align-items: center;
   justify-content: center;
@@ -26,9 +28,9 @@ export const BoxContainer = styled.View`
 `;
 
 export const EditView = styled.View`
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
+  width: ${width > 360 ? 30 : 20};
+  height: ${height > 600 ? 30 : 20};
+  border-radius: ${width > 360 ? 15 : 10};
   background: ${Colors.whiteSmoke};
 `;
 export const Image = styled.Image`
@@ -63,10 +65,11 @@ export const Description = styled.TextInput`
   margin-right: -85px;
 `;
 export const HLine = styled.View`
-  width: 75%;
-  margin-top: -21px;
+  max-width: 75%;
+  min-width: 70%;
+  /* margin-top: -21px;
   align-self: center;
-  margin-bottom: 8px;
+  margin-bottom: 8px; */
   border-bottom-width: 0.3px;
   border-bottom-color: #8888;
 `;

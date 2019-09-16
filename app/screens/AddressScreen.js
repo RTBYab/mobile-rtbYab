@@ -1,8 +1,8 @@
-import { TouchableOpacity, Text, SafeAreaView } from "react-native";
-// import Language from "../../config/settings/Language";
-// import { style } from "./style";
+import { TouchableOpacity, Text, SafeAreaView, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
+
+const { width } = Dimensions.get("window");
 
 const AddressScreen = ({ navigation, address }) => {
   return (
@@ -14,7 +14,7 @@ const AddressScreen = ({ navigation, address }) => {
       >
         <Ionicons
           name="ios-arrow-round-back"
-          size={65}
+          size={width / 10}
           style={{ marginLeft: 10 }}
         />
       </TouchableOpacity>

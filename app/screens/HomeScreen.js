@@ -3,7 +3,7 @@ import Search from "../components/Search";
 import Colors from "../config/settings/color";
 import { View, Text, StyleSheet, Dimensions, Platform } from "react-native";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 export default class HomeScreen extends PureComponent {
   static navigationOptions = ({ navigation }) => ({
@@ -15,29 +15,31 @@ export default class HomeScreen extends PureComponent {
     const { navigate, goBack } = this.props.navigation;
     return (
       <View style={{ flex: 1 }}>
-        <View
-          style={{
-            flex: 0.5,
-            width: width / 2,
-            backgroundColor: Colors.Alternative,
-            marginBottom: 2
-          }}
-        />
-        <View
-          style={{
-            flexDirection: "row",
-            ...Platform.select({
-              android: {
-                marginBottom: -20
-              }
-            })
-          }}
-        >
-          <Text style={mainText2}> یاب</Text>
-          <Text style={mainText1}>رتبه </Text>
+        <View style={styles.mainView}>
+          <View
+            style={{
+              height: "100%",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <Text style={mainText1}>رتبه </Text>
+          </View>
+          <View
+            style={{
+              height: "100%",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: Colors.Alternative
+            }}
+          >
+            <Text style={mainText2}> یاب</Text>
+          </View>
         </View>
-
         <Search
+          // style={{ marginTop: width / 2 }}
           // searchResult={result => navigate("Result", result)}
           navigation={this.props.navigation}
           // onBack={goBack}
@@ -48,22 +50,24 @@ export default class HomeScreen extends PureComponent {
 }
 
 const styles = StyleSheet.create({
+  mainView: {
+    width: "100%",
+    height: "30%",
+    justifyContent: "center",
+    flexDirection: "row-reverse"
+  },
   mainText1: {
-    fontFamily: "Main2",
-    alignSelf: "center",
     fontSize: 90,
-    margin: 10,
-    marginTop: -220,
-    alignSelf: "center",
+    // textAlign: "center",
+    fontFamily: "Main2",
+    marginRight: width / 2,
     color: Colors.Alternative
   },
   mainText2: {
-    fontFamily: "Main2",
-    alignSelf: "center",
     fontSize: 90,
-    margin: 20,
-    marginTop: -220,
-    color: "white",
-    alignSelf: "center"
+    fontFamily: "Main2",
+    // textAlign: "center",
+    marginLeft: width / 1.95,
+    color: Colors.mainWhite
   }
 });

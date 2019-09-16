@@ -10,7 +10,7 @@ import Comment from "../container/Comment";
 import { EvilIcons } from "@expo/vector-icons";
 import React from "react";
 
-HEIGHT = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 
 const StoreScreen = ({ navigation }) => {
   const store = navigation.getParam("store");

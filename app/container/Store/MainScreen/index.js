@@ -18,7 +18,6 @@ import Const from "../../../config/settings/Constants";
 import { openMenu } from "../../../redux/Actions/modalMenu";
 import { MainImage, IconContainer, AnimatedContainer } from "./style";
 import { getStoreByStoreOwner } from "../../../redux/Actions/storeAction";
-import { styles } from "react-native-material-ripple/styles";
 
 const StoreMainScreenComponent = ({
   store: { store, loading },

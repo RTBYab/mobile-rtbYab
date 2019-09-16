@@ -6,6 +6,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Constants from "../../config/settings/Constants";
 import { View, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
+const { width, height } = Dimensions.get("window");
+
 class Map extends React.Component {
   state = {
     focusedLocation: {
@@ -95,8 +97,8 @@ class Map extends React.Component {
 
             <TouchableOpacity onPress={this.getLocationHandler}>
               <MaterialIcons
-                size={45}
                 name="my-location"
+                size={width / 10}
                 style={styles.icon}
                 color={Colors.Alternative}
               />
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     width: "100%",
-    elevation: 1,
+    elevation: 1.5,
     shadowRadius: 2,
     shadowOpacity: 0.8,
     alignItems: "center",
@@ -130,9 +132,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 3 }
   },
   map: {
-    height: 320,
+    height: height / 2.5,
     width: "90%",
-    marginTop: 25,
+    marginTop: height / 50,
     borderRadius: Constants.borderRadius.map
   }
 });

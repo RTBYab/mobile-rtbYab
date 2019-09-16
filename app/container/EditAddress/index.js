@@ -7,18 +7,21 @@ import {
   MiniInput,
   ButtonText,
   NormalInput,
-  BoxContainer
+  BoxContainer,
+  AlterLine
 } from "./style";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Map from "../Map";
 import React, { PureComponent } from "react";
 import Colors from "../../config/settings/color";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Dimensions } from "react-native";
 import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import { Entypo, Foundation, Ionicons } from "@expo/vector-icons";
 import { updateStore } from "../../redux/Actions/storeAction";
+
+const { height, width } = Dimensions.get("window");
 
 class EditAddress extends PureComponent {
   state = {
@@ -76,12 +79,12 @@ class EditAddress extends PureComponent {
           <Ionicons
             style={{ marginLeft: 15 }}
             name="ios-arrow-round-back"
-            size={Constants.icon.backIconSize}
+            size={width / 8}
           />
         </TouchableOpacity>
         <BoxContainer style={{ marginTop: 50 }}>
           <Entypo
-            size={25}
+            size={width < 375 ? 20 : 25}
             name="location"
             color={Colors.Alternative}
             style={{
@@ -104,10 +107,10 @@ class EditAddress extends PureComponent {
             placeholder="آدرس در حداکثر ۱۰۰ کلمه"
           />
         </BoxContainer>
-        <HLine />
+        <HLine style={{ marginTop: height > 600 ? -20 : -23 }} />
         <BoxContainer>
           <Foundation
-            size={25}
+            size={width < 375 ? 20 : 25}
             name="telephone"
             color={Colors.Alternative}
             style={{
@@ -129,44 +132,18 @@ class EditAddress extends PureComponent {
             placeholder="شماره تلفن ثابت "
           />
         </BoxContainer>
-        <HLine />
-        <BoxContainer>
-          <Foundation
-            size={25}
-            name="mobile-signal"
-            color={Colors.Alternative}
-            style={{
-              marginRight: 25,
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          />
-          <Text>{Language.Mobile}</Text>
 
-          <MiniInput
-            spellCheck={false}
-            autoCorrect={false}
-            keyboardType="number-pad"
-            style={{ paddingRight: 20 }}
-            defaultValue={store.store.mobile}
-            maxLength={Constants.textInput.mobile}
-            underlineColorAndroid={Colors.mainWhite}
-            onChangeText={mobile => this.setState({ mobile })}
-            placeholder="شماره تلفن همراه "
-          />
-        </BoxContainer>
-        <HLine />
-        <SubText style={{ paddingRight: 30, marginTop: 15 }}>
+        <AlterLine />
+
+        <SubText style={{ paddingRight: 30, marginTop: 10 }}>
           {Language.MapNotice}
         </SubText>
-
         <Map
           show={true}
           navigation={navigation}
           showsUserLocation={true}
           locationPicker={this.handleLocationPicker}
         />
-
         <View style={{ alignItems: "center", marginTop: 15, marginBottom: 35 }}>
           <TouchableOpacity onPress={this.onPressHandler}>
             <Button>

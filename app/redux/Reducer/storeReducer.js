@@ -2,15 +2,17 @@ import {
   LOGOUT,
   CREATE_STORE,
   UPDATE_STORE,
+  ADD_NEW_COMMENT,
+  GET_STORE_COMMENTS,
   UPLOAD_STORE_IMAGE,
   UPDATE_STORE_DETAILS,
-  ADD_NEW_COMMENT,
   GET_STORE_BY_OWNER_ID
 } from "../Actions/types";
 
 const initialState = {
   store: null,
-  loading: true
+  loading: true,
+  comments: []
 };
 
 export default function(state = initialState, action) {
@@ -23,7 +25,6 @@ export default function(state = initialState, action) {
         store: payload
       };
     case UPDATE_STORE:
-    case ADD_NEW_COMMENT:
     case UPLOAD_STORE_IMAGE:
     case UPDATE_STORE_DETAILS:
     case GET_STORE_BY_OWNER_ID:
@@ -32,6 +33,14 @@ export default function(state = initialState, action) {
         loading: false,
         store: payload
       };
+    case ADD_NEW_COMMENT:
+    case GET_STORE_COMMENTS:
+      return {
+        ...state,
+        loading: false,
+        store: { ...state.store, comments: payload }
+      };
+
     case LOGOUT:
       return {
         ...state,

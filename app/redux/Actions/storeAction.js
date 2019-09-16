@@ -4,6 +4,7 @@ import {
   UPDATE_STORE,
   DELETE_STORE,
   ADD_NEW_COMMENT,
+  GET_STORE_COMMENTS,
   UPLOAD_STORE_IMAGE,
   UPDATE_STORE_DETAILS,
   GET_STORE_BY_OWNER_ID,
@@ -193,13 +194,13 @@ export const getStoreProfilePhoto = ({ id, photoId }) => async dispatch => {
 };
 
 export const addNewComment = ({
+  id,
   rate,
   token,
   comment,
   storeId,
   navigation
 }) => async dispatch => {
-  console.log("mmm", navigation);
   const config = {
     headers: {
       Accept: "application/json",
@@ -211,7 +212,7 @@ export const addNewComment = ({
 
   try {
     const res = await axios.post(
-      Const.URL.Main + `store/createcomment/${storeId}`,
+      Const.URL.Main + `store/createcomment/${storeId}/${id}`,
       body,
       config
     );
@@ -219,6 +220,7 @@ export const addNewComment = ({
       type: ADD_NEW_COMMENT,
       payload: res.data
     });
+
     navigation.goBack();
   } catch (e) {
     console.log(e);

@@ -25,12 +25,14 @@ import {
 } from "../../redux/Actions/storeAction";
 import React from "react";
 import { connect } from "react-redux";
-import { TouchableOpacity } from "react-native";
 import Colors from "../../config/settings/color";
 import Const from "../../config/settings/Constants";
 import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import ImagePicker from "../../components/ImagePicker";
+import { TouchableOpacity, Dimensions, ScrollView } from "react-native";
+
+const { height, width } = Dimensions.get("window");
 
 class SettingsSection extends React.PureComponent {
   state = {
@@ -74,26 +76,38 @@ class SettingsSection extends React.PureComponent {
             <ImagePicker submitImage={this.submitImage}>
               {store.store.photo ? (
                 <Image
-                  style={{ width: 100, height: 100 }}
+                  style={{
+                    width: width > 360 ? 120 : 100,
+                    height: height > 600 ? 120 : 100,
+                    borderRadius: width > 360 ? 60 : 50
+                  }}
                   source={{ uri: photo }}
                 />
               ) : (
                 <Image
-                  style={{ width: 100, height: 100 }}
+                  style={{
+                    width: width > 360 ? 120 : 100,
+                    height: height > 600 ? 120 : 100,
+                    borderRadius: width > 360 ? 60 : 50
+                  }}
                   source={require("../../../assets/image/mobl.jpeg")}
                 />
               )}
 
               <EditView
                 style={{
-                  left: 9,
-                  bottom: 10,
+                  left: width / 36,
+                  bottom: height / 43,
                   position: "absolute",
                   alignItems: "center",
                   justifyContent: "center"
                 }}
               >
-                <AntDesign size={20} name="edit" color={Colors.Alternative} />
+                <AntDesign
+                  name="edit"
+                  size={width / 20}
+                  color={Colors.Alternative}
+                />
               </EditView>
             </ImagePicker>
           </MiniContainer>
@@ -145,7 +159,7 @@ class SettingsSection extends React.PureComponent {
               onChangeText={description => this.setState({ description })}
             />
           </BoxContainer>
-          <HLine style={{ marginBottom: 12 }} />
+          <HLine />
           <BoxContainer style={{ width: "100%" }}>
             <Entypo
               size={25}
