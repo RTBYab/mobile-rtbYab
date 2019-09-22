@@ -2,13 +2,7 @@ import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import { getPosts } from "../../redux/Actions/post";
 import Const from "../../config/settings/Constants";
-import {
-  FlatList,
-  TouchableOpacity,
-  Image,
-  Dimensions,
-  Text
-} from "react-native";
+import { FlatList, TouchableOpacity, Image, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -22,12 +16,12 @@ const GetStorePosts = ({ post, auth, getPosts }) => {
   return (
     <FlatList
       numColumns={3}
-      data={post.post}
+      data={post}
       renderItem={({ item }) => (
         <TouchableOpacity>
           <Image
             source={{
-              uri: `http://localhost:8080/uploads/postImages/${id}/${item.photo}`
+              uri: Const.URL.Posts + `/${id}/${item.photo}`
             }}
             style={{
               flex: 1,
@@ -45,7 +39,7 @@ const GetStorePosts = ({ post, auth, getPosts }) => {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  post: state.post
+  post: state.post.posts
 });
 
 export default connect(
