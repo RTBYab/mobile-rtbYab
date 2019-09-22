@@ -14,8 +14,6 @@ const CommentFlatListView = ({ item, auth, store, getStoreProfilePhoto }) => {
   return (
     <View style={styles.mainView}>
       <View style={styles.boxView}>
-        {console.log("ssss", store.store.photo)}
-
         {store.photo ? (
           <Image
             style={{ width: 30, height: 30 }}

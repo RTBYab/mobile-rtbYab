@@ -2,6 +2,7 @@ import {
   MiniWraper,
   DetailText,
   TextWrapper,
+  CommentText,
   MainWrapper,
   TextWrapper1,
   DetailsWraper,
@@ -9,23 +10,33 @@ import {
   AddressWrapper
 } from "./style";
 import React from "react";
+import { connect } from "react-redux";
 import { Entypo } from "@expo/vector-icons";
 import Colors from "../../config/settings/color";
-import FlatListView from "../../container/FlatListView";
-import { Text, View, Linking, FlatList, TouchableOpacity } from "react-native";
+import GetStorePosts from "../../container/StorePosts";
+import { View, Linking, TouchableOpacity, Dimensions } from "react-native";
+
+const { width } = Dimensions.get("window");
 
 const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
   return (
     <View
       style={{
+        justifyContent: "center",
         flex: 4,
         backgroundColor: Colors.mainWhiteColorWithOpacity
       }}
     >
-      <MiniWraper style={{ backgroundColor: "rgba(0,0,0,0.03)" }}>
+      <MiniWraper
+        style={{
+          justifyContent: "center",
+          backgroundColor: "rgba(0,0,0,0.03)"
+        }}
+      >
         <TextWrapper1
           style={{
-            height: 50
+            height: 50,
+            alignItems: "center"
           }}
         >
           {comments.length === 0 ? (
@@ -73,27 +84,15 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
           <DetailText>امتیاز </DetailText>
         </TextWrapper>
       </MiniWraper>
-      <MainWrapper>
-        <View
-          style={{
-            flex: 1,
-            marginTop: 5,
-            marginBottom: 12,
-            flexWrap: "wrap",
-            alignItems: "center",
-            flexDirection: "row-reverse"
-          }}
-        >
-          <FlatList
-            data={dummyData}
-            numColumns={3}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => <FlatListView item={item} />}
-          />
-        </View>
+      <MainWrapper style={{ width: "99%" }}>
+        <GetStorePosts />
       </MainWrapper>
       <DetailsWraper>
-        <Entypo name="location-pin" color={Colors.StoreIconColor} size={28} />
+        <Entypo
+          name="location-pin"
+          color={Colors.StoreIconColor}
+          size={width / 12}
+        />
         <TouchableOpacity
           style={{ width: "80%" }}
           onPress={() => {
@@ -108,7 +107,7 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
 
       <DetailsWraper style={{ marginTop: -4 }}>
         <Entypo
-          size={26}
+          size={width / 12}
           name="phone"
           style={{ marginRight: 6 }}
           color={Colors.StoreIconColor}
@@ -130,16 +129,7 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
           style={{ position: "absolute", right: 5 }}
         >
           <ButtonWrapper>
-            <Text
-              style={{
-                color: "#ffff",
-                fontSize: 17,
-                textAlign: "center",
-                fontFamily: "Main2"
-              }}
-            >
-              ثبت نظر
-            </Text>
+            <CommentText>ثبت نظر</CommentText>
           </ButtonWrapper>
         </TouchableOpacity>
       </DetailsWraper>
@@ -147,49 +137,9 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
   );
 };
 
-const dummyData = [
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  },
-  {
-    image: require("../../../assets/image/mobl.jpeg")
-  }
-];
+const mapStateToProps = state => ({
+  auth: state.auth,
+  post: state.post
+});
 
-export default StoreText;
+export default connect(mapStateToProps)(StoreText);

@@ -1,10 +1,14 @@
 import styled from "styled-components";
-import { Animated } from "react-native";
+import { Animated, Dimensions } from "react-native";
 import Colors from "../../../config/settings/color";
 import Constants from "../../../config/settings/Constants";
 
+const { width, height } = Dimensions.get("window");
+
 export const Container = styled.SafeAreaView`
   flex: 1;
+  /* align-items: center; */
+  justify-content: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 `;
@@ -12,10 +16,10 @@ export const Container = styled.SafeAreaView`
 export const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
 export const MainImage = styled.Image`
-  height: 110px;
-  width: 110px;
-  margin-top: 15px;
-  border-radius: ${Constants.borderRadius.storeImage};
+  margin-top: ${height > 600 ? 10 : 8};
+  width: ${width > 375 ? 120 : 100};
+  height: ${width > 375 ? 120 : 100};
+  border-radius: ${width > 375 ? 60 : 50};
 `;
 
 export const Text = styled.Text`
@@ -31,14 +35,14 @@ export const RootView = styled.View`
 
 export const IconContainer = styled.View`
   right: 0px;
-  top: 40px;
-  width: 60px;
-  height: 40px;
+  top: ${width / 15};
   position: absolute;
-  border-radius: 20px;
+  width: ${width / 5};
+  height: ${height / 14};
   flex-direction: row-reverse;
-  border-top-right-radius: 5px;
-  box-shadow: 1px 1px 5px #8888;
+  box-shadow: 1px 1px 3px #8888;
+  border-radius: ${width / 10};
   background: ${Colors.mainWhite};
-  border-bottom-right-radius: 5px;
+  border-top-right-radius: ${width / 50};
+  border-bottom-right-radius: ${width / 50};
 `;

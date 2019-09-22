@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { Dimensions } from "react-native";
 import Colors from "../../config/settings/color";
 import Constants from "../../config/settings/Constants";
+
+const { width, height } = Dimensions.get("window");
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -15,11 +18,12 @@ export const SimpleContainer = styled.View`
 `;
 
 export const ButtonWrapper = styled.View`
-  width: 160px;
-  height: 40px;
+  width: ${width / 2};
   margin-top: 15px;
   align-items: center;
   justify-content: center;
+  height: ${height / 16};
+  margin-bottom: ${width / 25};
   background-color: ${Colors.Alternative};
   border-radius: ${Constants.borderRadius.main};
 `;
@@ -37,43 +41,42 @@ export const ImageContainer = styled.View`
 `;
 
 export const Image = styled.Image`
-  width: 300px;
-  height: 300px;
+  width: ${width / 1.2};
+  height: ${width / 1.2};
   box-shadow: 9px 11px 15px rgba(0, 0, 0, 0.7);
 `;
 
 export const Title = styled.TextInput`
   margin: 10px;
-  font-size: 16;
+  font-size: ${width / 25};
   text-align: right;
   font-family: Main;
   padding-right: 22px;
 `;
 
 export const Text = styled.Text`
-  font-size: 16;
+  font-size: ${width / 25};
   text-align: right;
   font-family: Main2;
 `;
 
 export const NoticeText = styled.Text`
-  font-size: 12;
+  font-size: ${width / 30};
   text-align: right;
   font-family: Main;
 `;
 
 export const HLine = styled.View`
   width: 75%;
-  /* margin-top: -21px; */
   align-self: center;
   margin-bottom: 8px;
-  border-bottom-width: 0.3px;
+  border-bottom-width: 0.5px;
   border-bottom-color: #8888;
 `;
 
 export const Caption = styled.TextInput`
   margin: 10px;
-  font-size: 16;
+  font-size: ${width / 25};
   text-align: right;
   font-family: Main;
   padding-left: 12px;

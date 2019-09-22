@@ -1,7 +1,8 @@
 export default {
   URL: {
     Main: "http://localhost:8080/api/",
-    Image: "http://localhost:8080/uploads/storeMainImage/"
+    Image: "http://localhost:8080/uploads/storeMainImage/",
+    Posts: "http://localhost:8080/uploads/postImages/"
   },
 
   // TabBar Animation

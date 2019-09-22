@@ -15,16 +15,16 @@ export const Container = styled.View`
 export const MiniContainer = styled.View`
   flex: 1;
   width: 100%;
-  height: ${height / 5};
   margin-bottom: 12px;
   align-items: center;
+  height: ${height / 5};
   justify-content: center;
   box-shadow: 15px 12px 13px #8888;
 `;
 
 export const BoxContainer = styled.View`
+  align-items: center;
   flex-direction: row-reverse;
-  box-shadow: 0.1px 0.1px 0.5px #8888;
 `;
 
 export const EditView = styled.View`
@@ -41,49 +41,59 @@ export const Image = styled.Image`
   margin-bottom: 16px;
   border-radius: 50px;
 `;
-export const NormalInput = styled.TextInput`
-  width: 72%;
-  margin: 25px;
-  margin-top: 40px;
-  height: 32px;
-  font-size: 16px;
-  text-align: right;
-  font-family: Main;
-  margin-right: -75px;
-  border-radius: 14px;
-  border-color: #000;
-`;
 
-export const Description = styled.TextInput`
-  width: 75%;
-  margin: 25px;
-  height: 58px;
-  margin-top: 40px;
-  font-size: 16px;
-  text-align: right;
-  font-family: Main;
-  margin-right: -85px;
-`;
+// export const Description = styled.TextInput`
+//   width: 75%;
+//   margin: 25px;
+//   height: 58px;
+//   margin-top: 40px;
+//   font-size: 16px;
+//   text-align: right;
+//   font-family: Main;
+//   margin-right: -85px;
+// `;
 export const HLine = styled.View`
   max-width: 75%;
   min-width: 70%;
-  /* margin-top: -21px;
-  align-self: center;
-  margin-bottom: 8px; */
-  border-bottom-width: 0.3px;
+  margin-top: ${width / 75};
   border-bottom-color: #8888;
+  border-bottom-width: ${width / 600};
 `;
 
 export const Text = styled.Text`
-  font-size: 16px;
+  font-size: ${width / 25};
   font-family: Main2;
   text-align: right;
-  margin: 5px;
+  margin-right:${width / 50};
+  /* margin: ${width / 50}; */
+`;
+
+export const NormalInput = styled.TextInput`
+  width: 70%;
+  text-align: right;
+  font-family: Main;
+  border-color: #000;
+  height: ${height / 15};
+  margin-top: ${width / 5};
+  font-size: ${width / 22};
+  margin-right: ${-width / 5};
+`;
+
+export const NormalInput2 = styled.TextInput`
+  width: 70%;
+  text-align: right;
+  font-family: Main;
+  border-color: #000;
+  height: ${height / 15};
+  margin-top: ${width / 5};
+  font-size: ${width / 22};
+  margin-right: ${-width / 3.79};
 `;
 export const SubText = styled.Text`
-  font-size: 10px;
   font-family: Main;
   text-align: right;
+  font-size: ${width / 33};
+  margin-top: ${width / 50};
 `;
 
 export const MainContainer = styled.ScrollView`
@@ -91,18 +101,18 @@ export const MainContainer = styled.ScrollView`
 `;
 
 export const Button = styled.View`
-  width: 160px;
-  height: 40px;
   margin-top: 15px;
   align-items: center;
   justify-content: center;
+  width: ${width / 1.8};
+  height: ${height / 14};
   background-color: ${Colors.Alternative};
   border-radius: ${Constants.borderRadius.main};
 `;
 
 export const ButtonText = styled.Text`
-  font-size: 17px;
   text-align: center;
   font-family: Main2;
   color: ${Colors.mainWhite};
+  font-size: ${width / 22};
 `;

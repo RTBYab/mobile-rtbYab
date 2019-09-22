@@ -30,7 +30,7 @@ const StoreScreen = ({ navigation }) => {
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
-          <Image
+          {/* <Image
             // source={store.image}
             style={{
               width: 100,
@@ -39,7 +39,7 @@ const StoreScreen = ({ navigation }) => {
               marginTop: 20,
               marginBottom: 10
             }}
-          />
+          /> */}
         </View>
         <Text
           style={{

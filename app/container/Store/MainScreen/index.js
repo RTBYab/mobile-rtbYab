@@ -3,7 +3,9 @@ import {
   Image,
   Easing,
   Animated,
+  Dimensions,
   StyleSheet,
+  SafeAreaView,
   TouchableOpacity,
   ActivityIndicator
 } from "react-native";
@@ -18,6 +20,8 @@ import Const from "../../../config/settings/Constants";
 import { openMenu } from "../../../redux/Actions/modalMenu";
 import { MainImage, IconContainer, AnimatedContainer } from "./style";
 import { getStoreByStoreOwner } from "../../../redux/Actions/storeAction";
+
+const { width, height } = Dimensions.get("window");
 
 const StoreMainScreenComponent = ({
   store: { store, loading },
@@ -56,7 +60,7 @@ const StoreMainScreenComponent = ({
   }, [toggleMenu]);
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       {store === null || loading ? (
         <View>
           <ActivityIndicator size="large" color={Colors.Alternative} />
@@ -65,43 +69,45 @@ const StoreMainScreenComponent = ({
         <AnimatedContainer style={{ transform: [{ scale }], opacity }}>
           <Modal navigation={navigation} />
           <View style={{ flex: 1, alignItems: "center", marginBottom: 5 }}>
-            <IconContainer>
-              <TouchableOpacity onPress={openMenu}>
+            <IconContainer style={{ elevation: 2 }}>
+              <TouchableOpacity
+                style={{ justifyContent: "center", alignItems: "center" }}
+                onPress={openMenu}
+              >
                 <Ionicons
                   name="ios-menu"
-                  size={30}
+                  size={width / 10}
                   style={{
-                    marginTop: 7,
-                    marginRight: 18,
-                    textAlign: "right",
-                    alignItems: "center",
-                    justifyContent: "center"
+                    marginRight: width / 20,
+                    textAlign: "right"
                   }}
                 />
               </TouchableOpacity>
             </IconContainer>
-            {store.photo ? (
-              <MainImage
-                source={{
-                  uri: Const.URL.Image + `${auth.user._id}/${store.photo}`
-                }}
-              />
-            ) : (
-              <MainImage
-                source={require("../../../../assets/image/mobl.jpeg")}
-              />
-            )}
-          </View>
+            <View style={{ alignItems: "center", marginBottom: width / 50 }}>
+              {store.photo ? (
+                <MainImage
+                  source={{
+                    uri: Const.URL.Image + `${auth.user._id}/${store.photo}`
+                  }}
+                />
+              ) : (
+                <MainImage
+                  source={require("../../../../assets/image/mobl.jpeg")}
+                />
+              )}
+            </View>
 
-          <StoreText
-            tel={store.tel}
-            rate={store.rate}
-            navigation={navigation}
-            address={store.address}
-            comments={store.comments}
-            followers={store.followers}
-            description={store.description}
-          />
+            <StoreText
+              tel={store.tel}
+              rate={store.rate}
+              navigation={navigation}
+              address={store.address}
+              comments={store.comments}
+              followers={store.followers}
+              description={store.description}
+            />
+          </View>
         </AnimatedContainer>
       )}
       <View style={stylesInLine.View}>
@@ -114,7 +120,7 @@ const StoreMainScreenComponent = ({
           <Image source={Images.IconAddPen} style={{ width: 38, height: 38 }} />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

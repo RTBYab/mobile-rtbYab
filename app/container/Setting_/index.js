@@ -1,7 +1,6 @@
 import {
   Text,
   HLine,
-  Image,
   Button,
   SubText,
   EditView,
@@ -9,6 +8,7 @@ import {
   ButtonText,
   Description,
   NormalInput,
+  NormalInput2,
   BoxContainer,
   MiniContainer,
   MainContainer
@@ -30,7 +30,13 @@ import Const from "../../config/settings/Constants";
 import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
 import ImagePicker from "../../components/ImagePicker";
-import { TouchableOpacity, Dimensions, ScrollView } from "react-native";
+import {
+  TouchableOpacity,
+  Dimensions,
+  ScrollView,
+  Image,
+  View
+} from "react-native";
 
 const { height, width } = Dimensions.get("window");
 
@@ -70,132 +76,170 @@ class SettingsSection extends React.PureComponent {
     const { store, navigation } = this.props;
     const { photo } = this.state;
     return (
-      <MainContainer>
-        <Container>
-          <MiniContainer style={{ alignItems: "center", marginTop: 2 }}>
-            <ImagePicker submitImage={this.submitImage}>
-              {store.store.photo ? (
+      <ScrollView>
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <ImagePicker submitImage={this.submitImage}>
+            {store.store.photo ? (
+              <View
+                style={{
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2
+                  },
+                  shadowOpacity: 0.23,
+                  shadowRadius: 2.62,
+
+                  elevation: 3
+                }}
+              >
                 <Image
                   style={{
+                    backgroundColor: "red",
                     width: width > 360 ? 120 : 100,
                     height: height > 600 ? 120 : 100,
                     borderRadius: width > 360 ? 60 : 50
                   }}
                   source={{ uri: photo }}
                 />
-              ) : (
-                <Image
-                  style={{
-                    width: width > 360 ? 120 : 100,
-                    height: height > 600 ? 120 : 100,
-                    borderRadius: width > 360 ? 60 : 50
-                  }}
-                  source={require("../../../assets/image/mobl.jpeg")}
-                />
-              )}
-
-              <EditView
+              </View>
+            ) : (
+              <Image
                 style={{
-                  left: width / 36,
-                  bottom: height / 43,
-                  position: "absolute",
-                  alignItems: "center",
-                  justifyContent: "center"
+                  width: width > 360 ? 120 : 100,
+                  height: height > 600 ? 120 : 100,
+                  borderRadius: width > 360 ? 60 : 50
                 }}
-              >
-                <AntDesign
-                  name="edit"
-                  size={width / 20}
-                  color={Colors.Alternative}
-                />
-              </EditView>
-            </ImagePicker>
-          </MiniContainer>
-          <BoxContainer>
-            <MaterialIcons
-              size={25}
-              name="store"
-              color={Colors.Alternative}
+                source={require("../../../assets/image/mobl.jpeg")}
+              />
+            )}
+            <EditView
               style={{
-                marginRight: 25,
+                left: width / 50,
+                bottom: height / 145,
+                position: "absolute",
                 alignItems: "center",
                 justifyContent: "center"
-              }}
-            />
-            <Text>{Language.BusinessName}</Text>
-
-            <NormalInput
-              autoCorrect={false}
-              spellCheck={false}
-              defaultValue={store.store.name}
-              maxLength={Constants.textInput.name}
-              underlineColorAndroid={Colors.mainWhite}
-              onChangeText={name => this.setState({ name })}
-              placeholder="نام در حداکثر ۲۰ کلمه"
-            />
-          </BoxContainer>
-          <HLine />
-          <BoxContainer>
-            <Foundation
-              size={25}
-              name="clipboard-pencil"
-              color={Colors.Alternative}
-              style={{
-                marginRight: 25,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            />
-            <Text>{Language.BusinessDescription}</Text>
-            <Description
-              multiline={true}
-              spellCheck={false}
-              autoCorrect={false}
-              scrollEnabled={true}
-              defaultValue={store.store.description}
-              underlineColorAndroid={Colors.mainWhite}
-              maxLength={Constants.textInput.description}
-              placeholder="توضیحات در حداکثر ۱۵۰ کلمه"
-              onChangeText={description => this.setState({ description })}
-            />
-          </BoxContainer>
-          <HLine />
-          <BoxContainer style={{ width: "100%" }}>
-            <Entypo
-              size={25}
-              name="address"
-              color={Colors.Alternative}
-              style={{
-                marginRight: 25,
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            />
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("EditAddress");
               }}
             >
-              <Text>{Language.EditBusinessAddress}</Text>
-              <SubText>{Language.MapNotice}</SubText>
-            </TouchableOpacity>
-          </BoxContainer>
+              <AntDesign
+                name="edit"
+                size={width / 20}
+                color={Colors.Alternative}
+              />
+            </EditView>
+          </ImagePicker>
+        </View>
+        <BoxContainer>
+          <MaterialIcons
+            name="store"
+            size={width / 14}
+            color={Colors.Alternative}
+            style={{
+              marginRight: width / 20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          />
+          <Text>{Language.BusinessName}</Text>
+
+          <NormalInput
+            autoCorrect={false}
+            spellCheck={false}
+            defaultValue={store.store.name}
+            maxLength={Constants.textInput.name}
+            underlineColorAndroid={Colors.mainWhite}
+            onChangeText={name => this.setState({ name })}
+            placeholder="نام در حداکثر ۲۰ کلمه"
+          />
+        </BoxContainer>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row-reverse"
+          }}
+        >
+          <HLine style={{ marginTop: -width / 80 }} />
+        </View>
+
+        <BoxContainer>
+          <Foundation
+            name="clipboard-pencil"
+            size={width / 14}
+            color={Colors.Alternative}
+            style={{
+              marginRight: width / 20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          />
+          <Text>{Language.BusinessDescription}</Text>
+          <NormalInput2
+            multiline={true}
+            spellCheck={false}
+            autoCorrect={false}
+            scrollEnabled={true}
+            defaultValue={store.store.description}
+            underlineColorAndroid={Colors.mainWhite}
+            maxLength={Constants.textInput.description}
+            placeholder="توضیحات در حداکثر ۱۵۰ کلمه"
+            onChangeText={description => this.setState({ description })}
+          />
+        </BoxContainer>
+        <View
+          style={{
+            flexDirection: "row-reverse",
+            justifyContent: "center",
+            alignItems: "center",
+            flex: 1
+          }}
+        >
+          <HLine />
+        </View>
+
+        <BoxContainer style={{ marginTop: width / 15 }}>
+          <Entypo
+            name="address"
+            size={width / 14}
+            color={Colors.Alternative}
+            style={{
+              marginRight: width / 20,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          />
 
           <TouchableOpacity
-            style={{
-              right: "27%",
-              marginTop: 25,
-              bottom: "-35%",
-              position: "absolute"
+            onPress={() => {
+              navigation.navigate("EditAddress");
             }}
-            onPress={this.handleStoreUpdateDetails}
           >
-            <Button>
-              <ButtonText>{Language.UpdateStore}</ButtonText>
-            </Button>
+            <Text>{Language.EditBusinessAddress}</Text>
+            <SubText>{Language.MapNotice}</SubText>
           </TouchableOpacity>
-        </Container>
-      </MainContainer>
+        </BoxContainer>
+
+        <TouchableOpacity
+          style={{
+            right: "23%",
+            marginTop: width / 50,
+            bottom: "-20%",
+            position: "absolute"
+          }}
+          onPress={this.handleStoreUpdateDetails}
+        >
+          <Button>
+            <ButtonText>{Language.UpdateStore}</ButtonText>
+          </Button>
+        </TouchableOpacity>
+      </ScrollView>
     );
   }
 }

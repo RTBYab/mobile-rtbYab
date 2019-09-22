@@ -12,7 +12,7 @@ export const getProfileById = (id, token) => async dispatch => {
     }
   };
   try {
-    const res = await axios.get(Const.URL.Main + `/user/${id}`, config);
+    const res = await axios.get(Const.URL.Main + `user/${id}`, config);
     dispatch({
       type: GET_PROFILE,
       payload: res.data

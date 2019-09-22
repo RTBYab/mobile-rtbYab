@@ -1,24 +1,36 @@
 import React from "react";
 import { connect } from "react-redux";
-import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet, Dimensions, Image } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const FlatListView = ({ item }) => {
   return (
     <TouchableOpacity activeOpacity={0.8} style={styles.mainStyle}>
-      <Image source={item.image} style={styles.imageStyle} />
+      <Image
+        // resizeMode="contain"
+        source={item.image}
+        style={styles.imageStyle}
+      />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   mainStyle: {
-    width: "33.34%"
+    // width: "33.34%",
+    // flexWrap: "wrap",
+    // alignItems: "center",
+    // justifyContent: "center"
+    flex: 1 / 3,
+    aspectRatio: 1
   },
   imageStyle: {
-    margin: 7,
-    height: 100,
-    width: 110,
-    borderRadius: 9
+    borderRadius: 9,
+    width: 120,
+    height: 100
+    // height: height > 600 ? height / 8.2 : height / 6.7
+    // maxHeight: 80
   }
 });
 

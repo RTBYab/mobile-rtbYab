@@ -1,15 +1,18 @@
 import styled from "styled-components";
+import { Dimensions } from "react-native";
 import Colors from "../../config/settings/color";
 import Constants from "../../config/settings/Constants";
 
+const { height, width } = Dimensions.get("window");
+
 export const DetailText = styled.Text`
   font-family: Main2;
-  font-size: 16px;
+  font-size: ${width / 25};
   text-align: center;
 `;
 
 export const AddressWrapper = styled.Text`
-  font-size: 16px;
+  font-size: ${width / 25};
   margin-left: 10px;
   font-family: Main;
   text-align: right;
@@ -18,8 +21,8 @@ export const AddressWrapper = styled.Text`
 `;
 
 export const ButtonWrapper = styled.View`
-  width: 90px;
-  height: 30px;
+  width: ${width / 3};
+  height: ${height / 20};
   align-items: center;
   justify-content: center;
   border: solid 2.4px ${Colors.buttonOrange};
@@ -36,7 +39,7 @@ export const TextWrapper = styled.View`
 
 export const TextWrapper1 = styled.View`
   flex: 4;
-  align-content: center;
+  /* align-content: center; */
   flex-direction: row-reverse;
   justify-content: space-around;
 `;
@@ -58,4 +61,10 @@ export const DetailsWraper = styled.View`
   align-items: center;
   flex-direction: row-reverse;
   background-color: ${Colors.AddressBackground};
+`;
+
+export const CommentText = styled.Text`
+  font-family: Main;
+  font-size: ${width / 20};
+  color: ${Colors.mainWhite};
 `;

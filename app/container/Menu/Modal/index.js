@@ -15,13 +15,11 @@ import Items from "../../../components/MenuItems/Items";
 import { closeMenu } from "../../../redux/Actions/modalMenu";
 import { TouchableOpacity, Animated, Dimensions } from "react-native";
 
-import { persistStore } from "redux-persist";
-
-const SCREEN_HEIGHT = Dimensions.get("window").height;
+const { height, width } = Dimensions.get("window");
 
 class Modal extends Component {
   state = {
-    top: new Animated.Value(SCREEN_HEIGHT)
+    top: new Animated.Value(height)
   };
 
   componentDidMount() {
@@ -39,7 +37,7 @@ class Modal extends Component {
       }).start();
     } else {
       Animated.spring(this.state.top, {
-        toValue: SCREEN_HEIGHT
+        toValue: height
       }).start();
     }
   };
@@ -82,10 +80,10 @@ class Modal extends Component {
         >
           <CloseView>
             <Ionicons
-              size={60}
               name="ios-close"
+              size={width / 6.5}
               color={Colors.blackColor}
-              style={{ marginTop: -7 }}
+              style={{ marginTop: -width / 70 }}
             />
           </CloseView>
         </TouchableOpacity>
@@ -98,8 +96,8 @@ class Modal extends Component {
               }}
             >
               <Items
-                size={38}
                 icon={item.icon}
+                size={width / 10}
                 title={item.title}
                 subtitle={item.subtitle}
                 color={Colors.Alternative}

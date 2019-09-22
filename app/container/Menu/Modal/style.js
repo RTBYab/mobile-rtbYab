@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Animated, Dimensions } from "react-native";
 import Colors from "../../../config/settings/color";
 
-const SCREEN_HEIGHT = Dimensions.get("window").height;
+const { height, width } = Dimensions.get("window");
 
 export const Container = styled.View`
   height: 100%;
@@ -28,7 +28,7 @@ export const Cover = styled.View`
 export const Content = styled.View`
   flex: 1;
   padding: 15px;
-  height: ${SCREEN_HEIGHT};
+  height: ${height};
   background: ${Colors.whiteSmoke};
 `;
 
@@ -43,9 +43,9 @@ export const CloseView = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 28px;
   font-family: Main2;
   text-align: center;
+  font-size: ${width / 12};
   color: ${Colors.mainWhite};
 `;
 
