@@ -7,9 +7,9 @@ import { getStoreProfilePhoto } from "../../../redux/Actions/storeAction";
 const CommentFlatListView = ({ item, auth, store, getStoreProfilePhoto }) => {
   const { token, user } = auth;
 
-  useEffect(() => {
-    getStoreProfilePhoto(user._id, token);
-  }, [getStoreProfilePhoto]);
+  // useEffect(() => {
+  //   getStoreProfilePhoto(user._id, token);
+  // }, [getStoreProfilePhoto]);
 
   return (
     <View style={styles.mainView}>

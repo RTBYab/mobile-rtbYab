@@ -54,7 +54,7 @@ export const getPosts = id => async dispatch => {
     }
   };
   try {
-    const res = await axios.get(Const.URL.Main + `post/${id}`);
+    const res = await axios.get(Const.URL.Main + `posts/${id}`);
     dispatch({
       type: GET_STORE_POST,
       payload: res.data
@@ -73,12 +73,11 @@ export const deletePost = (id, token, navigation) => async dispatch => {
     }
   };
   try {
-    const res = await axios.delete(Const.URL.Main + `posts/${id}`, config);
+    await axios.delete(Const.URL.Main + `posts/${id}`, config);
     dispatch({
       type: DELETE_POST,
-      payload: res.data
+      payload: id
     });
-    console.log(navigation, "pppppppo");
     navigation.goBack();
   } catch (e) {
     console.log(e);

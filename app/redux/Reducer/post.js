@@ -26,7 +26,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        posts: state.posts.filter(post => post !== payload)
+        posts: state.posts.filter(post => post._id !== payload)
       };
 
     default:
