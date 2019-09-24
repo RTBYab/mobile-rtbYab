@@ -75,6 +75,7 @@ class TabBar extends PureComponent {
       "MapScreen",
       "AddNewPost",
       "EditAddress",
+      "PostDetails",
       "LoginStack",
       "CustomPage",
       "NewsScreen",

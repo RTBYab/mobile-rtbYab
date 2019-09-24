@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
-import { ADD_POST, GET_STORE_POST } from "./types";
+import { ADD_POST, GET_STORE_POST, DELETE_POST } from "./types";
 import Const from "../.././config/settings/Constants";
 
 export const addNewPost = ({
@@ -18,8 +18,6 @@ export const addNewPost = ({
       "Content-Type": "multipart/form-data"
     }
   };
-  console.log("nnnn", navigation);
-
   const fileName = photo.split("/").pop();
   const newPath = FileSystem.documentDirectory + fileName;
 
@@ -56,11 +54,32 @@ export const getPosts = id => async dispatch => {
     }
   };
   try {
-    const res = await axios.get(Const.URL.Main + `posts/${id}`);
+    const res = await axios.get(Const.URL.Main + `post/${id}`);
     dispatch({
       type: GET_STORE_POST,
       payload: res.data
     });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deletePost = (id, token, navigation) => async dispatch => {
+  config = {
+    headers: {
+      accept: "application/json",
+      Authorization: `bearer ${token}`,
+      "Content-Type": "application/json"
+    }
+  };
+  try {
+    const res = await axios.delete(Const.URL.Main + `posts/${id}`, config);
+    dispatch({
+      type: DELETE_POST,
+      payload: res.data
+    });
+    console.log(navigation, "pppppppo");
+    navigation.goBack();
   } catch (e) {
     console.log(e);
   }

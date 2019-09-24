@@ -25,6 +25,7 @@ import WishListScreen from "../screens/WishListScreen";
 import { Dimensions, I18nManager } from "react-native";
 import Config from "../config/settings/general-config";
 import AddNewPostScreen from "../screens/AddNewPostScreen";
+import PostDetailsScreen from "../screens/PostDetailsScreen";
 import EditAddressScreen from "../screens/EditAddressScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import StoreCommentDetails from "../screens/StoreCommentDetails";
@@ -113,6 +114,9 @@ const AppNavigator = createBottomTabNavigator(
     },
     StoreCommentDetails: {
       screen: StoreCommentDetails
+    },
+    PostDetails: {
+      screen: PostDetailsScreen
     }
   },
   {

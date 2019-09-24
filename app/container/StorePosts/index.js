@@ -6,7 +6,7 @@ import { FlatList, TouchableOpacity, Image, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
 
-const GetStorePosts = ({ post, auth, getPosts }) => {
+const GetStorePosts = ({ post, auth, getPosts, navigation }) => {
   const id = auth.user._id;
 
   useEffect(() => {
@@ -18,7 +18,11 @@ const GetStorePosts = ({ post, auth, getPosts }) => {
       numColumns={3}
       data={post}
       renderItem={({ item }) => (
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("PostDetails", { item });
+          }}
+        >
           <Image
             source={{
               uri: Const.URL.Posts + `/${id}/${item.photo}`

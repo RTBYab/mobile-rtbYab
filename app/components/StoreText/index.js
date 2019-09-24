@@ -85,7 +85,7 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
         </TextWrapper>
       </MiniWraper>
       <MainWrapper style={{ width: "99%" }}>
-        <GetStorePosts />
+        <GetStorePosts navigation={navigation} />
       </MainWrapper>
       <DetailsWraper>
         <Entypo

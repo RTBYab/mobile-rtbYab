@@ -3,7 +3,6 @@ import { GET_PROFILE } from "./types";
 import Const from "../.././config/settings/Constants";
 
 export const getProfileById = (id, token) => async dispatch => {
-  // console.log("rrrrtttttt", token, id);
   const config = {
     headers: {
       Accept: "application/json",
