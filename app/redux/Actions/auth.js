@@ -44,7 +44,6 @@ export const register = newUser => async dispatch => {
   };
 
   const body = JSON.stringify(newUser);
-  // console.log(body);
 
   try {
     const res = await axios.post(Const.URL.Main + "/signup", body, config);

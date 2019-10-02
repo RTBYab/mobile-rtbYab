@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from "react-native";
+import Follow from "../../Follow";
 import Modal from "../../Menu/Modal";
 import { connect } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
@@ -97,6 +98,9 @@ const StoreMainScreenComponent = ({
                 />
               )}
             </View>
+            <View style={stylesInLine.follow}>
+              <Follow />
+            </View>
 
             <StoreText
               tel={store.tel}
@@ -144,6 +148,12 @@ const stylesInLine = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     backgroundColor: Colors.mainWhite
+  },
+  follow: {
+    width: "90%",
+    height: "3.2%",
+    marginBottom: "1.2%",
+    alignItems: "flex-start"
   }
 });
 

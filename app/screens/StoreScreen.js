@@ -9,6 +9,7 @@ import {
 import Comment from "../container/Comment";
 import { EvilIcons } from "@expo/vector-icons";
 import React from "react";
+import Follow from "../container/Follow";
 
 const { height, width } = Dimensions.get("window");
 
@@ -29,18 +30,7 @@ const StoreScreen = ({ navigation }) => {
       >
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-          {/* <Image
-            // source={store.image}
-            style={{
-              width: 100,
-              height: 100,
-              borderRadius: 50,
-              marginTop: 20,
-              marginBottom: 10
-            }}
-          /> */}
-        </View>
+        ></View>
         <Text
           style={{
             fontFamily: "Main2",
@@ -51,7 +41,7 @@ const StoreScreen = ({ navigation }) => {
         >
           {store.title}
         </Text>
-
+        <Follow />
         <View
           style={{
             flex: 0.5,
@@ -61,7 +51,7 @@ const StoreScreen = ({ navigation }) => {
           }}
         >
           <TouchableOpacity>
-            <Text
+            {/* <Text
               style={{
                 fontFamily: "Main2",
                 textAlign: "center"
@@ -76,7 +66,7 @@ const StoreScreen = ({ navigation }) => {
               >
                 {store.comments}
               </Text>
-            </Text>
+            </Text> */}
           </TouchableOpacity>
 
           <TouchableOpacity>

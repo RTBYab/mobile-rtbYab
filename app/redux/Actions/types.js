@@ -7,6 +7,10 @@ export const USER_LOADED = "USER_LOADED";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 
+// Follow/Unfollow
+export const ADD_FOLLOW = "ADD_FOLLOW";
+export const UNFOLLOW = "UNFOLLOW";
+
 // Login & Logout
 export const LOGOUT = "LOGOUT";
 export const LOGIN_FAIL = "LOGIN_FAIL";

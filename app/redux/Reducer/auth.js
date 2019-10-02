@@ -1,14 +1,14 @@
 import {
+  PURGE,
+  LOGOUT,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT,
   ACCOUNT_DELETED,
-  CLEAR_PROFILE,
-  PURGE
+  CLEAR_PROFILE
 } from "../Actions/types";
 // import * as SecureStore from "expo-secure-store";
 import { AsyncStorage } from "react-native";
