@@ -7,10 +7,10 @@ const GetComments = ({ store }) => {
   return (
     <View>
       <FlatList
-        // keyExtractor={}
         inverted={true}
         data={store.store.comments}
         showsVerticalScrollIndicator={false}
+        keyExtractor={(_, index) => index.toString()}
         renderItem={({ item }) => <CommentFlatListView item={item} />}
       />
     </View>

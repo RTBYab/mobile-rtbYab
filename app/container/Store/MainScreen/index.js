@@ -98,8 +98,15 @@ const StoreMainScreenComponent = ({
                 />
               )}
             </View>
-            <View style={stylesInLine.follow}>
-              <Follow />
+
+            <View style={stylesInLine.buttomsContainer}>
+              <View>
+                <Follow />
+              </View>
+
+              {/* <View>
+                <Follow />
+              </View> */}
             </View>
 
             <StoreText
@@ -108,7 +115,7 @@ const StoreMainScreenComponent = ({
               navigation={navigation}
               address={store.address}
               comments={store.comments}
-              followers={store.followers}
+              followers={user.following}
               description={store.description}
             />
           </View>
@@ -152,8 +159,15 @@ const stylesInLine = StyleSheet.create({
   follow: {
     width: "90%",
     height: "3.2%",
-    marginBottom: "1.2%",
+    marginBottom: "2.3%",
     alignItems: "flex-start"
+  },
+  buttomsContainer: {
+    width: "95%",
+    alignItems: "center",
+    marginBottom: height / 150,
+    flexDirection: "row",
+    justifyContent: "space-between"
   }
 });
 

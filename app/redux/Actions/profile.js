@@ -33,10 +33,10 @@ export const addFollow = ({ token, userId, followId }) => async dispatch => {
   const body = JSON.stringify({ userId, followId });
 
   try {
-    const res = await axios.post(Const.URL.Main + "user/follow", body, config);
+    await axios.post(Const.URL.Main + "user/follow", body, config);
     dispatch({
       type: ADD_FOLLOW,
-      payload: res.data
+      payload: userId
     });
   } catch (e) {
     console.log(e);
@@ -52,19 +52,15 @@ export const unFollow = ({ token, userId, unfollowId }) => async dispatch => {
       "Content-Type": "application/json"
     }
   };
-  console.log(config);
+
   const body = JSON.stringify({ userId, unfollowId });
   console.log(body);
 
   try {
-    const res = await axios.post(
-      Const.URL.Main + "user/unfollow",
-      body,
-      config
-    );
+    await axios.post(Const.URL.Main + "user/unfollow", body, config);
     dispatch({
       type: UNFOLLOW,
-      payload: res.data
+      payload: userId
     });
   } catch (e) {
     console.log(e);

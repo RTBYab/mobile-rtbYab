@@ -16,18 +16,20 @@ export default function(state = initialState, action) {
         loading: false,
         profile: payload
       };
-    case ADD_FOLLOW:
-      return {
-        ...state,
-        loading: false,
-        profile: payload
-      };
-    case UNFOLLOW:
-      return {
-        ...state,
-        loading: false,
-        profile: payload
-      };
+    // case ADD_FOLLOW:
+    //   console.log("popopo", state.following.filter(user => user._id));
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     profile: payload
+    //   };
+    // case UNFOLLOW:
+    //   console.log("popopo", state.following.filter(user => user._id));
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     profile: payload
+    //   };
     case LOGOUT:
       return {
         ...state,

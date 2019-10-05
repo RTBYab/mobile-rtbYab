@@ -1,14 +1,16 @@
 import {
   PURGE,
   LOGOUT,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_SUCCESS,
+  UNFOLLOW,
   LOGIN_FAIL,
+  AUTH_ERROR,
+  ADD_FOLLOW,
+  USER_LOADED,
+  REGISTER_FAIL,
+  CLEAR_PROFILE,
+  LOGIN_SUCCESS,
   ACCOUNT_DELETED,
-  CLEAR_PROFILE
+  REGISTER_SUCCESS
 } from "../Actions/types";
 // import * as SecureStore from "expo-secure-store";
 import { AsyncStorage } from "react-native";
@@ -54,6 +56,21 @@ export default function(state = initialState, action) {
         loading: false,
         isAuthenticated: null
       };
+    case ADD_FOLLOW:
+      //Concat
+      return {
+        ...state,
+        loading: false,
+        profile: state.user.following.push(payload)
+      };
+    case UNFOLLOW:
+      //Filter
+      return {
+        ...state,
+        loading: false,
+        profile: state.user.following.pop(payload)
+      };
+
     default:
       return state;
   }
