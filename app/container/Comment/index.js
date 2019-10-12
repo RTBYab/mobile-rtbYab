@@ -12,7 +12,7 @@ import { View, TouchableOpacity, Alert, ScrollView } from "react-native";
 const Comment = ({ auth, store, navigation, addNewComment }) => {
   const [rate, setRate] = useState(0);
   const [comment, setComment] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const onStarRatingPress = rating => {
     setRate(rating);
@@ -27,11 +27,11 @@ const Comment = ({ auth, store, navigation, addNewComment }) => {
     const { token } = auth;
     const storeId = store.store._id;
     const id = auth.user._id;
-    // setLoading(true);
 
     await addNewComment({ id, token, rate, comment, navigation, storeId });
-    // setLoading(false);
+
     setRate(0);
+    setComment("");
   };
 
   return (
@@ -57,6 +57,9 @@ const Comment = ({ auth, store, navigation, addNewComment }) => {
             reversed={true}
             starStyle={{ margin: 4 }}
             fullStarColor={Colors.Alternative}
+            ref={input => {
+              textInput = input;
+            }}
             selectedStar={rating => onStarRatingPress(rating)}
           />
         </View>

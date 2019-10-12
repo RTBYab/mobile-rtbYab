@@ -71,6 +71,7 @@ class TabBar extends PureComponent {
     const ignoreScreen = [
       "Detail",
       "Comment",
+      "EditPost",
       "Address",
       "MapScreen",
       "AddNewPost",

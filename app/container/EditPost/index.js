@@ -4,21 +4,27 @@ import {
   Title,
   HLine,
   Caption,
-  NoticeText,
   ButtonWrapper,
   SimpleContainer
 } from "./style";
 import { connect } from "react-redux";
 import Colors from "../../config/settings/color";
 import React, { useEffect, useState } from "react";
-import { addNewPost } from "../../redux/Actions/post";
 import ImagePicker from "../../components/ImagePicker";
 import Constants from "../../config/settings/Constants";
 import { EvilIcons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { View, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
+const AddNewPost = ({
+  auth,
+  navigation,
+  pageTitle,
+  mitle,
+  body,
+  image,
+  id
+}) => {
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState(null);
   const [caption, setCaption] = useState("");
@@ -27,8 +33,6 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
   const submitImage = async imagePath => {
     setPhoto(imagePath);
   };
-
-  console.log("pageTitle", pageTitle, mitle, body);
 
   const submitNewPost = async () => {
     if (photo === null) {
@@ -46,8 +50,8 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
 
   return (
     <KeyboardAwareScrollView
-      keyboardShouldPersistTaps="handled"
       scrollEnabled={true}
+      keyboardShouldPersistTaps="handled"
     >
       {loading === true ? (
         <ActivityIndicator
@@ -68,18 +72,10 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
             <Text>تصویر :</Text>
           </SimpleContainer>
           <ImagePicker submitImage={submitImage}>
-            {photo === null ? (
-              <View style={{ alignItems: "center", justifyContent: "center" }}>
-                <NoticeText style={{ marginTop: 10, marginBottom: -50 }}>
-                  برای انتخاب تصویر جدید بر روی عکس کلیک کنید
-                </NoticeText>
-                <Image
-                  source={require("../../../assets/image/store-farsi-transparent.png")}
-                />
-              </View>
-            ) : (
-              <Image source={{ uri: photo }} style={{ borderRadius: 9 }} />
-            )}
+            <Image
+              source={{ uri: Constants.URL.Posts + `${id}/${image}` }}
+              style={{ borderRadius: 9 }}
+            />
           </ImagePicker>
           <HLine style={{ marginTop: -48 }} />
           <View style={{ flex: 1, marginTop: 40 }}>
@@ -94,7 +90,7 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
             <Title
               spellCheck={false}
               autoCorrect={false}
-              // defaultValue={store.store.address}
+              defaultValue={mitle}
               maxLength={Constants.textInput.postTitle}
               underlineColorAndroid={Colors.mainWhite}
               onChangeText={title => setTitle(title)}
@@ -109,7 +105,7 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
               spellCheck={false}
               autoCorrect={false}
               multiline={true}
-              // defaultValue={store.store.address}
+              defaultValue={body}
               blurOnSubmit={true}
               clearButtonMode="always"
               underlineColorAndroid={Colors.mainWhite}

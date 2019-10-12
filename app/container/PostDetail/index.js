@@ -2,6 +2,7 @@ import {
   View,
   Text,
   Image,
+  Alert,
   Dimensions,
   StyleSheet,
   ScrollView,
@@ -9,11 +10,12 @@ import {
 } from "react-native";
 import React from "react";
 import { connect } from "react-redux";
-import { deletePost } from "../../redux/Actions/post";
+import Colors from "../../config/settings/color";
 import { MaterialIcons } from "@expo/vector-icons";
 import Const from "../../config/settings/Constants";
+import { deletePost } from "../../redux/Actions/post";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 const PostDetail = ({
   id,
@@ -22,24 +24,66 @@ const PostDetail = ({
   title,
   photo,
   postId,
+  postedBy,
   deletePost,
   navigation
 }) => {
   const { token } = auth;
+
+  const confirmAlert = () => {
+    Alert.alert("حذف پست", "ایا اطمینان دارید؟", [
+      {
+        text: "لغو",
+        onPress: () => console.log("NO Pressed"),
+        style: "cancel"
+      },
+      { text: "حذف", onPress: () => deletePost(postId, token, navigation) }
+    ]);
+  };
   helperRender = auth.user._id === id && (
-    <TouchableOpacity
-      onPress={() => {
-        deletePost(postId, token, navigation);
-      }}
-    >
-      <View>
-        <MaterialIcons name="delete" size={width / 14} color="red" />
-      </View>
-    </TouchableOpacity>
+    <View style={styles.buttons}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("EditPost", {
+            data: { body, title, photo, postId, id }
+          });
+        }}
+      >
+        <View>
+          <View
+            style={{
+              borderRadius: "50%",
+              padding: width / 100,
+              marginHorizontal: width / 25,
+              backgroundColor: Colors.Alternative
+            }}
+          >
+            <MaterialIcons name="edit" size={width / 18} color="white" />
+          </View>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          confirmAlert();
+        }}
+      >
+        <View>
+          <View
+            style={{
+              padding: width / 100,
+              backgroundColor: Colors.Alternative,
+              borderRadius: "50%"
+            }}
+          >
+            <MaterialIcons name="delete" size={width / 18} color="white" />
+          </View>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.mainScrollView}>
       <View style={styles.viewStyle}>
         <Image
           source={{
@@ -48,7 +92,8 @@ const PostDetail = ({
           style={{
             width: width / 1.3,
             height: width / 1.3,
-            borderRadius: width / 64
+            borderRadius: width / 64,
+            marginTop: "3%"
           }}
         />
         {helperRender}
@@ -67,6 +112,9 @@ const PostDetail = ({
 };
 
 const styles = StyleSheet.create({
+  mainScrollView: {
+    height: "98%"
+  },
   textStyle: {
     fontSize: 16,
     textAlign: "right",
@@ -97,6 +145,12 @@ const styles = StyleSheet.create({
     marginTop: 25,
     alignItems: "center",
     flexDirection: "row-reverse"
+  },
+  buttons: {
+    flexDirection: "row",
+    marginTop: height / 75,
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 

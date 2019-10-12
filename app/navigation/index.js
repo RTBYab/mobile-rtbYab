@@ -19,6 +19,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import ResultScreen from "../screens/ResultScreen";
 import CouponScreen from "../screens/CouponScreen";
 import AddressScreen from "../screens/AddressScreen";
+import EditPostScreen from "../screens/EditPostScreen";
 import CommentScreen from "../screens/CommentsScreen";
 import SettingScreen from "../screens/SettingsScreen";
 import WishListScreen from "../screens/WishListScreen";
@@ -117,6 +118,9 @@ const AppNavigator = createBottomTabNavigator(
     },
     PostDetails: {
       screen: PostDetailsScreen
+    },
+    EditPost: {
+      screen: EditPostScreen
     }
   },
   {

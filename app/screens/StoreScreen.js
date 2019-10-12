@@ -5,10 +5,10 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import Comment from "../container/Comment";
-import { EvilIcons } from "@expo/vector-icons";
 import React from "react";
 import Follow from "../container/Follow";
+import Comment from "../container/Comment";
+import { EvilIcons } from "@expo/vector-icons";
 
 const { height, width } = Dimensions.get("window");
 
