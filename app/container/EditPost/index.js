@@ -8,8 +8,8 @@ import {
   SimpleContainer
 } from "./style";
 import { connect } from "react-redux";
+import React, { useState } from "react";
 import Colors from "../../config/settings/color";
-import React, { useEffect, useState } from "react";
 import ImagePicker from "../../components/ImagePicker";
 import Constants from "../../config/settings/Constants";
 import { EvilIcons, Feather, MaterialIcons } from "@expo/vector-icons";

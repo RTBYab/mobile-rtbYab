@@ -1,79 +1,83 @@
+import {
+  Container,
+  TextHeader,
+  TextBody,
+  Image,
+  HLine,
+  Viewer,
+  HView,
+  ReverseHView
+} from "./style";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import React, { useEffect } from "react";
+import Colors from "../../../config/settings/color";
 import Const from "../../../config/settings/Constants";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { getStoreProfilePhoto } from "../../../redux/Actions/storeAction";
+import { FontAwesome, AntDesign } from "@expo/vector-icons";
+import { Dimensions, TouchableOpacity } from "react-native";
 
-const CommentFlatListView = ({ item, auth, store, getStoreProfilePhoto }) => {
+const { width } = Dimensions.get("window");
+
+const CommentFlatListView = ({ item, auth, store }) => {
+  const [hearted, setHearted] = useState(false);
   const { token, user } = auth;
 
-  // useEffect(() => {
-  //   getStoreProfilePhoto(user._id, token);
-  // }, [getStoreProfilePhoto]);
-
   return (
-    <View style={styles.mainView}>
-      <View style={styles.boxView}>
-        {store.photo ? (
-          <Image
-            style={{ width: 30, height: 30 }}
-            source={{
-              uri: Const.URL.Image + `${auth.user._id}/${store.photo}`
-            }}
-          />
+    <Container>
+      <Viewer>
+        <HView>
+          {store.store.photo ? (
+            <Image
+              source={{
+                uri: Const.URL.Image + `${auth.user._id}/${store.store.photo}`
+              }}
+            />
+          ) : (
+            <Image source={require("../../../../assets/image/mobl.jpeg")} />
+          )}
+          <TextHeader>: {item.commentOwner}</TextHeader>
+          <ReverseHView>
+            <TouchableOpacity
+              style={{ position: "absolute", left: width / 2.08 }}
+            >
+              {item.commentedBy === user._id ? (
+                <AntDesign name="delete" size={width / 25} />
+              ) : (
+                <FontAwesome name="exclamation-triangle" size={width / 25} />
+              )}
+            </TouchableOpacity>
+
+            {/* <TouchableOpacity
+              style={{ position: "absolute", left: width / 1.64 }}
+            >
+              {item.commentedBy != user._id && (
+              )}
+            </TouchableOpacity> */}
+
+            <TouchableOpacity
+              style={{ position: "absolute", left: width / 1.84 }}
+            >
+              <FontAwesome name="heart-o" size={width / 25} />
+            </TouchableOpacity>
+          </ReverseHView>
+        </HView>
+        {item.text.length > 40 ? (
+          <TouchableOpacity>
+            <TextBody numberOfLines={1.5} ellipsizeMode="tail">
+              {item.text}
+            </TextBody>
+          </TouchableOpacity>
         ) : (
-          <Image
-            style={{ width: 30, height: 30 }}
-            source={require("../../../../assets/image/mobl.jpeg")}
-          />
+          <TextBody>{item.text}</TextBody>
         )}
-
-        <Text
-          style={{
-            fontSize: 18,
-            marginLeft: 20,
-            textAlign: "right",
-            fontFamily: "Main2"
-          }}
-        >
-          {item.commentOwner}
-        </Text>
-
-        <Text style={{ textAlign: "right", fontFamily: "Main", fontSize: 14 }}>
-          {item.created}
-        </Text>
-      </View>
-      <Text style={{ textAlign: "right", fontFamily: "Main", fontSize: 18 }}>
-        {item.text}
-      </Text>
-    </View>
+      </Viewer>
+      <HLine />
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  boxView: {
-    margin: 10,
-    alignItems: "center",
-    flexDirection: "row-reverse"
-  },
-  mainView: {
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 4
-    // },
-    // shadowOpacity: 0.32,
-    // shadowRadius: 2.46,
-    // elevation: 3
-  }
-});
 
 const mapStateToProps = state => ({
   auth: state.auth,
   store: state.store
 });
 
-export default connect(
-  mapStateToProps,
-  { getStoreProfilePhoto }
-)(CommentFlatListView);
+export default connect(mapStateToProps)(CommentFlatListView);

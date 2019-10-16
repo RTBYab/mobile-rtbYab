@@ -33,14 +33,18 @@ export default function(state = initialState, action) {
         loading: false,
         store: payload
       };
-    case ADD_NEW_COMMENT:
     case GET_STORE_COMMENTS:
       return {
         ...state,
         loading: false,
         store: { ...state.store, comments: payload }
       };
-
+    case ADD_NEW_COMMENT:
+      return {
+        ...state,
+        loading: false,
+        store: { ...state.store, comments: payload }
+      };
     case LOGOUT:
       return {
         ...state,

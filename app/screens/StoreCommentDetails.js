@@ -2,11 +2,13 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import GetComments from "../container/GetComments";
 import Constants from "../config/settings/Constants";
-import { SafeAreaView, TouchableOpacity } from "react-native";
+import { SafeAreaView, TouchableOpacity, Dimensions } from "react-native";
+
+const { height } = Dimensions.get("window");
 
 const StoreCommentDetails = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
