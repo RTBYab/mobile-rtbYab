@@ -20,7 +20,7 @@ const StoreCommentDetails = ({ navigation }) => {
           size={Constants.icon.backIconSize}
         />
       </TouchableOpacity>
-      <GetComments />
+      <GetComments navigation={navigation} />
     </SafeAreaView>
   );
 };

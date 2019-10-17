@@ -30,6 +30,7 @@ import PostDetailsScreen from "../screens/PostDetailsScreen";
 import EditAddressScreen from "../screens/EditAddressScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import StoreCommentDetails from "../screens/StoreCommentDetails";
+import ContinuCommentScreen from "../screens/ContinuCommentScreen";
 import StoreRegistrationScreen from "../screens/StoreRegistrationScreen";
 
 const HomeStack = createStackNavigator(
@@ -121,6 +122,9 @@ const AppNavigator = createBottomTabNavigator(
     },
     EditPost: {
       screen: EditPostScreen
+    },
+    ContinueComment: {
+      screen: ContinuCommentScreen
     }
   },
   {

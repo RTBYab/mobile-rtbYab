@@ -69,6 +69,7 @@ class TabBar extends PureComponent {
     const { routes } = navigation.state;
 
     const ignoreScreen = [
+      "نظرات",
       "Detail",
       "Comment",
       "EditPost",
@@ -85,6 +86,7 @@ class TabBar extends PureComponent {
       "LoginScreen",
       "SignUpScreen",
       "CategoryDetail",
+      "ContinueComment",
       "SettingScreen",
       "WishListScreen",
       "StoreCommentDetails"

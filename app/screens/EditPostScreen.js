@@ -7,12 +7,12 @@ const { width } = Dimensions.get("window");
 
 const EditPostScreen = ({ navigation }) => {
   const { body, title, photo, postedBy, id } = navigation.getParam("data");
-  console.log(postedBy, photo, "bodyyyyy");
+
   return (
     <SafeAreaView>
       <TouchableOpacity
         onPress={() => {
-          navigation.goBack();
+          navigation.navigate("PostDetails");
         }}
       >
         <Ionicons

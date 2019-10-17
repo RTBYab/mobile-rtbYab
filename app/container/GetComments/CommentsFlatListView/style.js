@@ -25,6 +25,7 @@ export const HView = styled.View`
 export const ReverseHView = styled.View`
   flex-direction: row-reverse;
   align-items: center;
+
   /* left: ${width / 2.2}px; */
 `;
 
@@ -38,9 +39,9 @@ export const TextHeader = styled.Text`
 export const TextBody = styled.Text`
   text-align: right;
   font-family: Main;
-  margin: ${width / 80}px;
   font-size: ${width / 25}px;
-  margin-right: ${width / 20}px;
+  margin-left: ${width / 80}px;
+  margin-right: ${width / 7.4}px;
 `;
 
 export const Image = styled.Image`

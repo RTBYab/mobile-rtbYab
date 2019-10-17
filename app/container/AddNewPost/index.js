@@ -9,8 +9,8 @@ import {
   SimpleContainer
 } from "./style";
 import { connect } from "react-redux";
+import React, { useState } from "react";
 import Colors from "../../config/settings/color";
-import React, { useEffect, useState } from "react";
 import { addNewPost } from "../../redux/Actions/post";
 import ImagePicker from "../../components/ImagePicker";
 import Constants from "../../config/settings/Constants";
@@ -18,7 +18,7 @@ import { EvilIcons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { View, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
+const AddNewPost = ({ navigation, pageTitle, auth, addNewPost }) => {
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState(null);
   const [caption, setCaption] = useState("");
@@ -27,8 +27,6 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
   const submitImage = async imagePath => {
     setPhoto(imagePath);
   };
-
-  console.log("pageTitle", pageTitle, mitle, body);
 
   const submitNewPost = async () => {
     if (photo === null) {
@@ -94,7 +92,6 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
             <Title
               spellCheck={false}
               autoCorrect={false}
-              // defaultValue={store.store.address}
               maxLength={Constants.textInput.postTitle}
               underlineColorAndroid={Colors.mainWhite}
               onChangeText={title => setTitle(title)}
@@ -109,7 +106,6 @@ const AddNewPost = ({ navigation, pageTitle, mitle, body }) => {
               spellCheck={false}
               autoCorrect={false}
               multiline={true}
-              // defaultValue={store.store.address}
               blurOnSubmit={true}
               clearButtonMode="always"
               underlineColorAndroid={Colors.mainWhite}
@@ -141,4 +137,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(AddNewPost);
+export default connect(
+  mapStateToProps,
+  { addNewPost }
+)(AddNewPost);

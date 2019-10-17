@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { ScrollView, FlatList } from "react-native";
 import CommentFlatListView from "./CommentsFlatListView";
 
-const GetComments = ({ store }) => {
+const GetComments = ({ store, navigation }) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <FlatList
@@ -13,7 +13,9 @@ const GetComments = ({ store }) => {
         keyExtractor={(_, index) => index.toString()}
         // onEndReached={handleLoadMore}
         onEndReachedThreshold={6}
-        renderItem={({ item }) => <CommentFlatListView item={item} />}
+        renderItem={({ item }) => (
+          <CommentFlatListView item={item} navigation={navigation} />
+        )}
       />
     </ScrollView>
   );
