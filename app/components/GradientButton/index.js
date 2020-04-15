@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { LinearGradient } from "expo";
-import style from "./style";
+import "./style";
 
 const GradientButton = ({ props }) => {
   return (

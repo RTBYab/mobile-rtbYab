@@ -1,32 +1,44 @@
-import { ADD_POST, GET_STORE_POST, DELETE_POST } from "../Actions/types";
+import {
+  ADD_POST,
+  GET_STORE_POST,
+  DELETE_POST,
+  UPDATE_POST,
+} from "../Actions/types";
 
 const initialState = {
   post: null,
   posts: [],
   loading: true,
-  error: {}
+  error: {},
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_POST:
       return {
         ...state,
         loading: false,
-        posts: [payload, ...state.posts]
+        posts: [payload, ...state.posts],
       };
+    case UPDATE_POST:
+      return {
+        ...state,
+        loading: false,
+        posts: [payload, ...state.posts],
+      };
+
     case GET_STORE_POST:
       return {
         ...state,
         loading: false,
-        posts: payload
+        posts: payload,
       };
     case DELETE_POST:
       return {
         ...state,
         loading: false,
-        posts: state.posts.filter(post => post._id !== payload)
+        posts: state.posts.filter((post) => post._id !== payload),
       };
 
     default:

@@ -1,47 +1,51 @@
 import styled from "styled-components";
 import Color from "../../config/settings/color";
+import { Dimensions } from "react-native";
 import Constants from "../../config/settings/Constants";
 
+const { width, height } = Dimensions.get("window");
 export const MainContainer = styled.ScrollView`
   flex: 1;
-  margin: 5px;
-  background-color: rgba(0, 0, 0, 0.001);
+  margin: ${width / 25}px;
+  /* background-color: ${Color.mainWhiteColorWithOpacity}; */
 `;
 
 export const Container = styled.View`
   flex: 1;
-  align-items: center;
+
+  /* align-items: center;
+  justify-content: center; */
 `;
 
-export const DetailForm = styled.TextInput`
-  width: 350px;
-  height: 120px;
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: right;
-  padding-left: 8px;
-  font-family: Main;
-  padding-right: 5px;
-  border-width: 0.8px;
-  border-color: ${Color.mainAppColor};
-  border-radius: ${Constants.borderRadius.main};
-`;
+// export const DetailForm = styled.TextInput`
+//   width: 100%;
+//   height: ${height / 8}px;
+//   font-size: 16px;
+//   margin-top: 10px;
+//   text-align: right;
+//   padding-left: 8px;
+//   font-family: Main;
+//   padding-right: 5px;
+//   border-width: 0.8px;
+//   border-color: ${Color.mainAppColor};
+//   border-radius: ${Constants.borderRadius.main};
+// `;
 
-export const TitleBar = styled.TextInput`
-  width: 350px;
-  height: 40px;
-  margin-top: 6px;
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: right;
-  font-family: Main;
-  padding-left: 8px;
-  margin-bottom: 6px;
-  padding-right: 5px;
-  border-width: 0.8px;
-  border-color: ${Color.mainAppColor};
-  border-radius: ${Constants.borderRadius.main};
-`;
+// export const TitleBar = styled.TextInput`
+//   width: 350px;
+//   height: 40px;
+//   margin-top: 6px;
+//   font-size: 16px;
+//   margin-top: 10px;
+//   text-align: right;
+//   font-family: Main;
+//   padding-left: 8px;
+//   margin-bottom: 6px;
+//   padding-right: 5px;
+//   border-width: 0.8px;
+//   border-color: ${Color.mainAppColor};
+//   border-radius: ${Constants.borderRadius.main};
+// `;
 
 export const Icon = styled.Image`
   width: 50px;

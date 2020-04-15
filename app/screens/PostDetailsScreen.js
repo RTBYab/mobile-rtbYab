@@ -7,7 +7,6 @@ const { width } = Dimensions.get("window");
 
 const PostDetailsScreen = ({ navigation }) => {
   const section = navigation.getParam("item");
-  console.log("section", section);
   return (
     <SafeAreaView>
       <TouchableOpacity

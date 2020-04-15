@@ -2,7 +2,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Comment from "../container/Comment";
 import Constants from "../config/settings/Constants";
-import { SafeAreaView, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 
 const CommentsScreen = ({ navigation }) => {
   return (
@@ -23,7 +23,7 @@ const CommentsScreen = ({ navigation }) => {
   );
 };
 CommentsScreen.navigationOptions = {
-  tabBarVisible: false
+  tabBarVisible: false,
 };
 
 export default CommentsScreen;

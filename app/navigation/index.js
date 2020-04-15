@@ -2,7 +2,7 @@ import {
   createAppContainer,
   createSwitchNavigator,
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
   // NavigationActions
 } from "react-navigation";
 import React from "react";
@@ -26,7 +26,9 @@ import WishListScreen from "../screens/WishListScreen";
 import { Dimensions, I18nManager } from "react-native";
 import Config from "../config/settings/general-config";
 import AddNewPostScreen from "../screens/AddNewPostScreen";
+import VerificationScreen from "../screens/VerificationScreen";
 import PostDetailsScreen from "../screens/PostDetailsScreen";
+import EditCommentScreen from "../screens/EditCommentScreen";
 import EditAddressScreen from "../screens/EditAddressScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import StoreCommentDetails from "../screens/StoreCommentDetails";
@@ -38,33 +40,28 @@ const HomeStack = createStackNavigator(
     Home: { screen: HomeScreen },
     Search: { screen: SearchScreen },
     Result: { screen: ResultScreen },
-    Store: { screen: StoreScreen }
+    Store: { screen: StoreScreen },
   },
   {
     navigationOptions: {
       gestureResponseDistance: { horizontal: width / 2 },
       gesturesEnabled: true,
-      gestureDirection: I18nManager.isRTL ? "inverted" : "default"
-    }
+      gestureDirection: I18nManager.isRTL ? "inverted" : "default",
+    },
   }
 );
 
-const AuthStack = createStackNavigator(
-  {
-    Login: { screen: LoginScreen },
-    Registration: { screen: RegistrationScreen }
-  },
-  {
-    mode: "card",
-    header: null
-  }
-);
+const AuthStack = createStackNavigator({
+  Login: { screen: LoginScreen },
+  Verification: { screen: VerificationScreen },
+  Registration: { screen: RegistrationScreen },
+});
 
 const StoreStack = createStackNavigator({
   Wish: { screen: WishListScreen },
   Copon: { screen: CouponScreen },
   StoreRegistration: { screen: StoreRegistrationScreen },
-  Setting: { screen: SettingScreen }
+  Setting: { screen: SettingScreen },
 });
 
 const AppNavigator = createBottomTabNavigator(
@@ -81,8 +78,8 @@ const AppNavigator = createBottomTabNavigator(
             name="جابزه ها"
             textLabel="asd"
           />
-        )
-      }
+        ),
+      },
     },
     جایزهـها: {
       screen: StoreStack,
@@ -96,36 +93,39 @@ const AppNavigator = createBottomTabNavigator(
             name="[sdsdsds]"
             textLabel="asd"
           />
-        )
-      }
+        ),
+      },
+    },
+    EditComment: {
+      screen: EditCommentScreen,
     },
     Comment: {
-      screen: CommentScreen
+      screen: CommentScreen,
     },
     AddNewPost: {
-      screen: AddNewPostScreen
+      screen: AddNewPostScreen,
     },
     Address: {
-      screen: AddressScreen
+      screen: AddressScreen,
     },
     EditAddress: {
-      screen: EditAddressScreen
+      screen: EditAddressScreen,
     },
     MapScreen: {
-      screen: MapScreen
+      screen: MapScreen,
     },
     StoreCommentDetails: {
-      screen: StoreCommentDetails
+      screen: StoreCommentDetails,
     },
     PostDetails: {
-      screen: PostDetailsScreen
+      screen: PostDetailsScreen,
     },
     EditPost: {
-      screen: EditPostScreen
+      screen: EditPostScreen,
     },
     ContinueComment: {
-      screen: ContinuCommentScreen
-    }
+      screen: ContinuCommentScreen,
+    },
   },
   {
     initialRouteName: "جایزهـها",
@@ -137,12 +137,12 @@ const AppNavigator = createBottomTabNavigator(
       showIcon: true,
       showLabel: true,
       activeTintColor: color.tabbarTint,
-      inactiveTintColor: color.tabbarColor
+      inactiveTintColor: color.tabbarColor,
     },
     lazy: true,
     navigationOptions: {
-      gestureDirection: I18nManager.isRTL ? "inverted" : "default"
-    }
+      gestureDirection: I18nManager.isRTL ? "inverted" : "default",
+    },
   }
 );
 
@@ -152,10 +152,10 @@ export default createAppContainer(
         {
           AuthLoading: LoginScreen,
           App: AppNavigator,
-          Auth: AuthStack
+          Auth: AuthStack,
         },
         {
-          initialRouteName: "AuthLoading"
+          initialRouteName: "AuthLoading",
         }
       )
     : AppNavigator

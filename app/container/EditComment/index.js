@@ -12,12 +12,13 @@ import Colors from "../../config/settings/color";
 import StarRating from "react-native-star-rating";
 import Language from "../../config/settings/Language";
 import Constants from "../../config/settings/Constants";
-import { addNewComment } from "../../redux/Actions/storeAction";
+import { editComment } from "../../redux/Actions/storeAction";
 import { CommentText, HLine, Text, Button, ButtonText } from "./style";
 
-const Comment = ({ auth, store, navigation, addNewComment }) => {
-  const [rate, setRate] = useState(0);
-  const [comment, setComment] = useState("");
+const EditComment = ({ auth, store, navigation, editComment }) => {
+  const section = navigation.getParam("section");
+  const [comment, setComment] = useState(section.text);
+  const [rate, setRate] = useState(section.rate);
   const { width } = Dimensions.get("window");
 
   const onStarRatingPress = (rating) => {
@@ -31,10 +32,11 @@ const Comment = ({ auth, store, navigation, addNewComment }) => {
       ]);
     }
     const { token } = auth;
+    const commentId = section._id;
+    console.log("raaate", rate);
     const storeId = store.store._id;
-    const id = auth.user._id;
 
-    await addNewComment({ id, token, rate, comment, navigation, storeId });
+    await editComment({ commentId, rate, token, comment, storeId, navigation });
 
     setRate(0);
     setComment("");
@@ -74,6 +76,7 @@ const Comment = ({ auth, store, navigation, addNewComment }) => {
           spellCheck={false}
           autoCorrect={false}
           blurOnSubmit={true}
+          defaultValue={section.text}
           clearButtonMode="always"
           maxLength={Constants.textInput.comment}
           underlineColorAndroid={Colors.mainWhite}
@@ -84,7 +87,7 @@ const Comment = ({ auth, store, navigation, addNewComment }) => {
         <View style={{ alignItems: "center", marginTop: 15, marginBottom: 35 }}>
           <TouchableOpacity onPress={submitNewCommnet}>
             <Button>
-              <ButtonText>{Language.LeaveComment}</ButtonText>
+              <ButtonText>{Language.EditComment}</ButtonText>
             </Button>
           </TouchableOpacity>
         </View>
@@ -98,4 +101,4 @@ const mapStateToProps = (state) => ({
   store: state.store,
 });
 
-export default connect(mapStateToProps, { addNewComment })(Comment);
+export default connect(mapStateToProps, { editComment })(EditComment);

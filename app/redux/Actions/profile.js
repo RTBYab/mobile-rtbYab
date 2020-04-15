@@ -2,19 +2,19 @@ import axios from "axios";
 import Const from "../.././config/settings/Constants";
 import { GET_PROFILE, ADD_FOLLOW, UNFOLLOW } from "./types";
 
-export const getProfileById = (id, token) => async dispatch => {
+export const getProfileById = (id, token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: `bearer ${token}`,
       Accept: "application/json",
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
   try {
     const res = await axios.get(Const.URL.Main + `user/${id}`, config);
     dispatch({
       type: GET_PROFILE,
-      payload: res.data
+      payload: res.data,
     });
   } catch (e) {
     console.log(e);
@@ -22,13 +22,13 @@ export const getProfileById = (id, token) => async dispatch => {
 };
 
 // Following
-export const addFollow = ({ token, userId, followId }) => async dispatch => {
+export const addFollow = ({ token, userId, followId }) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
       Authorization: `bearer ${token}`,
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
   const body = JSON.stringify({ userId, followId });
 
@@ -36,7 +36,7 @@ export const addFollow = ({ token, userId, followId }) => async dispatch => {
     await axios.post(Const.URL.Main + "user/follow", body, config);
     dispatch({
       type: ADD_FOLLOW,
-      payload: userId
+      payload: userId,
     });
   } catch (e) {
     console.log(e);
@@ -44,13 +44,13 @@ export const addFollow = ({ token, userId, followId }) => async dispatch => {
 };
 
 // UnFollow
-export const unFollow = ({ token, userId, unfollowId }) => async dispatch => {
+export const unFollow = ({ token, userId, unfollowId }) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
       Authorization: `bearer ${token}`,
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   const body = JSON.stringify({ userId, unfollowId });
@@ -60,7 +60,7 @@ export const unFollow = ({ token, userId, unfollowId }) => async dispatch => {
     await axios.post(Const.URL.Main + "user/unfollow", body, config);
     dispatch({
       type: UNFOLLOW,
-      payload: userId
+      payload: userId,
     });
   } catch (e) {
     console.log(e);

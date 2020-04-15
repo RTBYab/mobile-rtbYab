@@ -89,6 +89,7 @@ class TabBar extends PureComponent {
       "ContinueComment",
       "SettingScreen",
       "WishListScreen",
+      "EditComment",
       "StoreCommentDetails"
     ];
 

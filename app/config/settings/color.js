@@ -14,7 +14,7 @@ export default {
   warningText: "#666804",
   buttonOrange: "#ed8a19",
   mainBackground: "#fff",
-  mainAppColor: "#984AD7",
+  mainAppColor: "#333",
   whiteSmoke: "	#F5F5F5",
   StoreIconColor: "#ffff",
   tabIconSelected: tintColor,
@@ -22,6 +22,6 @@ export default {
   warningBackground: "#EAEB5E",
   AddressBackground: "#747474",
   mainWhite: "rgba(256,256,256,1)",
-  Alternative: " rgb(125, 87, 252)",
-  mainWhiteColorWithOpacity: "rgba(256,256,256,0.8)"
+  Alternative: "#333",
+  mainWhiteColorWithOpacity: "rgba(256,256,256,0.8)",
 };

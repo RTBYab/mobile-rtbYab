@@ -7,7 +7,7 @@ import {
   TextWrapper1,
   DetailsWraper,
   ButtonWrapper,
-  AddressWrapper
+  AddressWrapper,
 } from "./style";
 import React from "react";
 import { connect } from "react-redux";
@@ -24,34 +24,34 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
       style={{
         justifyContent: "center",
         flex: 4,
-        backgroundColor: Colors.mainWhiteColorWithOpacity
+        backgroundColor: Colors.mainWhiteColorWithOpacity,
       }}
     >
       <MiniWraper
         style={{
           justifyContent: "center",
-          backgroundColor: "rgba(0,0,0,0.03)"
+          backgroundColor: "rgba(0,0,0,0.03)",
         }}
       >
         <TextWrapper1
           style={{
             height: 50,
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
-          {comments.length === 0 ? (
+          {comments && comments.length === 0 ? (
             <DetailText>۰</DetailText>
           ) : (
             <TouchableOpacity>
-              <DetailText>{comments.length}</DetailText>
+              <DetailText>{comments && comments.length}</DetailText>
             </TouchableOpacity>
           )}
 
-          {followers.length === 0 ? (
+          {followers && followers.length === 0 ? (
             <DetailText>۰</DetailText>
           ) : (
             <TouchableOpacity>
-              <DetailText>{followers.length}</DetailText>
+              <DetailText>{followers && followers.length}</DetailText>
             </TouchableOpacity>
           )}
 
@@ -66,7 +66,7 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
         <TextWrapper
           style={{
             alignContent: "center",
-            backgroundColor: "rgba(0,0,0,0.03)"
+            backgroundColor: "rgba(0,0,0,0.03)",
           }}
         >
           <TouchableOpacity
@@ -137,9 +137,9 @@ const StoreText = ({ tel, rate, address, comments, followers, navigation }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  post: state.post
+  post: state.post,
 });
 
 export default connect(mapStateToProps)(StoreText);

@@ -29,22 +29,28 @@ export const ADD_POST = "ADD_POST";
 export const GET_POSTS = "GET_POSTS";
 export const POST_ERROR = "POST_ERROR";
 export const ADD_COMMENT = "ADD_COMMENT";
+export const UPDATE_POST = "UPDATE_POST";
+export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_POST = "DELETE_POST";
-export const UPDATE_LIKES = "UPDATE_LIKES";
-export const DELETE_COMMENT = "DELETE_COMMENT";
+// export const UPDATE_LIKES = "UPDATE_LIKES";
 
 // Store
 export const GET_STORE = "GET_STORE";
+export const LIKE_COMMENT = "LIKE_COMMENT";
 export const CREATE_STORE = "CREATE_STORE";
+// export const UPDATE_LIKES = "UPDATE_LIKES";
 export const DELETE_STORE = "DELETE_STORE";
 export const UPDATE_STORE = "UPDATE_STORE";
+export const GET_STORE_POST = "GET_STORE_POST";
+export const REMOVE_COMMENT = "REMOVE_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
+export const UNLIKE_COMMENT = " UNLIKE_COMMENT";
 export const ADD_NEW_COMMENT = "ADD_NEW_COMMENT";
 export const GET_STORE_COMMENTS = "GET_STORE_COMMENTS";
 export const UPLOAD_STORE_IMAGE = "UPLOAD_STORE_IMAGE";
 export const UPDATE_STORE_DETAILS = "UPDATE_STORE_DETAILS";
 export const GET_STORE_BY_OWNER_ID = "GET_STORE_BY_OWNER_ID ";
 export const GET_STORE_PROFILE_PHOTO = "GET_STORE_PROFILE_PHOTO";
-export const GET_STORE_POST = "GET_STORE_POST";
 
 // ModalMenue
 export const OPEN_MENU = "OPEN_MENU";

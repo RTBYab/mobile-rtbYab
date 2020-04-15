@@ -1,110 +1,109 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  AsyncStorage
-} from "react-native";
-import decode from "jwt-decode";
+import { View, Alert, Text, StyleSheet, TouchableOpacity } from "react-native";
+// import decode from "jwt-decode";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import React, { PureComponent } from "react";
-import { login, logout, loadUser } from "../redux/Actions/auth";
+import Card from "../components/Card";
+import AButton from "../components/Button";
+import { AsyncStorage } from "react-native";
+import React, { useState, useEffect } from "react";
+import AInputField from "../components/InputField";
+import { login, logout, loadUser, loginByPhone } from "../redux/Actions/auth";
 
-class LoginScreen extends PureComponent {
-  state = {
-    email: "",
-    password: ""
-  };
-
-  handleLogin = async () => {
-    const { email, password } = this.state;
-    const { login, navigation } = this.props;
-    const userData = {
-      email,
-      password
-    };
-    try {
-      await login(userData, navigation);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  getDataBack = async () => {
-    const { logout, navigation, loadUser, auth } = this.props;
+const LoginScreen = ({
+  auth,
+  navigation,
+  isAuthenticated,
+  loginByPhone,
+  loadUser,
+}) => {
+  const getDataBack = async () => {
     try {
       const token = await AsyncStorage.getItem("token");
-      const decodedData = await decode(token);
-
-      const currentTime = Date.now() / 1000;
-      if (decodedData.exp < currentTime) {
-        logout();
-        navigation.navigate("Login");
-      } else {
-        loadUser(decodedData._id, token);
-        navigation.navigate("Home");
-      }
+      loadUser(decodedData._id, token);
+      navigation.navigate("Home");
     } catch (e) {
       console.log(e);
     }
   };
 
-  componentDidMount() {
-    this.getDataBack();
+  useEffect(() => {
+    getDataBack();
+  }, []);
+
+  const [mobile, setMobile] = useState("");
+  const [mobileIcon, setMobileIcon] = useState(
+    require("../../assets/image/smartphone.png")
+  );
+
+  const onFocusMobile = () => {
+    setMobileIcon(require("../../assets/gif/mobile.gif"));
+  };
+
+  const handleLogin = () => {
+    if (mobile == "") {
+      Alert.alert("لطفا شماره همراه را بادقت وارد کنید");
+    }
+    loginByPhone(mobile, navigation);
+  };
+
+  if (isAuthenticated) {
+    return navigation.navigate("Home");
   }
 
-  render() {
-    const { navigation, auth } = this.props;
-    return (
-      <View style={styles.mainStyle}>
-        <TextInput
-          onChangeText={email => this.setState({ email })}
-          autoCorrect={false}
-          autoCapitalize="none"
-          placeholder=" ایمیل "
-        />
-        <TextInput
-          onChangeText={password => this.setState({ password })}
-          placeholder=" رمز عبور "
-        />
-        <TouchableOpacity
-          onPress={this.handleLogin}
-          style={{ margin: 10, backgroundColor: "red", width: 120 }}
-        >
-          <Text style={{ textAlign: "center" }}>ورود</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ margin: 20 }}
-          onPress={() => {
-            navigation.navigate("Registration");
-          }}
-        >
-          <Text>Registration</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
+  return (
+    <View style={styles.mainStyle}>
+      <Card title="اپ نیکو" subTitle="بهترین کالا و خدمات در اطراف شما" />
+      <AInputField
+        // name="mobile"
+        maxLength={10}
+        isRequired={true}
+        source={mobileIcon}
+        onFocus={onFocusMobile}
+        placeholder="9*********"
+        onChangeText={(t) => setMobile(t)}
+        subTitle="لطفا شماره همراه را بدون صفر وارد کنید"
+      />
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(
-  mapStateToProps,
-  { login, logout, loadUser }
-)(LoginScreen);
-
-LoginScreen.navigationOptions = {
-  header: null
+      <AButton buttonTitle=" ورود" onPress={handleLogin} />
+      <TouchableOpacity
+        style={{ margin: 20 }}
+        onPress={() => {
+          navigation.navigate("Registration");
+        }}
+      >
+        <Text style={styles.textStyle}>هنوز ثبت نام نکرده اید؟</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
+
+LoginScreen.prototype = {
+  loginByPhone: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  isAuthenticated: state.auth.isAuthenticated,
+});
+LoginScreen.navigationOptions = {
+  header: null,
+};
+
+export default connect(mapStateToProps, {
+  loginByPhone,
+  login,
+  logout,
+  loadUser,
+})(LoginScreen);
 
 const styles = StyleSheet.create({
   mainStyle: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
+  textStyle: {
+    color: "#fff",
+    fontFamily: "Main",
+  },
 });

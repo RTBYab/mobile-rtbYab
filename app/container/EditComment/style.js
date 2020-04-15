@@ -22,7 +22,7 @@ export const HLine = styled.View`
   width: 75%;
   align-self: center;
   margin-bottom: 8px;
-  border-bottom-width: 0.3px;
+  border-bottom-width: 0.5px;
   border-bottom-color: #8888;
 `;
 

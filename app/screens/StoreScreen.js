@@ -3,7 +3,7 @@ import {
   View,
   Dimensions,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import Follow from "../container/Follow";
@@ -18,13 +18,13 @@ const StoreScreen = ({ navigation }) => {
   return (
     <ScrollView
       style={{
-        flex: 1
+        flex: 1,
       }}
     >
       <View
         style={{
           flex: 1,
-          height: 220
+          height: 220,
         }}
       >
         <View
@@ -35,7 +35,7 @@ const StoreScreen = ({ navigation }) => {
             fontFamily: "Main2",
             fontSize: 22,
             margin: 5,
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           {store.title}
@@ -46,7 +46,7 @@ const StoreScreen = ({ navigation }) => {
             flex: 0.5,
             flexDirection: "row",
             justifyContent: "space-around",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <TouchableOpacity>
@@ -74,10 +74,10 @@ const StoreScreen = ({ navigation }) => {
               <Text
                 style={{
                   fontFamily: "Main",
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
-                {store.followers}
+                {store.followers && store.followers}
               </Text>
             </Text>
           </TouchableOpacity>
@@ -87,10 +87,10 @@ const StoreScreen = ({ navigation }) => {
             <Text
               style={{
                 fontFamily: "Main",
-                textAlign: "center"
+                textAlign: "center",
               }}
             >
-              {store.rate}
+              {store.rate && store.rate}
             </Text>
           </Text>
         </View>
@@ -105,11 +105,11 @@ const StoreScreen = ({ navigation }) => {
             fontFamily: "Main",
             color: "#ffff",
             fontSize: 16,
-            margin: 5
+            margin: 5,
           }}
         >
           {" "}
-          درباره ما: {store.description}
+          درباره ما: {store.description && store.description}
         </Text>
         <TouchableOpacity
           onPress={() => {
@@ -124,7 +124,7 @@ const StoreScreen = ({ navigation }) => {
                 justifyContent: "flex-start",
                 margin: 3,
                 color: "#ffff",
-                marginRight: 5
+                marginRight: 5,
               }}
             />
             <Text
@@ -134,7 +134,7 @@ const StoreScreen = ({ navigation }) => {
                 color: "#ffff",
                 marginLeft: 50,
                 fontFamily: "Main",
-                alignSelf: "flex-end"
+                alignSelf: "flex-end",
               }}
             ></Text>
           </View>
@@ -146,7 +146,7 @@ const StoreScreen = ({ navigation }) => {
 };
 
 StoreScreen.navigationOptions = {
-  header: null
+  header: null,
 };
 
 export default StoreScreen;

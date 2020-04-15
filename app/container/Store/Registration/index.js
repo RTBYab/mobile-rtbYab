@@ -4,7 +4,7 @@ import {
   Image,
   MainContainer,
   ButtonText,
-  Button
+  Button,
 } from "./style";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
@@ -15,19 +15,21 @@ import { TouchableOpacity, View, ActivityIndicator } from "react-native";
 
 const Store = ({
   auth,
+  store,
   profile: { profile, loading },
   getProfileById,
-  navigation
+  navigation,
 }) => {
   const { token, user } = auth;
   const { navigate } = navigation;
 
   useEffect(() => {
     getProfileById(user._id, token);
+    console.log(store);
   }, [getProfileById]);
 
   const userDetector =
-    user.role !== "storeOwner" ? (
+    profile && profile.role !== "storeOwner" ? (
       <MainContainer>
         <Image
           source={require("../../../../assets/image/store-compressed-final-farsi.png")}
@@ -47,12 +49,10 @@ const Store = ({
   return <Container>{userDetector}</Container>;
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile
+  store: state.store,
+  profile: state.profile,
 });
 
-export default connect(
-  mapStateToProps,
-  { getProfileById }
-)(Store);
+export default connect(mapStateToProps, { getProfileById })(Store);

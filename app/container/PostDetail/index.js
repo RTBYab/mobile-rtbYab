@@ -6,7 +6,7 @@ import {
   Dimensions,
   StyleSheet,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { connect } from "react-redux";
@@ -26,7 +26,7 @@ const PostDetail = ({
   postId,
   postedBy,
   deletePost,
-  navigation
+  navigation,
 }) => {
   const { token } = auth;
 
@@ -35,9 +35,9 @@ const PostDetail = ({
       {
         text: "لغو",
         onPress: () => console.log("NO Pressed"),
-        style: "cancel"
+        style: "cancel",
       },
-      { text: "حذف", onPress: () => deletePost(postId, token, navigation) }
+      { text: "حذف", onPress: () => deletePost(postId, token, navigation) },
     ]);
   };
   helperRender = auth.user._id === id && (
@@ -45,7 +45,7 @@ const PostDetail = ({
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("EditPost", {
-            data: { body, title, photo, postId, id }
+            data: { body, title, photo, postId, id, postId },
           });
         }}
       >
@@ -55,7 +55,7 @@ const PostDetail = ({
               borderRadius: "50%",
               padding: width / 100,
               marginHorizontal: width / 25,
-              backgroundColor: Colors.Alternative
+              backgroundColor: Colors.Alternative,
             }}
           >
             <MaterialIcons name="edit" size={width / 18} color="white" />
@@ -72,7 +72,7 @@ const PostDetail = ({
             style={{
               padding: width / 100,
               backgroundColor: Colors.Alternative,
-              borderRadius: "50%"
+              borderRadius: "50%",
             }}
           >
             <MaterialIcons name="delete" size={width / 18} color="white" />
@@ -87,13 +87,13 @@ const PostDetail = ({
       <View style={styles.viewStyle}>
         <Image
           source={{
-            uri: Const.URL.Posts + `/${id}/${photo}`
+            uri: Const.URL.Posts + `/${id}/${photo}`,
           }}
           style={{
             width: width / 1.3,
             height: width / 1.3,
             borderRadius: width / 64,
-            marginTop: "3%"
+            marginTop: "3%",
           }}
         />
         {helperRender}
@@ -113,12 +113,12 @@ const PostDetail = ({
 
 const styles = StyleSheet.create({
   mainScrollView: {
-    height: "98%"
+    height: "98%",
   },
   textStyle: {
     fontSize: 16,
     textAlign: "right",
-    fontFamily: "Main"
+    fontFamily: "Main",
   },
   viewStyle: {
     justifyContent: "center",
@@ -127,38 +127,35 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.35,
     shadowRadius: 3.94,
 
-    elevation: 5.6
+    elevation: 5.6,
   },
   textTitle: {
     fontSize: 18,
     textAlign: "right",
-    fontFamily: "Main2"
+    fontFamily: "Main2",
   },
   rowView: {
     margin: 15,
     width: "85%",
     marginTop: 25,
     alignItems: "center",
-    flexDirection: "row-reverse"
+    flexDirection: "row-reverse",
   },
   buttons: {
     flexDirection: "row",
     marginTop: height / 75,
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { deletePost }
-)(PostDetail);
+export default connect(mapStateToProps, { deletePost })(PostDetail);

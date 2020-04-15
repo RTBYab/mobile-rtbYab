@@ -300,7 +300,8 @@ export default {
 
   // review
   vendorTitle: "Vendor",
-  LeaveComment: "ثبت نظر",
+  LeaveComment: "ثبت ",
+  EditComment: "ویرایش ",
   yourcomment: "Your comment",
   placeComment:
     "Tell something about your experience or leave a tip for others",

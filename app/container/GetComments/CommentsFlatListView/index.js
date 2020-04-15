@@ -6,29 +6,40 @@ import {
   HLine,
   Viewer,
   HView,
-  ReverseHView
+  ReverseHView,
 } from "./style";
-import {
-  Dimensions,
-  TouchableOpacity,
-  Alert,
-  Text,
-  View,
-  Button
-} from "react-native";
 import { connect } from "react-redux";
 import Modal from "react-native-modal";
 import React, { useState } from "react";
-import Const from "../../../config/settings/Constants";
 import Colors from "../../../config/settings/color";
+import Const from "../../../config/settings/Constants";
+import { Dimensions, TouchableOpacity, Alert, View } from "react-native";
 import { FontAwesome, Feather, MaterialIcons } from "@expo/vector-icons";
+import {
+  likeComment,
+  unLikeComment,
+  deleteComment,
+  getStoreByStoreOwner,
+} from "../../../redux/Actions/storeAction";
 
 const { width } = Dimensions.get("window");
 
-const CommentFlatListView = ({ item, auth, store, navigation }) => {
+const CommentFlatListView = ({
+  item,
+  auth,
+  store,
+  navigation,
+  likeComment,
+  unLikeComment,
+  deleteComment,
+  getStoreByStoreOwner,
+}) => {
+  const { token, user } = auth;
+  const storeId = store.store._id;
   const [hearted, setHearted] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const { token, user } = auth;
+
+  const userId = user._id;
 
   const report = () => {
     Alert.alert(
@@ -38,12 +49,12 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
         {
           text: "لغو ارسال",
           onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: "ارسال گزارش",
-          onPress: () => console.log("OK Pressed")
-        }
+          onPress: () => console.log("OK Pressed"),
+        },
       ],
       { cancelable: false }
     );
@@ -59,25 +70,35 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
           onPress: () => {
             console.log("canceled pressed!");
           },
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: "حذف نظر",
           onPress: () => {
-            toggleModal(), console.log("comment deleted!");
-          }
-        }
+            const commentId = item._id;
+            toggleModal(), deleteComment({ commentId, storeId, token });
+          },
+        },
       ],
       { cancelable: false }
     );
   };
 
-  const toggleModal = () => {
-    setIsModalVisible(!isModalVisible);
+  const toggleModal = async () => {
+    await setIsModalVisible(!isModalVisible);
+  };
+
+  const likeButtom = async (commentId) => {
+    setHearted(!hearted);
+    await likeComment({ commentId, token, storeId });
+  };
+  const unLikeButtom = async (commentId) => {
+    setHearted(!hearted);
+    await unLikeComment({ commentId, token, storeId, userId });
   };
 
   return (
-    <Container>
+    <View style={{ flex: 1, margin: width / 36 }}>
       <View style={{ flex: 1 }}>
         <Modal
           coverScreen={true}
@@ -95,7 +116,7 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
               width: "100%",
               borderRadius: "5%",
               position: "absolute",
-              backgroundColor: "#efefef"
+              backgroundColor: "#efefef",
             }}
           >
             <TouchableOpacity
@@ -111,7 +132,15 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
                 <TextBody style={{ marginRight: -width / 290 }}> حذف </TextBody>
               </ReverseHView>
             </TouchableOpacity>
-            <TouchableOpacity style={{ marginVertical: width / 30 }}>
+            <TouchableOpacity
+              style={{ marginVertical: width / 30 }}
+              onPress={() => {
+                navigation.navigate("EditComment", {
+                  section: item,
+                }),
+                  toggleModal();
+              }}
+            >
               <ReverseHView>
                 <MaterialIcons
                   name="mode-edit"
@@ -128,7 +157,7 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
               onPress={toggleModal}
               style={{
                 alignItems: "center",
-                marginVertical: width / 50
+                marginVertical: width / 50,
               }}
             >
               <FontAwesome
@@ -146,14 +175,17 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
           {store.store.photo ? (
             <Image
               source={{
-                uri: Const.URL.Image + `${auth.user._id}/${store.store.photo}`
+                uri:
+                  Const.URL.Image + `${item.commentedBy}/${store.store.photo}`,
               }}
             />
           ) : (
             <Image source={require("../../../../assets/image/mobl.jpeg")} />
           )}
-          <TextHeader>: {item.commentOwner}</TextHeader>
-          <ReverseHView>
+          <TextHeader> {item.commentOwner}</TextHeader>
+          <ReverseHView
+            style={{ position: "absolute", marginLeft: width / 3.3 }}
+          >
             {item.commentedBy === user._id ? (
               <TouchableOpacity
                 onPress={() => {
@@ -172,23 +204,23 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
               </TouchableOpacity>
             )}
 
-            {hearted == false ? (
+            {hearted == true || item.likedBy.find((id) => id == user._id) ? (
               <TouchableOpacity
                 style={{ position: "absolute", left: width / 1.88 }}
                 onPress={() => {
-                  setHearted(!hearted);
+                  unLikeButtom(item._id);
                 }}
               >
-                <FontAwesome name="heart-o" size={width / 25} />
+                <FontAwesome name="heart" size={width / 25} color="red" />
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
                 style={{ position: "absolute", left: width / 1.88 }}
                 onPress={() => {
-                  setHearted(!hearted);
+                  likeButtom(item._id);
                 }}
               >
-                <FontAwesome name="heart" size={width / 25} color="red" />
+                <FontAwesome name="heart-o" size={width / 25} />
               </TouchableOpacity>
             )}
           </ReverseHView>
@@ -196,7 +228,7 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
         {item.text.length > 40 ? (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("ContinueComment");
+              navigation.navigate("Comment");
             }}
           >
             <TextBody numberOfLines={1.5} ellipsizeMode="tail">
@@ -208,13 +240,18 @@ const CommentFlatListView = ({ item, auth, store, navigation }) => {
         )}
       </Viewer>
       <HLine />
-    </Container>
+    </View>
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  store: state.store
+  store: state.store,
 });
 
-export default connect(mapStateToProps)(CommentFlatListView);
+export default connect(mapStateToProps, {
+  likeComment,
+  unLikeComment,
+  deleteComment,
+  getStoreByStoreOwner,
+})(CommentFlatListView);

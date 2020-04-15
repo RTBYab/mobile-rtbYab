@@ -1,9 +1,9 @@
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
 import React, { useState } from "react";
@@ -30,28 +30,28 @@ const Follow = ({ auth, addFollow, unFollow, store }) => {
     unFollow({ token, userId, unfollowId });
   };
 
-  const followButton = auth.user.following.find(
-    id => id == store.store.storeOwner
-  ) ? (
-    <View style={styles.followButtom}>
-      <TouchableOpacity onPress={unfollowClick}>
-        <Text style={styles.text}>لغو دنبال کردن</Text>
-      </TouchableOpacity>
-    </View>
-  ) : (
-    <View style={styles.followButtom}>
-      <TouchableOpacity onPress={followClick}>
-        <Text style={styles.text}>دنبال کردن</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  const followButton =
+    auth.user.following &&
+    auth.user.following.find((id) => id == store.store.storeOwner) ? (
+      <View style={styles.followButtom}>
+        <TouchableOpacity onPress={unfollowClick}>
+          <Text style={styles.text}>لغو دنبال کردن</Text>
+        </TouchableOpacity>
+      </View>
+    ) : (
+      <View style={styles.followButtom}>
+        <TouchableOpacity onPress={followClick}>
+          <Text style={styles.text}>دنبال کردن</Text>
+        </TouchableOpacity>
+      </View>
+    );
 
   return <View>{followButton}</View>;
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  store: state.store
+  store: state.store,
 });
 
 const styles = StyleSheet.create({
@@ -61,16 +61,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: Colors.Alternative,
-    borderRadius: Constants.borderRadius.main
+    borderRadius: Constants.borderRadius.main,
   },
   text: {
     fontSize: 16,
     fontFamily: "Main",
-    color: Colors.mainWhite
-  }
+    color: Colors.mainWhite,
+  },
 });
 
-export default connect(
-  mapStateToProps,
-  { addFollow, unFollow }
-)(Follow);
+export default connect(mapStateToProps, { addFollow, unFollow })(Follow);

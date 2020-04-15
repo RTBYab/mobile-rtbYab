@@ -8,7 +8,7 @@ import { persistCombineReducers } from "redux-persist";
 
 const pConfig = {
   key: "root",
-  storage
+  storage,
 };
 
 export default persistCombineReducers(pConfig, {
@@ -16,5 +16,5 @@ export default persistCombineReducers(pConfig, {
   post,
   store,
   profile,
-  modalMenu
+  modalMenu,
 });

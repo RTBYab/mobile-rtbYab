@@ -3,7 +3,7 @@ import { Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   flex: 1;
   margin: ${width / 36}px;
   /* margin-bottom: ${width / 5}px; */

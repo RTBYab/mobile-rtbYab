@@ -6,7 +6,9 @@ import { SafeAreaView, TouchableOpacity, Dimensions } from "react-native";
 const { width } = Dimensions.get("window");
 
 const EditPostScreen = ({ navigation }) => {
-  const { body, title, photo, postedBy, id } = navigation.getParam("data");
+  const { body, title, photo, postedBy, id, postId } = navigation.getParam(
+    "data"
+  );
 
   return (
     <SafeAreaView>
@@ -28,12 +30,13 @@ const EditPostScreen = ({ navigation }) => {
         pageTitle="ویرایش"
         postedBy={postedBy}
         image={photo}
+        postId={postId}
       />
     </SafeAreaView>
   );
 };
 EditPostScreen.navigationOptions = {
-  tabBarVisible: false
+  tabBarVisible: false,
 };
 
 export default EditPostScreen;

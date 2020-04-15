@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Map from "../Map/FirstRegistration";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import Constants from "../../config/settings/Constants";
 import Language from "../../config/settings/Language";
 import { createStore } from "../../redux/Actions/storeAction";
 import {
@@ -12,8 +13,11 @@ import {
   Text,
   SubText,
   Button,
-  ButtonText
+  ButtonText,
 } from "./style";
+
+import AInputField from "../../components/InputField";
+import AButton from "../../components/Button";
 
 class FirstRegistration extends Component {
   state = {
@@ -22,8 +26,8 @@ class FirstRegistration extends Component {
     location: {
       coordinates: null,
       type: "Point",
-      valid: false
-    }
+      valid: false,
+    },
   };
 
   handleCreateStore = () => {
@@ -37,19 +41,19 @@ class FirstRegistration extends Component {
       description,
       "location.coordinates": [
         location.coordinates.longitude,
-        location.coordinates.latitude
+        location.coordinates.latitude,
       ],
-      "location.type": "Point"
+      "location.type": "Point",
     };
     createStore({ storeData, navigation, id, token });
   };
 
-  handleLocationPicker = location => {
+  handleLocationPicker = (location) => {
     this.setState({
       location: {
         coordinates: location,
-        valid: true
-      }
+        valid: true,
+      },
     });
   };
 
@@ -65,62 +69,97 @@ class FirstRegistration extends Component {
           onPress={() => {
             navigation.goBack();
           }}
+          style={{
+            width: 50,
+            height: 50,
+            zIndex: 10,
+            marginTop: 35,
+            backgroundColor: "#ccc",
+          }}
         >
           <Ionicons
-            name="ios-arrow-round-back"
-            size={65}
             style={{ marginLeft: 10 }}
+            name="ios-arrow-round-back"
+            size={Constants.icon.backIconSize}
           />
         </TouchableOpacity>
         <Text>{Language.BusinessName}</Text>
 
-        <TitleBar
+        <AInputField
+          multiline={true}
+          spellCheck={false}
+          autoCorrect={false}
+          scrollEnabled={true}
           maxLength={30}
+          isRequired={true}
+          // source={mobileIcon}
+          // onFocus={onFocusMobile}
+          underlineColorAndroid="#fff"
+          placeholder=" نام کسب و کار حداکثر در ۳۰ حرف "
+          onChangeText={(name) => this.setState({ name })}
+          inputStyle={{
+            width: "160%",
+            // padding: 10,
+            textAlign: "right",
+            // backgroundColor: "blue",
+          }}
+        />
+        <Text style={{ marginTop: -20, marginBottom: 45 }}>
+          {Language.BusinessDescription}
+        </Text>
+
+        <AInputField
           multiline={true}
           spellCheck={false}
           autoCorrect={false}
           scrollEnabled={true}
+          maxLength={150}
+          isRequired={true}
+          // keyboardType="text"
+          numberOfLines={8}
+          // source={mobileIcon}
+          // onFocus={onFocusMobile}
           underlineColorAndroid="#fff"
-          placeholder=" تابلو فرش و گلیم مریم "
-          onChangeText={name => this.setState({ name })}
+          placeholder="معرفی درباره کسب و کار حداکثر در ۱۵۰ حرف"
+          onChangeText={(description) => this.setState({ description })}
+          inputStyle={{
+            width: "160%",
+            padding: 30,
+            textAlign: "right",
+            // marginTop: 300,
+            // backgroundColor: "blue",
+          }}
         />
-
-        <Text>{Language.BusinessDescription}</Text>
-
-        <DetailForm
-          maxLength={130}
-          multiline={true}
-          spellCheck={false}
-          autoCorrect={false}
-          scrollEnabled={true}
-          underlineColorAndroid="#fff"
-          placeholder="فروشگاه  خانگی مریم با قبول سفارشات شما در زمینه تابلو فرش و بافتنی های سنتی همیشه اماده ارائه بهترین خدمات به مشتریان و دوستان عزیز می باشد"
-          onChangeText={description => this.setState({ description })}
-        />
-
+        <SubText>{Language.MapNotice}</SubText>
         <Map
           locationPicker={this.handleLocationPicker}
           navigation={navigation}
         />
         <TouchableOpacity
-          onPress={this.handleCreateStore}
-          disabled={!this.state.location.valid}
+          style={{
+            // flex: 0.2,
+            // backgroundColor: "red",
+            justifyContent: "center",
+            alignSelf: "center",
+            alignItems: "center",
+            marginBottom: "4%",
+          }}
         >
-          <SubText>{Language.MapNotice}</SubText>
-          <Button>
-            <ButtonText>{Language.CreateStore}</ButtonText>
-          </Button>
+          <AButton
+            onPress={this.handleCreateStore}
+            buttonTitle={Language.CreateStore}
+            disabled={!this.state.location.valid}
+            bStyle={{ width: "25%", marginTop: "6%", marginBottom: "4%" }}
+            tStyle={{ fontSize: 16 }}
+          />
         </TouchableOpacity>
       </MainContainer>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { createStore }
-)(FirstRegistration);
+export default connect(mapStateToProps, { createStore })(FirstRegistration);

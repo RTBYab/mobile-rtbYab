@@ -5,7 +5,7 @@ import {
   HLine,
   Caption,
   ButtonWrapper,
-  SimpleContainer
+  SimpleContainer,
 } from "./style";
 import { connect } from "react-redux";
 import React, { useState } from "react";
@@ -16,21 +16,25 @@ import { EvilIcons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { View, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const AddNewPost = ({
+import { updatePost } from "../../redux/Actions/post";
+
+const EditPost = ({
   auth,
   navigation,
   pageTitle,
+  updatePost,
   mitle,
   body,
   image,
-  id
+  id,
+  postId,
 }) => {
-  const [title, setTitle] = useState("");
-  const [photo, setPhoto] = useState(null);
-  const [caption, setCaption] = useState("");
+  const [title, setTitle] = useState(title);
+  const [caption, setCaption] = useState(body);
   const [loading, setLoading] = useState(null);
+  const [photo, setPhoto] = useState(Constants.URL.Posts + `${id}/${image}`);
 
-  const submitImage = async imagePath => {
+  const submitImage = async (imagePath) => {
     setPhoto(imagePath);
   };
 
@@ -40,8 +44,8 @@ const AddNewPost = ({
     }
     const { token } = auth;
     const id = auth.user._id;
-    setLoading(true);
-    await addNewPost({ id, token, photo, title, caption, navigation });
+    // setLoading(true);
+    await updatePost({ postId, token, photo, title, caption, navigation });
     setLoading(false);
     setPhoto(null);
     setTitle("");
@@ -72,10 +76,7 @@ const AddNewPost = ({
             <Text>تصویر :</Text>
           </SimpleContainer>
           <ImagePicker submitImage={submitImage}>
-            <Image
-              source={{ uri: Constants.URL.Posts + `${id}/${image}` }}
-              style={{ borderRadius: 9 }}
-            />
+            <Image source={{ uri: photo }} style={{ borderRadius: 9 }} />
           </ImagePicker>
           <HLine style={{ marginTop: -48 }} />
           <View style={{ flex: 1, marginTop: 40 }}>
@@ -93,7 +94,7 @@ const AddNewPost = ({
               defaultValue={mitle}
               maxLength={Constants.textInput.postTitle}
               underlineColorAndroid={Colors.mainWhite}
-              onChangeText={title => setTitle(title)}
+              onChangeText={(title) => setTitle(title)}
               placeholder="حداکثر ۲۰ کلمه"
             />
             <HLine />
@@ -110,7 +111,7 @@ const AddNewPost = ({
               clearButtonMode="always"
               underlineColorAndroid={Colors.mainWhite}
               maxLength={Constants.textInput.postCaption}
-              onChangeText={caption => setCaption(caption)}
+              onChangeText={(caption) => setCaption(caption)}
               placeholder="حداکثر ۲۵۰ کلمه"
             />
             <HLine />
@@ -120,7 +121,7 @@ const AddNewPost = ({
             style={{
               justifyContent: "center",
               alignItems: "center",
-              marginTop: 13
+              marginTop: 13,
             }}
           >
             <ButtonWrapper>
@@ -133,8 +134,8 @@ const AddNewPost = ({
   );
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps)(AddNewPost);
+export default connect(mapStateToProps, { updatePost })(EditPost);
